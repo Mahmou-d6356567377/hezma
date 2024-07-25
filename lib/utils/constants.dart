@@ -11,6 +11,18 @@ final BoxDecoration customBoxDecoration =   BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           color: const  Color(darkwhite),
           );
+final BoxDecoration customBoxDecoration2 = BoxDecoration(
+            color: Colors.white,  
+            borderRadius: BorderRadius.circular(12.0),  
+            boxShadow: [
+    BoxShadow(
+      color: Colors.black.withOpacity(0.1),  
+      spreadRadius: 5,  
+      blurRadius: 4,  
+      offset: const  Offset(-2, -2),  
+    ),
+            ],
+          );
 
 
 
@@ -97,10 +109,21 @@ const String kpay4rec1   =      'assets/images/Rectangle70.png';
 const String kpay4rec2   =      'assets/images/Rectangle71.png';
 
 const String kfollowImg   =       'assets/images/followimg1.png';
-const String kline   =            'assets/images/followimg1.png';
-const String kgreenwhitecircle =  'assets/images/followimg1.png';
+const String kline   =            'assets/images/Line.png';
+const String kgreenwhitecircle =  'assets/images/whiteGreencircle.png';
 const String kvector   =          'assets/images/Vector.png';
-const String kgreencircle   =     'assets/images/followimg1.png';
+const String kgreencircle   =     'assets/images/greenCircle.png';
+const String kcircleImge   =     'assets/images/circleImgfollow.png';
+
+const String kmapIMG   =     'assets/images/mapimg.png';
+
+const String kmada   =     'assets/images/mada.png';
+const String kvisa   =     'assets/images/Visa.png';
+
+const String kframe   =     'assets/images/Frame.png';
+const String kprivacytxt   =     'assets/images/privacytxt.png';
+const String krulestxt   =     'assets/images/rulestxt.png';
+const String kAppIcon   =     'assets/logos/appicon.png';
 
 
 

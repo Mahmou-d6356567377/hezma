@@ -55,7 +55,7 @@ class Pay3PageWidget extends StatelessWidget {
                 flex: 1,
                 child: Column(
                   children: [
-                    const TextRow(title: 'صورة الايصال'),
+                    const Text( 'صورة الايصال',style: TextStyle(fontWeight: FontWeight.bold),),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(

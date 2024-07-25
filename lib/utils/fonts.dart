@@ -49,3 +49,10 @@ fontWeight: FontWeight.bold,
 fontSize: 18,
 color: Color(backgroundcolor1),
 );
+
+const arabicstyle6 = TextStyle(
+fontFamily: karabicFont,
+fontWeight: FontWeight.bold,
+fontSize: 10,
+color: Color(backgroundcustomgreen),
+);

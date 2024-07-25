@@ -24,11 +24,21 @@ class AccountScreanContent extends StatelessWidget {
             MyAccountItem(title: 'طلباتى', icon: const Icon(Icons.file_present, color: Color(backgroundcustomgreen),), ontap: (){
               GoRouter.of(context).push(AppRoutes.mos);
             }),
-            MyAccountItem(title: 'العناوين', icon: const Icon(Icons.location_on, color: Color(backgroundcustomgreen),), ontap: (){}),
-            MyAccountItem(title: 'الدفع', icon: const Icon(Icons.payment, color: Color(backgroundcustomgreen),), ontap: (){}),
-            MyAccountItem(title: 'الدعم الفنى', icon: const Icon(Icons.supervised_user_circle, color: Color(backgroundcustomgreen),), ontap: (){}),
-            MyAccountItem(title: 'سياسة الخصوصيه', icon: const Icon(Icons.privacy_tip, color: Color(backgroundcustomgreen),), ontap: (){}),
-            MyAccountItem(title: 'الشروط والاحكام', icon: const Icon(Icons.article, color: Color(backgroundcustomgreen),), ontap: (){}),
+            MyAccountItem(title: 'العناوين', icon: const Icon(Icons.location_on, color: Color(backgroundcustomgreen),), ontap: (){
+              GoRouter.of(context).push(AppRoutes.ads);
+            }),
+            MyAccountItem(title: 'الدفع', icon: const Icon(Icons.payment, color: Color(backgroundcustomgreen),), ontap: (){
+             GoRouter.of(context).push(AppRoutes.pms2);
+            }),
+            MyAccountItem(title: 'الدعم الفنى', icon: const Icon(Icons.supervised_user_circle, color: Color(backgroundcustomgreen),), ontap: (){
+             GoRouter.of(context).push(AppRoutes.tss);
+            }),
+            MyAccountItem(title: 'سياسة الخصوصيه', icon: const Icon(Icons.privacy_tip, color: Color(backgroundcustomgreen),), ontap: (){
+                           GoRouter.of(context).push(AppRoutes.prs);
+            }),
+            MyAccountItem(title: 'الشروط والاحكام', icon: const Icon(Icons.article, color: Color(backgroundcustomgreen),), ontap: (){
+                           GoRouter.of(context).push(AppRoutes.rs2);
+            }),
             MyAccountItem(title: 'تسجيل خروج', icon: const Icon(Icons.logout, color: Color(backgroundcustomgreen),), ontap: (){}),
           ],
         ),
