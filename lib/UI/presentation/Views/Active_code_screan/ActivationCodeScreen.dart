@@ -99,7 +99,9 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 50.0, left: 8, right: 8, top:8 ),
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                GoRouter.of(context).push(AppRoutes.cpns);
+                              },
                               child: Image.asset(kactiveCodeButton),
                             ),
                           ),

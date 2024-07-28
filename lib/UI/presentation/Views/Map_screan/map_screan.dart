@@ -1,126 +1,136 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart' as gmaps;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:latlong2/latlong.dart' as latlng;
-import 'package:permission_handler/permission_handler.dart';
-import 'package:go_router/go_router.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+import 'package:hezma/utils/constants.dart';
 
 class MapScrean extends StatefulWidget {
   const MapScrean({super.key});
 
   @override
-  State<MapScrean> createState() => _MapScreanState();
+  State<MapScrean> createState() => _PageMapState();
 }
 
-class _MapScreanState extends State<MapScrean> {
-  GoogleMapController? mapController;
-
-final gmaps.LatLng _center = const gmaps.LatLng(30.0444, 31.2357);
-final latlng.LatLng anotherLocation = const  latlng.LatLng(30.0444, 31.2357);
-
-  Set<Marker> _markers = {};
+class _PageMapState extends State<MapScrean> {
+  late CameraPosition initialCameraPosition;
+  final TextEditingController _searchController = TextEditingController();
+  late GoogleMapController mapController;
+  bool searchMode = true;
+  final Set<Marker> _markers = {}; // Set to hold map markers
 
   @override
   void initState() {
-    super.initState();
-    _requestLocationPermission();
-  }
-
-  void _requestLocationPermission() async {
-    var status = await Permission.location.status;
-    if (status.isPermanentlyDenied) {
-  // The user has previously denied the permission and chosen "Don't ask again".
-  openAppSettings(); // Redirect the user to the app settings page
-} else if (status.isDenied) {
-  // Handle the denial case
-  customshowdialog();
-}
-  }
-
-  Future<dynamic> customshowdialog() {
-    return showDialog(
-  context: context,
-  builder: (context) => AlertDialog(
-    title: const Text("Location Permission"),
-    content: const  Text("Please grant location permission to use this feature."),
-    actions: [
-      TextButton(
-        child: const  Text("Open Settings"),
-        onPressed: () {
-          openAppSettings(); // Open settings
-        },
-      ),
-    ],
-  ),
-);
-  }
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-    _addMarker(_center);
-  }
-
-  void _addMarker(LatLng position) {
-    final MarkerId markerId = MarkerId('marker_1');
-    final Marker marker = Marker(
-      markerId: markerId,
-      position: position,
-      infoWindow: const InfoWindow(
-        title: 'Marker 1',
-        snippet: 'An interesting place',
-      ),
-      draggable: true,
-      onDragEnd: (newPosition) {
-        _updateMarkerPosition(markerId, newPosition);
-      },
+    _initializeMapRenderer();
+    initialCameraPosition = const CameraPosition(
+      target: LatLng(24.7326759868516, 46.657733877636275),
+      zoom: 8,
     );
+    super.initState();
+  }
 
+  void _initializeMapRenderer() {
+    final GoogleMapsFlutterPlatform mapsImplementation = GoogleMapsFlutterPlatform.instance;
+    if (mapsImplementation is GoogleMapsFlutterAndroid) {
+      mapsImplementation.useAndroidViewSurface = true;
+    }
+  }
+
+ void _onMapTapped(LatLng position) {
     setState(() {
-      _markers.add(marker);
+      _markers.clear(); // Clears previous markers if you want only one marker at a time
+      _markers.add(
+        Marker(
+          markerId: MarkerId(position.toString()),
+          position: position,
+          infoWindow: InfoWindow(
+            title: 'Tapped Location',
+          ),
+        ),
+      );
     });
   }
 
-  void _updateMarkerPosition(MarkerId markerId, LatLng newPosition) {
-    final updatedMarkers = _markers.map((marker) {
-      if (marker.markerId == markerId) {
-        return marker.copyWith(positionParam: newPosition);
+  Future<void> searchAndNavigate(String searchQuery) async {
+    try {
+      List<Location> locations = await locationFromAddress(searchQuery);
+      if (locations.isNotEmpty) {
+        final location = locations.first;
+        final newCameraPosition = CameraPosition(
+          target: LatLng(location.latitude, location.longitude),
+          zoom: 8,
+        );
+        mapController.animateCamera(CameraUpdate.newCameraPosition(newCameraPosition));
+        setState(() {
+          searchMode = false;
+          _markers.clear();
+          _markers.add(
+            Marker(
+              markerId: const  MarkerId('search-location'),
+              position: LatLng(location.latitude, location.longitude),
+              infoWindow: InfoWindow(
+                title: 'Search Location',
+                snippet: searchQuery,
+              ),
+            ),
+          );
+        });
       }
-      return marker;
-    }).toSet();
-
-    setState(() {
-      _markers = updatedMarkers;
-    });
-  }
-
-  @override
-  void dispose() {
-    mapController?.dispose();
-    super.dispose();
+    } catch (e) {
+      print("Error occurred while searching: $e");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Google Map'),
-        leading: IconButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-      ),
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 11,
-        ),
-        markers: _markers,
-        myLocationEnabled: true, // Enable my location button
-        myLocationButtonEnabled: true,
+      body: Stack(
+        children: [
+          GoogleMap(
+            onTap: _onMapTapped,
+            initialCameraPosition: initialCameraPosition,
+            onMapCreated: (GoogleMapController controller) {
+              mapController = controller;
+              
+            },
+            markers: _markers,
+          ),
+          Positioned(
+            top: 40.0,
+            left: 15.0,
+            right: 15.0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              decoration: BoxDecoration(
+                  color: const Color(backgroundcustomgreen),
+                borderRadius: BorderRadius.circular(30.0),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: 'Search for a place',
+                  border: InputBorder.none,
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.location_pin, color: Colors.black38),
+                    onPressed: () {
+                      searchAndNavigate(_searchController.text);
+                    },
+                  ),
+                ),
+                onSubmitted: (value) {
+                  searchAndNavigate(value);
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -8,6 +8,7 @@
   import 'package:hezma/UI/presentation/Views/favorite_screan/favorite_screan.dart';
   import 'package:hezma/UI/presentation/Views/main_screan1/main_screan1.dart';
   import 'package:hezma/UI/presentation/Views/my_account_screan/my_account_screan.dart';
+import 'package:hezma/utils/fonts.dart';
   import 'package:hezma/utils/routes.dart';
 
   import '../../../../../utils/constants.dart';
@@ -50,19 +51,19 @@
           items: const  [
       CurvedNavigationBarItem(
         child: Icon(Icons.person , color:   Color(backgroundcustomgreen2),),
-        label: 'حسابى',
+        label: 'حسابى',labelStyle: arabicstyle1,
       ),
       CurvedNavigationBarItem(
         child: Icon(Icons.shopping_cart, color:   Color(backgroundcustomgreen2),),
-        label: 'السله',
+        label: 'السله',labelStyle: arabicstyle1,
       ),
       CurvedNavigationBarItem(
         child: Icon(Icons.favorite, color:   Color(backgroundcustomgreen2),),
-        label: 'المفضله',
+        label: 'المفضله',labelStyle: arabicstyle1,
       ),
       CurvedNavigationBarItem(
         child: Icon(Icons.home, color:   Color(backgroundcustomgreen2),),
-        label: 'الرئيسيه',
+        label: 'الرئيسيه',labelStyle: arabicstyle1,
       ),
       
           ],

@@ -1,10 +1,8 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hezma/utils/constants.dart';
 
 const arabicstyle = TextStyle(
-fontFamily: karabicFont,
+fontFamily: karabicFont3,
 fontWeight: FontWeight.bold,
 color: Color(backgroundcustomgreen2),
   textBaseline: TextBaseline.alphabetic, 
@@ -13,7 +11,7 @@ color: Color(backgroundcustomgreen2),
 
 
 const arabicstyle1 = TextStyle(
-fontFamily: karabicFont,
+fontFamily: karabicFont3,
 fontWeight: FontWeight.bold,
 
 color: Color.fromARGB(255, 98, 89, 89),
@@ -22,7 +20,7 @@ color: Color.fromARGB(255, 98, 89, 89),
 
 
 const arabicstyle2 = TextStyle(
-fontFamily: karabicFont,
+fontFamily: karabicFont3,
 fontWeight: FontWeight.bold,
 
 color: Colors.black,
@@ -30,28 +28,28 @@ color: Colors.black,
 );
 
 const arabicstyle3 = TextStyle(
-fontFamily: karabicFont,
+fontFamily: karabicFont3,
 fontWeight: FontWeight.bold,
 color: Color(backgroundcustomgreen2),
 );
 
 
 const arabicstyle4 = TextStyle(
-fontFamily: karabicFont,
+fontFamily: karabicFont3,
 fontWeight: FontWeight.bold,
 fontSize: 18,
 color: Color(backgroundcustomgreen),
 );
 
 const arabicstyle5 = TextStyle(
-fontFamily: karabicFont,
+fontFamily: karabicFont3,
 fontWeight: FontWeight.bold,
 fontSize: 18,
 color: Color(backgroundcolor1),
 );
 
 const arabicstyle6 = TextStyle(
-fontFamily: karabicFont,
+fontFamily: karabicFont3,
 fontWeight: FontWeight.bold,
 fontSize: 10,
 color: Color(backgroundcustomgreen),

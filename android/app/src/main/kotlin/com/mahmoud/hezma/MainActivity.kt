@@ -1,4 +1,4 @@
-package com.example.hezma
+package com.mahmoud.hezma
 
 import io.flutter.embedding.android.FlutterActivity
 

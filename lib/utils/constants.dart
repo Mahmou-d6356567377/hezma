@@ -61,7 +61,9 @@ const String kline1 = 'assets/images/Line 2.png';
 const String kEnterwiout = 'assets/images/Line 2.png';
 const String kline2 = 'assets/images/Enterwithout.png';
 
-const String karabicFont = 'NotoSansArabic';
+const String karabicFont1 = 'alfont';
+const String karabicFont2 = 'ArbFONTS-STV';
+const String karabicFont3 = 'STVBold';
 
 const String kBuildaccountText = 'assets/images/BuildAccountTxT.png';
 const String kRegisterButton = 'assets/images/Group 4.png';
