@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/register_screan/widgets/passwordTxTfield.dart';
@@ -5,7 +6,6 @@ import 'package:hezma/utils/constants.dart';
 import 'package:hezma/UI/presentation/Views/register_screan/widgets/arabicTXT.dart';
 import 'package:hezma/UI/presentation/Views/register_screan/widgets/customTextField.dart';
 import 'package:hezma/UI/presentation/Views/register_screan/widgets/customphoneTxtField.dart';
-import 'package:hezma/utils/routes.dart';
 
 class BuildAccountScrean extends StatefulWidget {
   const BuildAccountScrean({super.key});
@@ -114,13 +114,43 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
                             ),
                             const SizedBox(height: 80),
                             const Arabictext(arabicText: 'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه'),
+
+
+
+
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0 , horizontal: 8),
                               child: GestureDetector(
-                                onTap: () {},
+
+
+                                onTap: () async {
+
+                                 try {
+                                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                                       email: emailController.text,
+                                       password: passwordController.text,
+                                     );
+                                   } on FirebaseAuthException catch (e) {
+                                     if (e.code == 'weak-password') {
+                                       // ignore: avoid_print
+                                       print('The password provided is too weak.');
+                                     } else if (e.code == 'email-already-in-use') {
+                                       // ignore: avoid_print
+                                       print('The account already exists for that email.');
+                                     }
+                                   } catch (e) {
+                                     // ignore: avoid_print
+                                     print(e);
+                                   }
+                                },
+
+
                                 child: Image.asset(kRegisterButton),
                               ),
                             ),
+
+
+
                           ],
                         ),
                       ),

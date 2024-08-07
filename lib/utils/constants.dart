@@ -29,16 +29,17 @@ final BoxDecoration customBoxDecoration2 = BoxDecoration(
 const String kUnion = 'assets/images/Union.png';
 const String kimgPg1 = 'assets/images/Vegetable-Transparent-PNG 1@2x.png';
 const String ktext1Pg1 = 'assets/images/KesmKhdar.png';
-const String ktxt2Pg1 = 'يعمل الخضار على صحة الإنسان، وتخلصه من مرض السكري';
-const String ktxt3Pg1 = ' وخاصةً أنواع السكري الثاني.بالإضافة إلى إن لها دور فعال في الحفاظ على صحة الجسم';
+const String ktxt2Pg1 = 'يعمل الخضار على صحة الإنسان، وتخلصه من مرض السكري وخاصة انواع';
+const String ktxt3Pg1 = '  أنواع السكري الثاني بالإضافة إلى إن لها دور فعال في الحفاظ على صحة الجسم';
 
 
-const String ktxt2Pg2 = 'يعمل الخضار على صحة الإنسان، وتخلصه من مرض السكري';
-const String ktxt3Pg2 = ' وخاصةً أنواع السكري الثاني.بالإضافة إلى إن لها دور فعال في الحفاظ على صحة الجسم';
+const String ktxt2Pg2 = 'يعمل الخضار على صحة الإنسان، وتخلصه من مرض السكري وخاصة انواع';
+const String ktxt3Pg2 = '  أنواع السكري الثاني بالإضافة إلى إن لها دور فعال في الحفاظ على صحة الجسم';
 
 
-const String ktxt2Pg3 = 'يعمل الخضار على صحة الإنسان، وتخلصه من مرض السكري';
-const String ktxt3Pg3 = ' وخاصةً أنواع السكري الثاني.بالإضافة إلى إن لها دور فعال في الحفاظ على صحة الجسم';
+const String ktxt2Pg3 = 'يعمل الخضار على صحة الإنسان، وتخلصه من مرض السكري وخاصة انواع';
+const String ktxt3Pg3 = '  أنواع السكري الثاني بالإضافة إلى إن لها دور فعال في الحفاظ على صحة الجسم';
+
 
 const String kimgPg2 = 'assets/images/pngegg (33) 1.png';
 const String ktext1Pg2 = 'assets/images/Kesmfakh.png';
@@ -126,6 +127,9 @@ const String kframe   =     'assets/images/Frame.png';
 const String kprivacytxt   =     'assets/images/privacytxt.png';
 const String krulestxt   =     'assets/images/rulestxt.png';
 const String kAppIcon   =     'assets/logos/appicon.png';
+
+
+const String kscopeIcon   =     'assets/logos/scopeIcon.png';
 
 
 

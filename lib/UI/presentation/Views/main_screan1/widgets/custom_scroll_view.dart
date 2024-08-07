@@ -84,7 +84,7 @@ class custom_scroll_view extends StatelessWidget {
           
           const Padding(
             padding:  EdgeInsets.symmetric(horizontal: 12.0),
-            child: customGridView(),
+            child: CustomGridView(),
           ),
           ],
                 ),

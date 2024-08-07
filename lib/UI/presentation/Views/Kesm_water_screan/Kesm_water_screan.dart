@@ -24,7 +24,7 @@ class KesmWaterScrean extends StatelessWidget{
            
          Expanded(child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.0),
-          child: customGridView2(),
+          child: CustomGridView2(),
         )),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 import 'package:hezma/UI/presentation/Views/Map_screan/map_screan.dart';
 import 'package:hezma/UI/presentation/Views/cart_screan/widgets/location_botton.dart';
 import 'package:hezma/UI/presentation/Views/cart_screan/widgets/text_row.dart';
@@ -60,16 +61,20 @@ class AdressesScrean extends StatelessWidget {
                   ),
                 ],
               ),
-            child: const Column(
+            child:  Column(
               children: [
                 Expanded(
                   flex: 7,
-                  child: GoogleMap(initialCameraPosition:   CameraPosition(
-        target: LatLng(24.7326759868516, 46.657733877636275), zoom: 8),
-            
+                  child: GoogleMap(
+                    cameraTargetBounds: CameraTargetBounds(LatLngBounds(
+                    northeast: const LatLng(40, 40), 
+                    southwest: const LatLng(35, 35),)),
+                    zoomControlsEnabled: false,
+                    initialCameraPosition:  const   CameraPosition(
+                     target: LatLng(24.7326759868516, 46.657733877636275), zoom: 5),
             
           ),),
-                   Expanded(
+            const  Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hezma/UI/presentation/Views/Item_screan/widgets/counter_widget.dart';
 import 'package:hezma/UI/presentation/Views/cart_screan/widgets/counter_widget2.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/fonts.dart';
@@ -14,7 +13,7 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 110,
      decoration:   BoxDecoration(
         borderRadius: BorderRadius.circular(18),
         color: const  Color(darkwhite),
@@ -36,28 +35,28 @@ class CartItem extends StatelessWidget {
                    ],
                  ),
                   
-                   Row(
-                   mainAxisAlignment: MainAxisAlignment.end,
-                   children: [
-                     Text('فواكه', style: arabicstyle3,),
-                   ],
-                 ),
-                  Row(    
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [ 
+                   Padding(
+                     padding: EdgeInsets.symmetric(vertical: 4.0),
+                     child: Row(
+                     mainAxisAlignment: MainAxisAlignment.end,
+                     children: [
                       CounterWidget2(),
-                       Spacer(),
-                      
-                      Row(
-                        children: [ 
-                        Text('ر.س/كجم', style: arabicstyle2,),
-                        Text(' 20.00', style: arabicstyle3,),
-                        ],
-                      ),
-                        
-                     
-                      ],
-                    ),
+                         Spacer(),
+                         Text('فواكه', style: TextStyle(
+                          fontFamily: karabicFont1,
+                          fontWeight: FontWeight.w800,
+                          color: Color.fromARGB(255, 106, 106, 106)
+                         ),),
+                     ],
+                          ),
+                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [ 
+                    Text('ر.س/كجم', style: arabicstyle2,),
+                    Text(' 20.00', style: arabicstyle3,),
+                    ],
+                  ),
                              ],
                            ),
               ),
@@ -66,7 +65,7 @@ class CartItem extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Container(
                    decoration:   BoxDecoration(
                       borderRadius: BorderRadius.circular(18),

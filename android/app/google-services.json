@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "622924217359",
+    "project_id": "hezma-f842d",
+    "storage_bucket": "hezma-f842d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622924217359:android:1970ce6931fe176ffa777a",
+        "android_client_info": {
+          "package_name": "com.mahmoud.hezma"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu5F1TSE-AhPTICHY9ke0idG30A7hdNRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

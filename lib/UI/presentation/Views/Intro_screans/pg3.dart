@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/fonts.dart';
 
 class IntroPage3 extends StatelessWidget {
   const IntroPage3({super.key});
@@ -30,20 +31,20 @@ class IntroPage3 extends StatelessWidget {
 
          Container(
         alignment: const Alignment(0.0, 0.5),
-        child: const Row(
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(ktxt2Pg3,style: TextStyle(color: Color(backgroundcolor1), fontSize: 11 )),
+            Text(ktxt2Pg3,style:  arabicstyle5.copyWith(fontSize: 11),),
             
           ],
         )),
 
          Container(
         alignment: const Alignment(0.0, 0.6),
-        child: const Row(
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(ktxt3Pg3,style: TextStyle(color: Color(backgroundcolor1), fontSize: 11),),
+            Text(ktxt3Pg3,style:  arabicstyle5.copyWith(fontSize: 11),),
 
 
           ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hezma/utils/fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+
+import '../../../../../utils/constants.dart';
 
 class CustomIntlPhoneField extends StatelessWidget {
   final String hintText;
@@ -16,8 +19,8 @@ class CustomIntlPhoneField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: IntlPhoneField(
+        initialCountryCode: 'SA',
         controller: controller,
-
          validator: (value) {
             if (value == null || value.toString().isEmpty) {
               return 'يرجى ادخال يرقم الهاتف';
@@ -28,6 +31,7 @@ class CustomIntlPhoneField extends StatelessWidget {
         textAlign: TextAlign.right,
         decoration: InputDecoration(
           hintText: hintText,
+          hintStyle:  const TextStyle(fontFamily: karabicFont1,),
           alignLabelWithHint: true,
           hintTextDirection: TextDirection.rtl, 
         
@@ -35,9 +39,7 @@ class CustomIntlPhoneField extends StatelessWidget {
             borderRadius: BorderRadius.circular(17),
           ),
         ),
-        initialCountryCode: 'IN',
         onSubmitted: (phone) {
-          
           // ignore: avoid_print
           print(phone.toString());
         },

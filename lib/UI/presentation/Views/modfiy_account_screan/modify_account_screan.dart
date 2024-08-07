@@ -31,49 +31,51 @@ class ModifyAccountScrean extends StatelessWidget {
                 title: const  Text('تعديل الحساب', style: arabicstyle2,),
                 centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-
-          Form(
-            key: _formKey,
-            child: Column(
-              children: [
-             
-                CustomTextField(
-                  hintText: 'الاسم',
-                  prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
-                  controller: nameController,
-                ),
-                CustomIntlPhoneField(
-                  hintText: 'رقم الجوال',
-                  controller: phonecontroller,
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+        
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
                
-                CustomTextField(
-                  hintText: 'البريد الاكترونى',
-                  prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
-                  controller: emailController,
-                ),
-                CustomTextField(
-                  hintText: 'الرقم السرى',
-                  controller: passwordController,
-                  prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
-                ),
-                const SizedBox(height: 80),
-               
-                 CustomCoupleBotton(title1: 'حفظ', title2: 'الغاء' , 
-                ontap1: (){
-
-                },
-                ontap2: () {
-                  
-
-                },),
-              ],
+                  CustomTextField(
+                    hintText: 'الاسم',
+                    prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
+                    controller: nameController,
+                  ),
+                  CustomIntlPhoneField(
+                    hintText: 'رقم الجوال',
+                    controller: phonecontroller,
+                  ),
+                 
+                  CustomTextField(
+                    hintText: 'البريد الاكترونى',
+                    prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
+                    controller: emailController,
+                  ),
+                  CustomTextField(
+                    hintText: 'الرقم السرى',
+                    controller: passwordController,
+                    prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
+                  ),
+                  const SizedBox(height: 80),
+                 
+                   CustomCoupleBotton(title1: 'حفظ', title2: 'الغاء' , 
+                  ontap1: (){
+        
+                  },
+                  ontap2: () {
+                    
+        
+                  },),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

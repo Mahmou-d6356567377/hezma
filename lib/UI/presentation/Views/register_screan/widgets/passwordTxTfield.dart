@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hezma/utils/constants.dart';
 
 class PasswordTextField extends StatefulWidget {
   final String hintText;
@@ -37,6 +38,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
             borderRadius: BorderRadius.circular(17),
           ),
           hintText: widget.hintText,
+          hintStyle: const TextStyle(fontFamily: karabicFont1),
           alignLabelWithHint: true,
           
           hintTextDirection: TextDirection.ltr,
