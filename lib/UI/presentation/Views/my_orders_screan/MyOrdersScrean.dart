@@ -11,11 +11,13 @@ class MyOrderScrean extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          GoRouter.of(context).pop();
-        }, icon: const Icon(Icons.arrow_back_ios)),
+        leading: IconButton(
+            onPressed: () {
+              GoRouter.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
         title: const Text('طلباتى'),
         centerTitle: true,
       ),
@@ -23,51 +25,65 @@ class MyOrderScrean extends StatelessWidget {
         slivers: <Widget>[
           SliverToBoxAdapter(
             child: ListView.builder(
-              shrinkWrap: true,
-              physics:  const NeverScrollableScrollPhysics(),
-                    itemCount: 3,
-                    itemBuilder: (context, index) => const OrderItem()),
-          ), 
-           SliverToBoxAdapter(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 3,
+                itemBuilder: (context, index) => const OrderItem()),
+          ),
+          SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
                 height: 50,
-              decoration: customBoxDecoration.copyWith( border:  Border.all()),
+                decoration: customBoxDecoration.copyWith(border: Border.all()),
                 child: const Padding(
-                  padding:  EdgeInsets.all(8.0),
-                  child:  Row(
+                  padding: EdgeInsets.all(8.0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [ 
-                      Text('ر.س', style: arabicstyle2,),
-                       Text('69', style: arabicstyle4,),
+                    children: [
+                      Text(
+                        'ر.س',
+                        style: arabicstyle2,
+                      ),
+                      Text(
+                        '69',
+                        style: arabicstyle4,
+                      ),
                       Spacer(),
-                      Text('مجموع السعر بعد الضريبة', style: arabicstyle2,),
-                     
+                      Text(
+                        'مجموع السعر بعد الضريبة',
+                        style: arabicstyle2,
+                      ),
                     ],
                   ),
                 ),
               ),
-            ) ,
+            ),
           ),
           const SliverToBoxAdapter(
-            child: SizedBox(height: 120,),
+            child: SizedBox(
+              height: 120,
+            ),
           ),
-           SliverToBoxAdapter(
-            child: CustomCoupleBotton(title1: 'تتبع', title2: 'الغاء الطلب',
-             ontap1: (){
-             GoRouter.of(context).push(AppRoutes.fs);
-            },
-            ontap2: (){
-             GoRouter.of(context).pop();
-            },),
+          SliverToBoxAdapter(
+            child: CustomCoupleBotton(
+              title1: 'تتبع',
+              title2: 'الغاء الطلب',
+              ontap1: () {
+                GoRouter.of(context).push(AppRoutes.fs);
+              },
+              ontap2: () {
+                GoRouter.of(context).pop();
+              },
+            ),
           ),
-           const SliverToBoxAdapter(
-            child: SizedBox(height: 50,),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 50,
+            ),
           ),
         ],
       ),
-
     );
   }
 }

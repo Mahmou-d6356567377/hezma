@@ -10,18 +10,24 @@ class PrivacyRulesScrean extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:   AppBar(
-        leading: IconButton(onPressed: (){
-          GoRouter.of(context).pop();
-        }, icon: const Icon(Icons.arrow_back_ios),),
-        title: const Text('سياسة الخصوصيه', style: arabicstyle2,),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+        title: const Text(
+          'سياسة الخصوصيه',
+          style: arabicstyle2,
+        ),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
-            children: [ 
+            children: [
               Image.asset(kprivacytxt),
             ],
           ),

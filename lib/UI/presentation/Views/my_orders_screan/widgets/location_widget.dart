@@ -7,11 +7,15 @@ class LocationWidgetOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      children: [ 
-        Icon(Icons.location_on, color: Color(backgroundcustomgreen),),
-        Text('الرياض ,السعودية', style: TextStyle(
-          fontSize: 10,
-        )),
+      children: [
+        Icon(
+          Icons.location_on,
+          color: Color(backgroundcustomgreen),
+        ),
+        Text('الرياض ,السعودية',
+            style: TextStyle(
+              fontSize: 10,
+            )),
       ],
     );
   }

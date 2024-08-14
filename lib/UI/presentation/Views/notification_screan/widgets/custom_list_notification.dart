@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/widgets.dart';
 
 import 'notification_item.dart';
@@ -12,10 +10,9 @@ class CustomListNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 20,
-      itemBuilder: (context , index){
-        return const  NotificationIcon();
-      });
+        itemCount: 20,
+        itemBuilder: (context, index) {
+          return const NotificationIcon();
+        });
   }
 }
-

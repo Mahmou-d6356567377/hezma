@@ -16,41 +16,49 @@ class LastFollowContainer extends StatelessWidget {
         decoration: customBoxDecoration,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [ 
+          children: [
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
-                gradient:const  LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                  Color(backgroundcustomgreen),
-                  Color(backgroundcustomgreen2),
-                ]
-                ),
+                gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(backgroundcustomgreen),
+                      Color(backgroundcustomgreen2),
+                    ]),
               ),
               child: const Padding(
-                padding:  EdgeInsets.all(8.0),
-                child: Text('تواصل مع الدعم', style:arabicstyle5,),
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'تواصل مع الدعم',
+                  style: arabicstyle5,
+                ),
               ),
             ),
             const Spacer(),
-             const Column(
+            const Column(
               children: [
-                Text('محمود',style: arabicstyle2,),
-                Text('دليفرى',style: arabicstyle1,),
+                Text(
+                  'محمود',
+                  style: arabicstyle2,
+                ),
+                Text(
+                  'دليفرى',
+                  style: arabicstyle1,
+                ),
               ],
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Image.asset(kcircleImge, width: 50,),
+              child: Image.asset(
+                kcircleImge,
+                width: 50,
+              ),
             ),
-      
-           
           ],
         ),
       ),
     );
   }
 }
-

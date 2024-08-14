@@ -21,20 +21,20 @@ class CustomIntlPhoneField extends StatelessWidget {
       child: IntlPhoneField(
         initialCountryCode: 'SA',
         controller: controller,
-         validator: (value) {
-            if (value == null || value.toString().isEmpty) {
-              return 'يرجى ادخال يرقم الهاتف';
-            }
-            return null;
-          },
-          
+        validator: (value) {
+          if (value == null || value.toString().isEmpty) {
+            return 'يرجى ادخال يرقم الهاتف';
+          }
+          return null;
+        },
         textAlign: TextAlign.right,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle:  const TextStyle(fontFamily: karabicFont1,),
+          hintStyle: const TextStyle(
+            fontFamily: karabicFont1,
+          ),
           alignLabelWithHint: true,
-          hintTextDirection: TextDirection.rtl, 
-        
+          hintTextDirection: TextDirection.rtl,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(17),
           ),

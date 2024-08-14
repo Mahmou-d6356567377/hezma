@@ -4,13 +4,13 @@ import 'package:hezma/UI/presentation/Views/register_screan/widgets/customTextFi
 import '../../../../../utils/constants.dart';
 
 class Pay2PageWidget extends StatelessWidget {
-  const Pay2PageWidget({
-    Key? key,
-    required this.firstController,
-    required this.secondController,
-    required this.thirdController,
-    required this.fourthController
-  }) : super(key: key);
+  const Pay2PageWidget(
+      {Key? key,
+      required this.firstController,
+      required this.secondController,
+      required this.thirdController,
+      required this.fourthController})
+      : super(key: key);
 
   final TextEditingController firstController;
   final TextEditingController secondController;
@@ -35,11 +35,16 @@ class Pay2PageWidget extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0,),
+            padding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(kpaylogo, width: MediaQuery.sizeOf(context).width,),
+                Image.asset(
+                  kpaylogo,
+                  width: MediaQuery.sizeOf(context).width,
+                ),
               ],
             ),
           ),

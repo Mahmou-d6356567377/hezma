@@ -13,64 +13,71 @@ class ModifyAccountScrean extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmpasswordController = TextEditingController();
+  final TextEditingController confirmpasswordController =
+      TextEditingController();
   final TextEditingController phonecontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:  IconButton(
-                  onPressed: () {
-                    GoRouter.of(context).pop();
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                  ),
-                ),
-                title: const  Text('تعديل الحساب', style: arabicstyle2,),
-                centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
+        title: const Text(
+          'تعديل الحساب',
+          style: arabicstyle2,
+        ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-        
             Form(
               key: _formKey,
               child: Column(
                 children: [
-               
                   CustomTextField(
                     hintText: 'الاسم',
-                    prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
+                    prefixIcon: const Icon(
+                      Icons.edit,
+                      color: Color(backgroundcustomgreen),
+                    ),
                     controller: nameController,
                   ),
                   CustomIntlPhoneField(
                     hintText: 'رقم الجوال',
                     controller: phonecontroller,
                   ),
-                 
                   CustomTextField(
                     hintText: 'البريد الاكترونى',
-                    prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
+                    prefixIcon: const Icon(
+                      Icons.edit,
+                      color: Color(backgroundcustomgreen),
+                    ),
                     controller: emailController,
                   ),
                   CustomTextField(
                     hintText: 'الرقم السرى',
                     controller: passwordController,
-                    prefixIcon: const Icon(Icons.edit, color: Color(backgroundcustomgreen),),
+                    prefixIcon: const Icon(
+                      Icons.edit,
+                      color: Color(backgroundcustomgreen),
+                    ),
                   ),
                   const SizedBox(height: 80),
-                 
-                   CustomCoupleBotton(title1: 'حفظ', title2: 'الغاء' , 
-                  ontap1: (){
-        
-                  },
-                  ontap2: () {
-                    
-        
-                  },),
+                  CustomCoupleBotton(
+                    title1: 'حفظ',
+                    title2: 'الغاء',
+                    ontap1: () {},
+                    ontap2: () {},
+                  ),
                 ],
               ),
             ),
@@ -80,4 +87,3 @@ class ModifyAccountScrean extends StatelessWidget {
     );
   }
 }
-

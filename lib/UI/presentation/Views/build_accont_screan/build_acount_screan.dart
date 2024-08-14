@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/register_screan/widgets/passwordTxTfield.dart';
@@ -6,6 +6,7 @@ import 'package:hezma/utils/constants.dart';
 import 'package:hezma/UI/presentation/Views/register_screan/widgets/arabicTXT.dart';
 import 'package:hezma/UI/presentation/Views/register_screan/widgets/customTextField.dart';
 import 'package:hezma/UI/presentation/Views/register_screan/widgets/customphoneTxtField.dart';
+import 'package:hezma/utils/routes.dart';
 
 class BuildAccountScrean extends StatefulWidget {
   const BuildAccountScrean({super.key});
@@ -15,18 +16,16 @@ class BuildAccountScrean extends StatefulWidget {
 }
 
 class _BuildAccountScreanState extends State<BuildAccountScrean> {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController confirmpasswordController = TextEditingController();
-    final TextEditingController phonecontroller = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmpasswordController =
+      TextEditingController();
+  final TextEditingController phonecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
-   
       body: Stack(
         children: [
           Container(
@@ -41,24 +40,28 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
               ),
             ),
           ),
-          
           Form(
             key: _formKey,
             child: Column(
               children: [
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 15.0, left: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      IconButton(onPressed: (){
-                      GoRouter.of(context).pop();
-                    }, icon:const  Icon(Icons.arrow_back_ios, color: Color(backgroundcolor1),)),
-                    ],
-                  ),
-                )),
+                Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15.0, left: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                GoRouter.of(context).pop();
+                              },
+                              icon: const Icon(
+                                Icons.arrow_back_ios,
+                                color: Color(backgroundcolor1),
+                              )),
+                        ],
+                      ),
+                    )),
                 Expanded(
                   flex: 3,
                   child: SizedBox(
@@ -78,7 +81,8 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 15.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -100,6 +104,7 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
                               children: [Arabictext(arabicText: 'أو')],
                             ),
                             CustomTextField(
+                              isEmail: true,
                               hintText: 'البريد الاكترونى',
                               prefixIcon: const Icon(Icons.mail),
                               controller: emailController,
@@ -113,44 +118,45 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
                               controller: confirmpasswordController,
                             ),
                             const SizedBox(height: 80),
-                            const Arabictext(arabicText: 'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه'),
-
-
-
-
+                            const Arabictext(
+                                arabicText:
+                                    'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه'),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0 , horizontal: 8),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 8),
                               child: GestureDetector(
-
-
                                 onTap: () async {
+                                  if (confirmpasswordController.text ==
+                                      passwordController.text) {
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) {
+                                        return const Center(
+                                            child: CircularProgressIndicator());
+                                      },
+                                    );
 
-                                 try {
-                                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                                       email: emailController.text,
-                                       password: passwordController.text,
-                                     );
-                                   } on FirebaseAuthException catch (e) {
-                                     if (e.code == 'weak-password') {
-                                       // ignore: avoid_print
-                                       print('The password provided is too weak.');
-                                     } else if (e.code == 'email-already-in-use') {
-                                       // ignore: avoid_print
-                                       print('The account already exists for that email.');
-                                     }
-                                   } catch (e) {
-                                     // ignore: avoid_print
-                                     print(e);
-                                   }
+                                    if (_formKey.currentState!.validate()) {
+                                      GoRouter.of(context).push(AppRoutes.acs);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text('Processing Data')),
+                                      );
+                                    }
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'تاكيد كلمه المرور ليس مثل كلمه المرور')),
+                                    );
+                                  }
+                                  print('clicked on RegisterButton');
                                 },
-
-
                                 child: Image.asset(kRegisterButton),
                               ),
                             ),
-
-
-
                           ],
                         ),
                       ),

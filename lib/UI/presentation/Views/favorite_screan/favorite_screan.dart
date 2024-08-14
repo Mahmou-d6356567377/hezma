@@ -5,32 +5,36 @@ import 'package:hezma/UI/presentation/Views/katlog_hezma_screan/widgets/customGr
 import 'package:hezma/UI/presentation/Views/main_screan1/widgets/custom_buttom_navigation_bar.dart';
 import 'package:hezma/utils/fonts.dart';
 
-
-
-class FavoriteScrean extends StatelessWidget{
+class FavoriteScrean extends StatelessWidget {
   const FavoriteScrean({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          GoRouter.of(context).pop();
-        }, icon: const Icon(Icons.arrow_back_ios , color: Colors.black,)),
+        leading: IconButton(
+            onPressed: () {
+              GoRouter.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            )),
         centerTitle: true,
-         title: const Text('المفضله',style: arabicstyle2,),
+        title: const Text(
+          'المفضله',
+          style: arabicstyle2,
+        ),
       ),
-
       body: const Column(
-        children: [ 
-           
-         Expanded(child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
-          child: customGridView1(),
-        )),
+        children: [
+          Expanded(
+              child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.0),
+            child: customGridView1(),
+          )),
         ],
       ),
     );
   }
 }
-

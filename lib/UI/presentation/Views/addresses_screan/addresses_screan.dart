@@ -15,36 +15,43 @@ class AdressesScrean extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
-        leading: IconButton(onPressed: (){
-          GoRouter.of(context).pop();
-        }, icon: const Icon(Icons.arrow_back_ios),),
-        title: const Text('العناوين', style: arabicstyle2,),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+        title: const Text(
+          'العناوين',
+          style: arabicstyle2,
+        ),
         centerTitle: true,
       ),
-      body:  Column(
-        children: [ 
-          const  TextRow(title: 'تحديد على الخريطة'),
-          const  LocatoinBotton(),
-          const  TextRow(title: 'العناوين المستخدم التوصيل'),
+      body: Column(
+        children: [
+          const TextRow(title: 'تحديد على الخريطة'),
+          const LocatoinBotton(),
+          const TextRow(title: 'العناوين المستخدم التوصيل'),
           const Row(
             children: [
-              Expanded(child: Padding(
-                padding:  EdgeInsets.all(12.0),
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.all(12.0),
                 child: AddressItem(),
               )),
-             
-             Expanded(child: Padding(
-                padding:  EdgeInsets.all(12.0),
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.all(12.0),
                 child: AddressItem(),
               )),
-              Expanded(child: Padding(
-                padding:  EdgeInsets.all(12.0),
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.all(12.0),
                 child: AddressItem(),
               )),
             ],
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Container(
@@ -56,45 +63,51 @@ class AdressesScrean extends StatelessWidget {
                     color: Colors.black.withOpacity(.1),
                     blurRadius: 2,
                     spreadRadius: 2,
-                    offset: const Offset (1,1) ,
-
+                    offset: const Offset(1, 1),
                   ),
                 ],
               ),
-            child:  Column(
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: GoogleMap(
-                    cameraTargetBounds: CameraTargetBounds(LatLngBounds(
-                    northeast: const LatLng(40, 40), 
-                    southwest: const LatLng(35, 35),)),
-                    zoomControlsEnabled: false,
-                    initialCameraPosition:  const   CameraPosition(
-                     target: LatLng(24.7326759868516, 46.657733877636275), zoom: 5),
-            
-          ),),
-            const  Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                    Icon(Icons.location_on,color: Color(backgroundcustomgreen2),),
-                      Spacer(),
-                      Column(
-                        children: [
-                          Text('العناوين المستخدم التوصيل', style: TextStyle(
-                            color: Color(backgroundcustomgreen),
-                          ),),
-                           Text('الرحمانيه ,الرياض ,السعودية', style: arabicstyle2),
-                        ],
-                      ),
-                     
-                    ],
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: GoogleMap(
+                      cameraTargetBounds: CameraTargetBounds(LatLngBounds(
+                        northeast: const LatLng(40, 40),
+                        southwest: const LatLng(35, 35),
+                      )),
+                      zoomControlsEnabled: false,
+                      initialCameraPosition: const CameraPosition(
+                          target: LatLng(24.7326759868516, 46.657733877636275),
+                          zoom: 5),
+                    ),
                   ),
+                  const Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          color: Color(backgroundcustomgreen2),
+                        ),
+                        Spacer(),
+                        Column(
+                          children: [
+                            Text(
+                              'العناوين المستخدم التوصيل',
+                              style: TextStyle(
+                                color: Color(backgroundcustomgreen),
+                              ),
+                            ),
+                            Text('الرحمانيه ,الرياض ,السعودية',
+                                style: arabicstyle2),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-              ],
-            
-            ),
+                ],
+              ),
             ),
           )
         ],
@@ -102,4 +115,3 @@ class AdressesScrean extends StatelessWidget {
     );
   }
 }
-

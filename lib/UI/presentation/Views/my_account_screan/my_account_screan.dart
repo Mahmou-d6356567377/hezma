@@ -10,14 +10,19 @@ class MyAccountScrean extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          GoRouter.of(context).pop();
-        }, icon: const Icon(Icons.arrow_back_ios_new), ),
-        title: const Text('حسابى',style: arabicstyle2,),
+        leading: IconButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back_ios_new),
+        ),
+        title: const Text(
+          'حسابى',
+          style: arabicstyle2,
+        ),
         centerTitle: true,
       ),
-      body: const  AccountScreanContent(),
+      body: const AccountScreanContent(),
     );
   }
 }
-

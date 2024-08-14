@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/Active_code_screan/widgets/custom_timer_button.dart';
 import 'package:hezma/UI/presentation/Views/Active_code_screan/widgets/pin_code_text_field.dart';
-
 import '../../../../utils/constants.dart';
 import '../../../../utils/routes.dart';
 import '../register_screan/widgets/arabicTXT.dart';
@@ -50,7 +49,8 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
                           onPressed: () {
                             GoRouter.of(context).pop();
                           },
-                          icon: const Icon(Icons.arrow_back_ios, color: Color(backgroundcolor1)),
+                          icon: const Icon(Icons.arrow_back_ios,
+                              color: Color(backgroundcolor1)),
                         ),
                       ],
                     ),
@@ -82,25 +82,35 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
                               ],
                             ),
                           ),
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children: [
-                               Image.asset(kpleaseenteractivecode),
-                             ],
-                           ),
-                           Padding(
-                             padding: const EdgeInsets.symmetric(horizontal: 80.0),
-                             child: CustomPinCodeTextField(pinController: _pinController),
-                           ),
-                           
-                          const Spacer(),
-                          const Arabictext(arabicText: 'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه'),
-                         const Timer_button(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(kpleaseenteractivecode),
+                            ],
+                          ),
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 50.0, left: 8, right: 8, top:8 ),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 80.0),
+                            child: CustomPinCodeTextField(
+                                pinController: _pinController),
+                          ),
+                          const Spacer(),
+                          const Arabictext(
+                              arabicText:
+                                  'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه'),
+                          const Timer_button(),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 50.0, left: 8, right: 8, top: 8),
                             child: GestureDetector(
-                              onTap: () {
+                              onTap: () async {
+                                print('tapped on the active code button');
                                 GoRouter.of(context).push(AppRoutes.cpns);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Center(
+                                            child:
+                                                Text('كود التفعيل غير صحيح'))));
                               },
                               child: Image.asset(kactiveCodeButton),
                             ),
@@ -118,4 +128,3 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
     );
   }
 }
-

@@ -15,101 +15,132 @@ class DetailsContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
-         height: 150,
+        height: 150,
         decoration: BoxDecoration(
-          color:   const Color(darkwhite),
+          color: const Color(darkwhite),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
-          children: [ 
+          children: [
             Container(
               height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(17),
-                color:  const Color.fromARGB(255, 187, 186, 186), 
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(17),
+                  topRight: Radius.circular(17),
+                  bottomLeft: Radius.circular(17),
+                ),
               ),
-              child: Row(children: [ 
-                Expanded(
-                flex: 1,
-                child: Container(
-                  decoration:   BoxDecoration(
-                    borderRadius: BorderRadius.circular(17),
-                    gradient: const  LinearGradient(colors: [
-                      Color(backgroundcustomgreen),
-                      Color(backgroundcustomgreen2),
-                    ])
+              child: Row(
+                children: [
+                  Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(17),
+                              gradient: const LinearGradient(colors: [
+                                Color(backgroundcustomgreen),
+                                Color(backgroundcustomgreen2),
+                              ])),
+                          child: const Center(
+                              child: Text(
+                            'تطبيق',
+                            style: arabicstyle2,
+                          )),
+                        ),
+                      )),
+                  Expanded(
+                    flex: 5,
+                    child: TextField(
+                      textDirection: TextDirection.rtl,
+                      controller: controller,
+                      decoration: const InputDecoration(
+                        hintText: ' ادخل كوبون الخصم ',
+                        hintStyle: TextStyle(
+                          fontFamily: karabicFont1,
+                        ),
+                        hintTextDirection: TextDirection.rtl,
+                      ),
+                    ),
                   ),
-                  child: const Center(child:  Text('تطبيق', style: arabicstyle2,)),
-                )),
-               Expanded(
-                flex: 4,
-                 child: TextField( 
-                  textDirection: TextDirection.rtl,
-                  controller: controller,
-                   decoration:  InputDecoration(
-                    
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(17),
-                    ),
-                    hintText: 'ادخل كوبون الخصم',
-                    hintTextDirection: TextDirection.rtl,
-                   ),
-                 ),
-               ),
-               
-              ],),
+                ],
+              ),
             ),
-    
-const  Expanded(
+            const Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [ 
+                children: [
                   Row(
-                      children: [ 
-                      Text('ر.س', style: arabicstyle3,),
-                      Text(' 20.00', style: arabicstyle3,),
-                      ],
-                    ),
+                    children: [
+                      Text(
+                        'ر.س',
+                        style: arabicstyle3,
+                      ),
+                      Text(
+                        ' 20.00',
+                        style: arabicstyle3,
+                      ),
+                    ],
+                  ),
                   Spacer(),
-                  Text('قيمة المنتجات', style: arabicstyle2,),
-                   
+                  Text(
+                    'قيمة المنتجات',
+                    style: arabicstyle2,
+                  ),
                 ],
               ),
-            ) ,     
-
-               const  Expanded(
+            ),
+            const Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [ 
+                children: [
                   Row(
-                      children: [ 
-                      Text('ر.س', style: arabicstyle3,),
-                      Text(' 20.00', style: arabicstyle3,),
-                      ],
-                    ),
+                    children: [
+                      Text(
+                        'ر.س',
+                        style: arabicstyle3,
+                      ),
+                      Text(
+                        ' 20.00',
+                        style: arabicstyle3,
+                      ),
+                    ],
+                  ),
                   Spacer(),
-                  Text('ضريبه القيمه المضافه %15', style: arabicstyle2,),
-                   
+                  Text(
+                    'ضريبه القيمه المضافه %15',
+                    style: arabicstyle2,
+                  ),
                 ],
               ),
-            )  , 
-            const Divider() , 
-              const  Expanded(
+            ),
+            const Divider(),
+            const Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [ 
+                children: [
                   Row(
-                      children: [ 
-                      Text('ر.س', style: arabicstyle3,),
-                      Text(' 20.00', style: arabicstyle3,),
-                      ],
-                    ),
+                    children: [
+                      Text(
+                        'ر.س',
+                        style: arabicstyle3,
+                      ),
+                      Text(
+                        ' 20.00',
+                        style: arabicstyle3,
+                      ),
+                    ],
+                  ),
                   Spacer(),
-                  Text('المجموع', style: arabicstyle2,),
-                   
+                  Text(
+                    'المجموع',
+                    style: arabicstyle2,
+                  ),
                 ],
               ),
-            )  ,                      
+            ),
           ],
         ),
       ),

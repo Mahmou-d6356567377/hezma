@@ -12,39 +12,36 @@ class MyCartScrean extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  TextEditingController controller = TextEditingController();
-    return  Scaffold(
+    TextEditingController controller = TextEditingController();
+    return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-         title: const Text('السله',style: arabicstyle2,),
+        title: const Text(
+          'السله',
+          style: arabicstyle2,
+        ),
       ),
-    body:    CustomScrollView(
-      slivers: <Widget>[
-         const SliverToBoxAdapter(
-          child:  CustomListItemCart(itmcount: 3),  
+      body: CustomScrollView(slivers: <Widget>[
+        const SliverToBoxAdapter(
+          child: CustomListItemCart(itmcount: 3),
         ),
         SliverToBoxAdapter(
-          child:  Column(
-      children: [ 
-        
-        
-        const TextRow(title: 'حدد عنوان التوصيل'),
-        const LocatoinBotton(),
-        const  TextRow(title : 'وقت التوصيل المفضل'),
-        const SwitchTime(),
-        DetailsContainer(controller: controller),
-        const  TextRow(title : 'المجموع'),
-        const Padding(
-      padding:  EdgeInsets.all(16.0),
-      child: LastItemCart(iscartscrean:  true,),
-      
-        )
-      ]
-      ),
-    ),
-      ]
-    ),
+          child: Column(children: [
+            const TextRow(title: 'حدد عنوان التوصيل'),
+            const LocatoinBotton(),
+            const TextRow(title: 'وقت التوصيل المفضل'),
+            const SwitchTime(),
+            DetailsContainer(controller: controller),
+            const TextRow(title: 'المجموع'),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: LastItemCart(
+                iscartscrean: true,
+              ),
+            )
+          ]),
+        ),
+      ]),
     );
   }
 }
-

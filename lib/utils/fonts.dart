@@ -2,55 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:hezma/utils/constants.dart';
 
 const arabicstyle = TextStyle(
-fontFamily: karabicFont3,
-fontWeight: FontWeight.bold,
-color: Color(backgroundcustomgreen2),
-  textBaseline: TextBaseline.alphabetic, 
+  fontFamily: karabicFont3,
+  fontWeight: FontWeight.bold,
+  color: Color(backgroundcustomgreen2),
+  textBaseline: TextBaseline.alphabetic,
   decoration: TextDecoration.underline,
 );
 
-
 const arabicstyle1 = TextStyle(
-fontFamily: karabicFont3,
-fontWeight: FontWeight.bold,
-
-color: Color.fromARGB(255, 98, 89, 89),
-  textBaseline: TextBaseline.alphabetic, 
+  fontFamily: karabicFont3,
+  fontWeight: FontWeight.bold,
+  color: Color.fromARGB(255, 98, 89, 89),
+  textBaseline: TextBaseline.alphabetic,
 );
 
-
 const arabicstyle2 = TextStyle(
-fontFamily: karabicFont3,
-fontWeight: FontWeight.bold,
-
-color: Colors.black,
-  textBaseline: TextBaseline.alphabetic, 
+  fontFamily: karabicFont3,
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+  textBaseline: TextBaseline.alphabetic,
 );
 
 const arabicstyle3 = TextStyle(
-fontFamily: karabicFont3,
-fontWeight: FontWeight.bold,
-color: Color(backgroundcustomgreen2),
+  fontFamily: karabicFont3,
+  fontWeight: FontWeight.bold,
+  color: Color(backgroundcustomgreen2),
 );
 
-
 const arabicstyle4 = TextStyle(
-fontFamily: karabicFont3,
-fontWeight: FontWeight.bold,
-fontSize: 18,
-color: Color(backgroundcustomgreen),
+  fontFamily: karabicFont3,
+  fontWeight: FontWeight.bold,
+  fontSize: 18,
+  color: Color(backgroundcustomgreen),
 );
 
 const arabicstyle5 = TextStyle(
-fontFamily: karabicFont3,
-fontWeight: FontWeight.bold,
-fontSize: 18,
-color: Color(backgroundcolor1),
+  fontFamily: karabicFont3,
+  fontWeight: FontWeight.bold,
+  fontSize: 18,
+  color: Color(backgroundcolor1),
 );
 
 const arabicstyle6 = TextStyle(
-fontFamily: karabicFont3,
-fontWeight: FontWeight.bold,
-fontSize: 10,
-color: Color(backgroundcustomgreen),
+  fontFamily: karabicFont3,
+  fontWeight: FontWeight.bold,
+  fontSize: 10,
+  color: Color(backgroundcustomgreen),
 );

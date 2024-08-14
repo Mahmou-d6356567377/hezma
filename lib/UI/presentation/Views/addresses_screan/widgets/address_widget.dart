@@ -11,18 +11,24 @@ class AddressItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
-      width: 90,
-      decoration: customBoxDecoration2,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-         const Padding(
-           padding:  EdgeInsets.only(bottom: 16.0),
-           child:  Icon(Icons.location_on,color: Color(backgroundcustomgreen2),),
-         ),
-         Text('جدة ,السعوديه', style: arabicstyle2.copyWith(fontSize: 11),),
-        ],
-      ));
+        height: 120,
+        width: 90,
+        decoration: customBoxDecoration2,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(bottom: 16.0),
+              child: Icon(
+                Icons.location_on,
+                color: Color(backgroundcustomgreen2),
+              ),
+            ),
+            Text(
+              'جدة ,السعوديه',
+              style: arabicstyle2.copyWith(fontSize: 11),
+            ),
+          ],
+        ));
   }
 }

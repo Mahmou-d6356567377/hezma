@@ -5,13 +5,13 @@ import 'package:hezma/utils/fonts.dart';
 import '../../../../../utils/constants.dart';
 
 class Pay3PageWidget extends StatelessWidget {
-  const Pay3PageWidget({
-    Key? key,
-    required this.firstController,
-    required this.secondController,
-    required this.thirdController,
-    required this.fourthController
-  }) : super(key: key);
+  const Pay3PageWidget(
+      {Key? key,
+      required this.firstController,
+      required this.secondController,
+      required this.thirdController,
+      required this.fourthController})
+      : super(key: key);
 
   final TextEditingController firstController;
   final TextEditingController secondController;
@@ -26,22 +26,23 @@ class Pay3PageWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text( 'مؤسسة حزمه',style: arabicstyle1.copyWith(fontSize: 20),),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'مؤسسة حزمه',
+                  style: arabicstyle1.copyWith(fontSize: 20),
+                ),
+              ],
+            ),
           ),
-        ),
-          
           const TextRow(title: 'رقم المؤسسه'),
-         
-             CustomTextField(
-              hintText: '',
-              prefixIcon: const Icon(Icons.data_saver_on),
-              controller: firstController,
+          CustomTextField(
+            hintText: '',
+            prefixIcon: const Icon(Icons.data_saver_on),
+            controller: firstController,
           ),
           const TextRow(title: 'رقم المحمول'),
           CustomTextField(
@@ -55,16 +56,21 @@ class Pay3PageWidget extends StatelessWidget {
                 flex: 1,
                 child: Column(
                   children: [
-                    const Text( 'صورة الايصال',style: TextStyle(fontWeight: FontWeight.bold),),
+                    const Text(
+                      'صورة الايصال',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
-                          color: const  Color(darkwhite),
+                          color: const Color(darkwhite),
                           borderRadius: BorderRadius.circular(17),
                         ),
-                        child: const Center(child: Icon(Icons.image),),
+                        child: const Center(
+                          child: Icon(Icons.image),
+                        ),
                       ),
                     )
                   ],

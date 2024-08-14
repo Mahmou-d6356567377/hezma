@@ -16,7 +16,7 @@ class PasswordTextField extends StatefulWidget {
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
-     bool notsecure  = false ;
+  bool notsecure = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +24,12 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         controller: widget.controller,
-         validator: (value) {
-            if (value == null || value.toString().isEmpty) {
-              return 'Please enter Your password';
-            }
-            return null;
-          },
+        validator: (value) {
+          if (value == null || value.toString().isEmpty) {
+            return 'Please enter Your password';
+          }
+          return null;
+        },
         obscureText: !notsecure,
         textDirection: TextDirection.rtl,
         textAlign: TextAlign.right,
@@ -40,19 +40,22 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           hintText: widget.hintText,
           hintStyle: const TextStyle(fontFamily: karabicFont1),
           alignLabelWithHint: true,
-          
           hintTextDirection: TextDirection.ltr,
-          prefixIcon: notsecure ?  IconButton(onPressed: (){
-            setState(() {
-              notsecure= !notsecure;
-            });
-          }, icon:  const Icon(Icons.visibility)) : 
-          IconButton(onPressed: (){
-            setState(() {
-              notsecure= !notsecure;
-              
-            });
-          }, icon: const Icon(Icons.visibility_off)),
+          prefixIcon: notsecure
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      notsecure = !notsecure;
+                    });
+                  },
+                  icon: const Icon(Icons.visibility))
+              : IconButton(
+                  onPressed: () {
+                    setState(() {
+                      notsecure = !notsecure;
+                    });
+                  },
+                  icon: const Icon(Icons.visibility_off)),
         ),
       ),
     );

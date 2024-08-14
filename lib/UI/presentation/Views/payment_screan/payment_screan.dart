@@ -118,13 +118,14 @@ class _PaymentScreanState extends State<PaymentScrean> {
           Expanded(
             child: SwitchPayContainers(
               iscontainer1: isClick1!,
-               iscontainer2: isClick2!, 
-               iscontainer3: isClick3!,
-                iscontainer4: isClick4!, 
-                firstController: firstController,
-                secondController: secondController,
-                thirdController: thirdController,
-                forthController: fourthController,),
+              iscontainer2: isClick2!,
+              iscontainer3: isClick3!,
+              iscontainer4: isClick4!,
+              firstController: firstController,
+              secondController: secondController,
+              thirdController: thirdController,
+              forthController: fourthController,
+            ),
           ),
           const Padding(
             padding: EdgeInsets.all(16.0),

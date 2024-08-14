@@ -16,22 +16,24 @@ class _MainScrean1State extends State<MainScrean1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          GoRouter.of(context).push(AppRoutes.ns);
-        }, icon: const Icon(Icons.notifications, color: Color(backgroundcustomgreen2),)),
+        leading: IconButton(
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.ns);
+            },
+            icon: const Icon(
+              Icons.notifications,
+              color: Color(backgroundcustomgreen2),
+            )),
         title: Center(child: Image.asset(klogomain)),
-        actions: [ 
+        actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 11.0),
             child: GestureDetector(
-              onTap: (){
-                
-              },
-              child: Image.asset(kmainActionIcon)),
+                onTap: () {}, child: Image.asset(kmainActionIcon)),
           ),
         ],
       ),
-      body:  const custom_scroll_view(),
+      body: const custom_scroll_view(),
     );
   }
 }

@@ -41,23 +41,25 @@ class _RegisterScreanState extends State<RegisterScrean> {
             key: _formKey,
             child: Column(
               children: [
-              
                 Expanded(
                   flex: 4,
-                  child: Stack(
-                    children: [
-                       Padding(
-                         padding: const EdgeInsets.symmetric(vertical: 12),
-                         child: IconButton(onPressed: (){
-                          GoRouter.of(context).push(AppRoutes.rs);
-                        }, icon:const  Icon(Icons.arrow_back_ios, color: Color(backgroundcolor1),)),
-                       ),
-                      SizedBox(
+                  child: Stack(children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: IconButton(
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRoutes.rs);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            color: Color(backgroundcolor1),
+                          )),
+                    ),
+                    SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Image.asset(kLogo2),
                     ),
-                    ]
-                  ),
+                  ]),
                 ),
                 Expanded(
                   flex: 9,
@@ -71,7 +73,8 @@ class _RegisterScreanState extends State<RegisterScrean> {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 15.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -80,30 +83,37 @@ class _RegisterScreanState extends State<RegisterScrean> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 15.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5.0),
                                     child: GestureDetector(
                                       onTap: () {
                                         setState(() {
                                           checkphone = !checkphone;
                                         });
                                       },
-                                      child: checkphone ? Image.asset(kwhitegmail) : Image.asset(kgreenmail),
+                                      child: checkphone
+                                          ? Image.asset(kwhitegmail)
+                                          : Image.asset(kgreenmail),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5.0),
                                     child: GestureDetector(
                                       onTap: () {
                                         setState(() {
                                           checkphone = !checkphone;
                                         });
                                       },
-                                      child: checkphone ? Image.asset(kgreenphone) : Image.asset(kwhitephone),
+                                      child: checkphone
+                                          ? Image.asset(kgreenphone)
+                                          : Image.asset(kwhitephone),
                                     ),
                                   ),
                                 ],
@@ -123,22 +133,26 @@ class _RegisterScreanState extends State<RegisterScrean> {
                               hintText: 'الرقم السرى',
                               controller: passwordController,
                             ),
-                            const Arabictext(arabicText: 'هل نسيت الرقم السري ؟'),
-                           const SizedBox(height: 100,),
-                            const Arabictext(arabicText: 'بتسجيك فى الحزمه فانت توافق فى سياسة الخصوصيه'),
+                            const Arabictext(
+                                arabicText: 'هل نسيت الرقم السري ؟'),
+                            const SizedBox(
+                              height: 100,
+                            ),
+                            const Arabictext(
+                                arabicText:
+                                    'بتسجيك فى الحزمه فانت توافق فى سياسة الخصوصيه'),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
                               child: GestureDetector(
                                 onTap: () {
-
                                   if (_formKey.currentState!.validate()) {
-
                                     GoRouter.of(context).push(AppRoutes.acs);
-                                   ScaffoldMessenger.of(context).showSnackBar(
-                                     const SnackBar(content: Text('Processing Data')),
-                                   );
-                                 }
-  
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text('Processing Data')),
+                                    );
+                                  }
                                 },
                                 child: Image.asset(kEnterButtom),
                               ),
@@ -150,9 +164,11 @@ class _RegisterScreanState extends State<RegisterScrean> {
                                   onTap: () {
                                     GoRouter.of(context).push(AppRoutes.bas);
                                   },
-                                  child: const Text('انشاء حساب', style: arabicstyle),
+                                  child: const Text('انشاء حساب',
+                                      style: arabicstyle),
                                 ),
-                                const Arabictext(arabicText: 'هل انت جديد فى الحزمه'),
+                                const Arabictext(
+                                    arabicText: 'هل انت جديد فى الحزمه'),
                               ],
                             ),
                             GestureDetector(
@@ -161,7 +177,8 @@ class _RegisterScreanState extends State<RegisterScrean> {
                               },
                               child: const Padding(
                                 padding: EdgeInsets.only(bottom: 10),
-                                child: Text('دخول بدون حساب', style: arabicstyle),
+                                child:
+                                    Text('دخول بدون حساب', style: arabicstyle),
                               ),
                             ),
                           ],

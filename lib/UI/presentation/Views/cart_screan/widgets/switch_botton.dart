@@ -5,7 +5,8 @@ import '../../../../../utils/constants.dart';
 class SwitchBotton extends StatelessWidget {
   const SwitchBotton({
     super.key,
-    required this.checkevening, required this.title,
+    required this.checkevening,
+    required this.title,
   });
 
   final bool checkevening;
@@ -18,19 +19,25 @@ class SwitchBotton extends StatelessWidget {
       child: Container(
         height: 40,
         decoration: BoxDecoration(
-          color: checkevening? const Color(backgroundcolor1): const Color(backgroundcustomgreen2),
+          color: checkevening
+              ? const Color(backgroundcolor1)
+              : const Color(backgroundcustomgreen2),
           border: Border.all(
             color: const Color(backgroundcustomgreen2),
           ),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
-          child: Text( title ,style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-            color: !checkevening? const Color(backgroundcolor1): const Color(backgroundcustomgreen),
-             
-          ),),
+          child: Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: !checkevening
+                  ? const Color(backgroundcolor1)
+                  : const Color(backgroundcustomgreen),
+            ),
+          ),
         ),
       ),
     );

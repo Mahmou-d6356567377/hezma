@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,7 +16,7 @@ class _SwitchTimeState extends State<SwitchTime> {
   bool checkevening = false;
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
@@ -27,23 +26,26 @@ class _SwitchTimeState extends State<SwitchTime> {
                 checkevening = !checkevening;
               });
             },
-            child: SwitchBotton(checkevening: checkevening,title: 'الصباح',),
-            
+            child: SwitchBotton(
+              checkevening: checkevening,
+              title: 'الصباح',
+            ),
           ),
         ),
-       Expanded(
+        Expanded(
           child: GestureDetector(
             onTap: () {
               setState(() {
                 checkevening = !checkevening;
               });
             },
-            child: SwitchBotton(checkevening: !checkevening,title: 'المساء',),
-            
+            child: SwitchBotton(
+              checkevening: !checkevening,
+              title: 'المساء',
+            ),
           ),
         ),
       ],
     );
   }
 }
-

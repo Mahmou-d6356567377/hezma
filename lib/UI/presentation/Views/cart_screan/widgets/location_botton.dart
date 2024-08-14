@@ -14,21 +14,24 @@ class LocatoinBotton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           GoRouter.of(context).push(AppRoutes.mps);
         },
         child: Container(
           height: 40,
           decoration: BoxDecoration(
-            color: const  Color(darkwhite),
+            color: const Color(darkwhite),
             borderRadius: BorderRadius.circular(15),
           ),
           child: const Row(
             mainAxisSize: MainAxisSize.max,
-            children: [ 
+            children: [
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Icon(Icons.location_on, color: Color(backgroundcustomgreen2),),
+                child: Icon(
+                  Icons.location_on,
+                  color: Color(backgroundcustomgreen2),
+                ),
               )
             ],
           ),
@@ -37,4 +40,3 @@ class LocatoinBotton extends StatelessWidget {
     );
   }
 }
-

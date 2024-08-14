@@ -13,14 +13,14 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
   @override
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
       GoRouter.of(context).push(AppRoutes.os);
-     });
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

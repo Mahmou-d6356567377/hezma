@@ -17,9 +17,10 @@ class Timer_button extends StatelessWidget {
         height: 50,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.white, 
-          
-          border: Border.all(color: const Color(backgroundcustomgreen2),), 
+          color: Colors.white,
+          border: Border.all(
+            color: const Color(backgroundcustomgreen2),
+          ),
         ),
         child: Center(
           child: TimerButton.builder(
