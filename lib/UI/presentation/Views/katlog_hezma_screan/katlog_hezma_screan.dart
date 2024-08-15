@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/katlog_hezma_screan/widgets/customGridViw1.dart';
 import 'package:hezma/UI/presentation/Views/katlog_hezma_screan/widgets/navigation_button.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/widgets/custom_list_view.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class KatologHezmaScrean extends StatefulWidget {
@@ -99,7 +98,7 @@ class _KatologHezmaScreanState extends State<KatologHezmaScrean> {
           const Expanded(
               child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: customGridView1(),
+            child: CustomGridView1(),
           )),
         ],
       ),
