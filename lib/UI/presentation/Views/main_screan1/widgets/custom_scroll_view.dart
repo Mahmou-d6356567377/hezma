@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hezma/Data/Repo/home_products_repo/home_product_repo_Impl.dart';
 import 'package:hezma/UI/presentation/Views/main_screan1/widgets/custom_list_view.dart';
+import 'package:hezma/blocs/home_product_cubit/home_product_cubit.dart';
 import 'package:hezma/utils/routes.dart';
+import 'package:hezma/utils/service_locator/service_locator.dart';
 
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/fonts.dart';
 
-class custom_scroll_view extends StatelessWidget {
-  const custom_scroll_view({
-    super.key,
+class Custom_scroll_view extends StatelessWidget {
+  const Custom_scroll_view({
+    super.key, 
   });
 
   @override
   Widget build(BuildContext context) {
+
+
+ 
     return CustomScrollView(
       scrollDirection: Axis.vertical,
       slivers: <Widget>[
@@ -102,9 +109,12 @@ class custom_scroll_view extends StatelessWidget {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: CustomGridView(),
+               Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child:  BlocProvider(
+                    create: (context) => HomeProductCubit(getIt.get<HomeProductRepoIMPL>()),
+                 child: const CustomGridView( ),
+                )
               ),
             ],
           ),

@@ -173,7 +173,7 @@ class _RegisterScreanState extends State<RegisterScrean> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                GoRouter.of(context).push(AppRoutes.cpns);
+                                GoRouter.of(context).push(AppRoutes.cpns );
                               },
                               child: const Padding(
                                 padding: EdgeInsets.only(bottom: 10),

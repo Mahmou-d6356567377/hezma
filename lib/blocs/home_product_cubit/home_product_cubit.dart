@@ -9,7 +9,7 @@ class HomeProductCubit extends Cubit<HomeProductState> {
 
     HomeProductRepo homeProductRepo ;
 
-  Future<void> fetchHomeProducts  () async{
+     Future<void> fetchHomeProducts  () async{
        emit(HomeProductLoading());
        var result = await  homeProductRepo.fetchHomeProduct();
 

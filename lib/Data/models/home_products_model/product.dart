@@ -71,4 +71,6 @@ class Product {
       subCategoryId.hashCode ^
       isFavorite.hashCode ^
       image.hashCode;
+
+      
 }

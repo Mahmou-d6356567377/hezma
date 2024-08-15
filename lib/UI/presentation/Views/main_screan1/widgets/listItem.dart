@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pannable_rating_bar/flutter_pannable_rating_bar.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hezma/Data/models/home_products_model/product.dart';
+import 'package:hezma/UI/presentation/Views/main_screan1/widgets/show_price_widget.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
 import '../../../../../utils/constants.dart';
 
 class ListItem extends StatefulWidget {
   const ListItem({
-    super.key,
+    super.key, required this.productModel,
   });
+  
 
+   final Product productModel;
   @override
   State<ListItem> createState() => _ListItemState();
 }
 
 class _ListItemState extends State<ListItem> {
-  bool isfavorite = false;
   double rating = 0.5;
+  bool isfavorite = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRoutes.kIIs);
+        GoRouter.of(context).push(AppRoutes.kIIs , extra: {
+    'product': widget.productModel,
+    'rating': rating,
+  },);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -66,7 +73,7 @@ class _ListItemState extends State<ListItem> {
                           children: [
                             Align(
                                 alignment: Alignment.center,
-                                child: Image.asset(konrange)),
+                                child: Image.network(widget.productModel.image!)),
                             Positioned(
                               top: -5,
                               left: -5,
@@ -103,11 +110,11 @@ class _ListItemState extends State<ListItem> {
                     flex: 1,
                     child: Column(
                       children: [
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'البرتقال',
+                             widget.productModel.name!,
                               style: arabicstyle2,
                             ),
                           ],
@@ -137,19 +144,7 @@ class _ListItemState extends State<ListItem> {
                             ),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              'ر.س/كجم',
-                              style: arabicstyle2.copyWith(fontSize: 11),
-                            ),
-                            Text(
-                              ' 20.00',
-                              style: arabicstyle3.copyWith(fontSize: 11),
-                            ),
-                          ],
-                        ),
+                        ShowPriceWidget(widget: widget),
                       ],
                     )),
 
@@ -162,3 +157,4 @@ class _ListItemState extends State<ListItem> {
     );
   }
 }
+

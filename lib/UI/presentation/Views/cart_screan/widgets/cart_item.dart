@@ -19,14 +19,14 @@ class CartItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Expanded(
+           Expanded(
             flex: 3,
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
+                 const  Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
@@ -36,13 +36,15 @@ class CartItem extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 4.0),
+                    padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CounterWidget2(),
-                        Spacer(),
-                        Text(
+                        CounterWidget2(initialCount: 1, onCountChanged: (value){
+
+                        }),
+                        const Spacer(),
+                        const Text(
                           'فواكه',
                           style: TextStyle(
                               fontFamily: karabicFont1,

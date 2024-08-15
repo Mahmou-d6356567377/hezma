@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:hezma/Data/models/home_products_model/product.dart';
 import 'package:hezma/UI/presentation/Views/Active_code_screan/ActivationCodeScreen.dart';
 import 'package:hezma/UI/presentation/Views/Item_screan/Item_screan.dart';
 import 'package:hezma/UI/presentation/Views/Kesm_Khdar_screan/Kesm_Khdar_screan.dart';
@@ -124,7 +125,10 @@ abstract class AppRoutes {
         builder: (context, state) {
           // ignore: avoid_print
           print('Go to Main Item Screan ');
-          return const ItemScrean();
+          return   ItemScrean(
+              productdetails: (state.extra as Map<String, dynamic>)['product'] as Product,
+                rating: (state.extra as Map<String, dynamic>)['rating'] as double,
+);
         }),
     GoRoute(
         path: ns,
