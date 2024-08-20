@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/katlog_hezma_screan/widgets/customGridViw1.dart';
-
+import 'package:hezma/UI/presentation/Views/favorite_screan/widgets/custom_crid_fav.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class FavoriteScrean extends StatelessWidget {
@@ -25,12 +24,12 @@ class FavoriteScrean extends StatelessWidget {
           style: arabicstyle2,
         ),
       ),
-      body:  const Column(
+      body: const Column(
         children: [
           Expanded(
               child: Padding(
-            padding:   EdgeInsets.symmetric(horizontal: 12.0),
-            child:  CustomGridView1(),
+            padding: EdgeInsets.symmetric(horizontal: 12.0),
+            child: CustomGridFav(),
           )),
         ],
       ),

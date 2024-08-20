@@ -5,24 +5,21 @@ import 'package:hezma/Data/models/home_products_model/product.dart';
 part 'home_product_state.dart';
 
 class HomeProductCubit extends Cubit<HomeProductState> {
-  HomeProductCubit( this.homeProductRepo) : super(HomeProductInitial());
+  final HomeProductRepo homeProductRepo;
 
-    HomeProductRepo homeProductRepo ;
+  HomeProductCubit(this.homeProductRepo) : super(HomeProductInitial1());
 
-     Future<void> fetchHomeProducts  () async{
-       emit(HomeProductLoading());
-       var result = await  homeProductRepo.fetchHomeProduct();
+  Future<void> fetchHomeProducts() async {
+    emit(HomeProductLoading1());
+    var result = await homeProductRepo.fetchHomeProduct();
 
-      result.fold( 
-        (failure){
- 
-           emit(HomeProductFailure(failure.errorMSG));
-        }, (homeProduct){
-
-          emit(HomeProductSuccess(homeProduct));
-        }
-        );   
-      
-  
+    result.fold(
+      (failure) {
+        emit(HomeProductFailure1(failure.errorMSG));
+      },
+      (homeProducts) {
+        emit(HomeProductSuccess1(homeProducts));
+      },
+    );
   }
 }

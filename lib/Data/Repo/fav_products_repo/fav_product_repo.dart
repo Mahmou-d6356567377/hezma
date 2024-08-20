@@ -1,10 +1,10 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:hezma/Data/Errors/failures.dart';
 
 import '../../models/home_products_model/product.dart';
 
 abstract class FavoriteProductRepo {
-  
-  Future<Either<Failure, List<Product>>> fetchFavProducts ();
+  Future<Either<Failure, List<Product>>> fetchFavProducts();
+  Future<void> removeFavProducts(Product productModel);
+  Future<void> addFavProducts(Product productModel);
 }
