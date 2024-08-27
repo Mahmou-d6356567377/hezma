@@ -8,14 +8,11 @@ import '../../../../../utils/fonts.dart';
 
 class Custom_scroll_view extends StatelessWidget {
   const Custom_scroll_view({
-    super.key, 
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-
-
- 
     return CustomScrollView(
       scrollDirection: Axis.vertical,
       slivers: <Widget>[
@@ -104,10 +101,9 @@ class Custom_scroll_view extends StatelessWidget {
                   ],
                 ),
               ),
-               const Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 12.0),
-                child:   CustomGridView( )
-              ),
+              const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: CustomGridView()),
             ],
           ),
         ),

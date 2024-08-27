@@ -12,8 +12,8 @@ import '../cart_screan/widgets/counter_widget2.dart';
 
 class ItemScrean extends StatefulWidget {
   const ItemScrean({
-    super.key, 
-    required this.productdetails, 
+    super.key,
+    required this.productdetails,
     required this.rating,
   });
 
@@ -26,7 +26,7 @@ class ItemScrean extends StatefulWidget {
 
 class _ItemScreanState extends State<ItemScrean> {
   int count = 1;
-  
+
   @override
   Widget build(BuildContext context) {
     int price = int.parse(widget.productdetails.price!);
@@ -63,7 +63,8 @@ class _ItemScreanState extends State<ItemScrean> {
                             ],
                           ),
                         ),
-                        ProductNameWidget(productdetails: widget.productdetails),
+                        ProductNameWidget(
+                            productdetails: widget.productdetails),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -81,7 +82,7 @@ class _ItemScreanState extends State<ItemScrean> {
                               rate: widget.rating,
                               items: List.generate(
                                 5,
-                                (index) =>  RatingWidget(
+                                (index) => RatingWidget(
                                   unSelectedColor: Colors.grey[300],
                                   selectedColor: Colors.green,
                                   child: const Icon(
@@ -109,7 +110,8 @@ class _ItemScreanState extends State<ItemScrean> {
                                   ),
                                 ],
                               ),
-                              ProductDesc(productdetails: widget.productdetails),
+                              ProductDesc(
+                                  productdetails: widget.productdetails),
                             ],
                           ),
                         ),

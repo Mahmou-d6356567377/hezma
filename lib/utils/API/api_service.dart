@@ -1,29 +1,60 @@
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class ApiService{
+class ApiService {
   final Dio _dio;
   ApiService(this._dio);
 
-  Future <Map<String , dynamic>> get ({required String  url , @required String? token }) async{
-   Map<String, String > headers = {};
-    if(token != null){
+  Future<Map<String, dynamic>> get(
+      {required String url, @required String? token}) async {
+    Map<String, String> headers = {};
+    if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-   var response = await _dio.get(url , options:  Options(headers: headers),) ;
-  
+
+    var response = await _dio.get(
+      url,
+      options: Options(headers: headers),
+    );
+
     return response.data;
-   }
+  }
 
+  Future<Map<String, dynamic>> post(
+      {required String url,
+      @required String? token,
+      required dynamic body}) async {
+    Map<String, String> headers = {
+      'Accept': 'application/json',
+      'content-type': 'application/json'
+    };
 
-
-Future <Map<String , dynamic>> post ({required String  url , @required String? token }) async{
-   Map<String, String > headers = {};
-    if(token != null){
+    if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-   var response = await _dio.post(url , options:  Options(headers: headers),) ;
+    var response = await _dio.post(
+      url,
+      data: jsonEncode(body),
+      options: Options(
+        headers: headers,
+        validateStatus: (status) {
+          return status! < 500; // Accept status codes under 500
+        },
+      ),
+    );
     return response.data;
-   }
-}    
+  }
+
+  Future<void> del({required String url, @required String? token}) async {
+    Map<String, String> headers = {};
+    if (token != null) {
+      headers.addAll({'Authorization': 'Bearer $token'});
+    }
+    await _dio.delete(
+      url,
+      options: Options(headers: headers),
+    );
+  }
+}

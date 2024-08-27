@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pannable_rating_bar/flutter_pannable_rating_bar.dart';
 import 'package:hezma/utils/fonts.dart';
-
 import '../../../../../utils/constants.dart';
 
 class ListItem1 extends StatefulWidget {
@@ -29,14 +28,20 @@ class _ListItemState extends State<ListItem1> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'البرتقال',
-                        style: arabicstyle2,
-                      ),
-                    ],
+                  const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'البرتقال',
+                          style: arabicstyle2,
+                          maxLines: 1,
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

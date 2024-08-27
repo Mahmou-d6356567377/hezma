@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/UI/presentation/Views/cart_screan/widgets/custom_list_cart_item.dart';
 import 'package:hezma/UI/presentation/Views/cart_screan/widgets/switch_timing.dart';
+import 'package:hezma/blocs/cart_cubit/cart_cubit.dart';
 import '../../../../utils/fonts.dart';
 import 'widgets/details_container.dart';
 import 'widgets/last_item_cart.dart';
@@ -21,27 +23,31 @@ class MyCartScrean extends StatelessWidget {
           style: arabicstyle2,
         ),
       ),
-      body: CustomScrollView(slivers: <Widget>[
-        const SliverToBoxAdapter(
-          child: CustomListItemCart(itmcount: 3),
-        ),
-        SliverToBoxAdapter(
-          child: Column(children: [
-            const TextRow(title: 'حدد عنوان التوصيل'),
-            const LocatoinBotton(),
-            const TextRow(title: 'وقت التوصيل المفضل'),
-            const SwitchTime(),
-            DetailsContainer(controller: controller),
-            const TextRow(title: 'المجموع'),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: LastItemCart(
-                iscartscrean: true,
-              ),
-            )
-          ]),
-        ),
-      ]),
+      body: BlocBuilder<CartCubit, CartState>(
+        builder: (context, state) {
+          return CustomScrollView(slivers: <Widget>[
+            const SliverToBoxAdapter(
+              child: CustomListItemCart(),
+            ),
+            SliverToBoxAdapter(
+              child: Column(children: [
+                const TextRow(title: 'حدد عنوان التوصيل'),
+                const LocatoinBotton(),
+                const TextRow(title: 'وقت التوصيل المفضل'),
+                const SwitchTime(),
+                DetailsContainer(controller: controller),
+                const TextRow(title: 'المجموع'),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: LastItemCart(
+                    iscartscrean: true,
+                  ),
+                )
+              ]),
+            ),
+          ]);
+        },
+      ),
     );
   }
 }

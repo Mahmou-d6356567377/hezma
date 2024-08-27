@@ -19,14 +19,14 @@ class CartItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-           Expanded(
+          Expanded(
             flex: 3,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                 const  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
@@ -40,9 +40,8 @@ class CartItem extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CounterWidget2(initialCount: 1, onCountChanged: (value){
-
-                        }),
+                        CounterWidget2(
+                            initialCount: 1, onCountChanged: (value) {}),
                         const Spacer(),
                         const Text(
                           'فواكه',
@@ -54,7 +53,7 @@ class CartItem extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(

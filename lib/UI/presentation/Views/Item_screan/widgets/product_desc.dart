@@ -16,8 +16,7 @@ class ProductDesc extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          productdetails.desc!
-          ,
+          productdetails.desc!,
           style: arabicstyle2.copyWith(fontSize: 13),
           maxLines: 2,
           textDirection: TextDirection.rtl,
@@ -27,4 +26,3 @@ class ProductDesc extends StatelessWidget {
     );
   }
 }
-

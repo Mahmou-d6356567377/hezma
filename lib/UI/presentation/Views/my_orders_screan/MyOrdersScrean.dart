@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/modfiy_account_screan/widgets/custom_couple_botton.dart';
-import 'package:hezma/UI/presentation/Views/my_orders_screan/widgets/order_item.dart';
+import 'package:hezma/UI/presentation/Views/my_orders_screan/widgets/MyOrdersList.dart';
+import 'package:hezma/blocs/cart_cubit/cart_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
@@ -11,6 +13,7 @@ class MyOrderScrean extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int totalprice = 0;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -23,38 +26,44 @@ class MyOrderScrean extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
-                itemBuilder: (context, index) => const OrderItem()),
-          ),
+          const SliverToBoxAdapter(child: MyordersList()),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
                 height: 50,
                 decoration: customBoxDecoration.copyWith(border: Border.all()),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'ر.س',
-                        style: arabicstyle2,
-                      ),
-                      Text(
-                        '69',
-                        style: arabicstyle4,
-                      ),
-                      Spacer(),
-                      Text(
-                        'مجموع السعر بعد الضريبة',
-                        style: arabicstyle2,
-                      ),
-                    ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: BlocBuilder<CartCubit, CartState>(
+                    builder: (context, state) {
+                      if (state is CartSuccess) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              'ر.س',
+                              style: arabicstyle2,
+                            ),
+                            Text(
+                              state.totalPrice.toString(),
+                              style: arabicstyle4,
+                            ),
+                            const Spacer(),
+                            const Text(
+                              'مجموع السعر بعد الضريبة',
+                              style: arabicstyle2,
+                            ),
+                          ],
+                        );
+                      } else if (state is CartLoading) {
+                        return const Center(
+                          child: LinearProgressIndicator(),
+                        );
+                      } else {
+                        return const Text('!');
+                      }
+                    },
                   ),
                 ),
               ),

@@ -30,4 +30,3 @@ class ProductPrice extends StatelessWidget {
     );
   }
 }
-

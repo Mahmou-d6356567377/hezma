@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 const String baseURL = 'https://hezma-traning.eltamiuz.net/api/v1/';
-const String kToken = '37|qFEDBRUCW9JR3XsSOO7rQh2WADkrjvnsrUykPOoG43e5b7be';
+const String kToken = '152|qaYT5NsUjSLFUGyHQt52Q1F6XVeSGoFCR7pDRf5F5b47266f';
 
 const darkwhite = 0xffF0F0F0;
 const backgroundcolor1 = 0xffFFFFFF;

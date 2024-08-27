@@ -1,34 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pannable_rating_bar/flutter_pannable_rating_bar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/Data/models/home_products_model/product.dart';
 import 'package:hezma/UI/presentation/Views/main_screan1/widgets/show_price_widget.dart';
+import 'package:hezma/blocs/fav_products_cubit/cubit/fav_product_cubit.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
 import '../../../../../utils/constants.dart';
 
 class ListItem extends StatefulWidget {
   const ListItem({
-    super.key, required this.productModel,
+    super.key,
+    required this.productModel,
+    this.isFavScrean = false,
   });
-  
-
-   final Product productModel;
+  final bool isFavScrean;
+  final Product productModel;
   @override
   State<ListItem> createState() => _ListItemState();
 }
 
 class _ListItemState extends State<ListItem> {
   double rating = 0.5;
-  bool isfavorite = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRoutes.kIIs , extra: {
-    'product': widget.productModel,
-    'rating': rating,
-  },);
+        GoRouter.of(context).push(
+          AppRoutes.kIIs,
+          extra: {
+            'product': widget.productModel,
+            'rating': rating,
+          },
+        );
       },
       child: Container(
         decoration: BoxDecoration(
@@ -73,7 +78,8 @@ class _ListItemState extends State<ListItem> {
                           children: [
                             Align(
                                 alignment: Alignment.center,
-                                child: Image.network(widget.productModel.image!)),
+                                child:
+                                    Image.network(widget.productModel.image!)),
                             Positioned(
                               top: -5,
                               left: -5,
@@ -82,19 +88,28 @@ class _ListItemState extends State<ListItem> {
                                 children: [
                                   CircleAvatar(
                                     radius: 15,
-                                    backgroundColor: isfavorite
+                                    backgroundColor: widget
+                                            .productModel.isFavorite!
                                         ? const Color.fromARGB(
                                             255, 189, 237, 121)
                                         : const Color(backgroundcustomgreen),
                                   ),
                                   IconButton(
                                     onPressed: () {
-                                      setState(() {
-                                        isfavorite = !isfavorite;
-                                      });
+                                      final homefavProductCubit =
+                                          context.read<FavProductCubit>();
+                                      if (widget.isFavScrean) {
+                                        homefavProductCubit
+                                            .removeProductToFavorite(
+                                                widget.productModel);
+                                      } else {
+                                        homefavProductCubit
+                                            .addProductToFavorite(
+                                                widget.productModel);
+                                      }
                                     },
                                     icon: Icon(Icons.favorite,
-                                        color: isfavorite
+                                        color: widget.productModel.isFavorite!
                                             ? const Color(
                                                 backgroundcustomgreen2)
                                             : const Color(backgroundcolor1)),
@@ -110,11 +125,11 @@ class _ListItemState extends State<ListItem> {
                     flex: 1,
                     child: Column(
                       children: [
-                         Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                             widget.productModel.name!,
+                              widget.productModel.name!,
                               style: arabicstyle2,
                             ),
                           ],
@@ -157,4 +172,3 @@ class _ListItemState extends State<ListItem> {
     );
   }
 }
-

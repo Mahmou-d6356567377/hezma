@@ -3,28 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/UI/presentation/Views/main_screan1/widgets/listItem.dart';
-import 'package:hezma/blocs/home_product_cubit/home_product_cubit.dart';
+import 'package:hezma/blocs/fav_products_cubit/cubit/fav_product_cubit.dart';
 
-class CustomGridView2 extends StatelessWidget {
-  const CustomGridView2({
+class CustomGridFav extends StatefulWidget {
+  const CustomGridFav({
     super.key,
   });
+
+  @override
+  State<CustomGridFav> createState() => _CustomGridFavState();
+}
+
+class _CustomGridFavState extends State<CustomGridFav> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeProductCubit, HomeProductState>(
+    return BlocBuilder<FavProductCubit, FavProductState>(
       builder: (context, state) {
-        if (state is HomeProductSuccess1) {
+        if (state is FavProductSuccess) {
           return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
+                childAspectRatio: 3 / 4,
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 20.0,
               ),
-              itemCount: state.porducts.length,
+              itemCount: state.favProducts.length,
               itemBuilder: (context, index) {
-                return ListItem(productModel: state.porducts[index]);
+                return ListItem(
+                  productModel: state.favProducts[index],
+                  isFavScrean: true,
+                );
               });
-        } else if (state is HomeProductFailure1) {
+        } else if (state is FavProductFailure) {
           return Text(state.errMsg);
         } else {
           return const Center(

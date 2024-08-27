@@ -12,25 +12,26 @@ class CustomGridView3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeProductCubit, HomeProductState>(
       builder: (context, state) {
-       if (state is HomeProductSuccess) {
-        return GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10.0,
-              //childAspectRatio: 3/5,
-              mainAxisSpacing: 20.0,
-            ),
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return  ListItem(productModel: state.porducts[index]);
-            });
-       }else if (state is HomeProductFailure){
-       return Text(state.errMsg);
-       }else{
-        return const Center(child: CircularProgressIndicator(),);
-       }
+        if (state is HomeProductSuccess1) {
+          return GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 20.0,
+              ),
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return ListItem(productModel: state.porducts[index]);
+              });
+        } else if (state is HomeProductFailure1) {
+          return Text(state.errMsg);
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
       },
     );
   }

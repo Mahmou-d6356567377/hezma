@@ -81,7 +81,8 @@ class _OnBoardingScreanState extends State<OnBoardingScrean> {
                                       child: CircularProgressIndicator(
                                         strokeWidth: 4,
                                         backgroundColor: Colors.grey[300],
-                                        valueColor:   const AlwaysStoppedAnimation<Color>(
+                                        valueColor:
+                                            const AlwaysStoppedAnimation<Color>(
                                                 Color(backgroundcustomgreen)),
                                         value: value,
                                       ),

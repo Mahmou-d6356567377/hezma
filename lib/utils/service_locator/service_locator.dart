@@ -1,12 +1,32 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hezma/Data/Repo/cart_repo/cart_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/districts_repo/districts_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/fav_products_repo/fav_product_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/home_products_repo/home_product_repo_Impl.dart';
+import 'package:hezma/Data/Repo/otp_repo/otp_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/signIn_register_repo/signin_register_repo_IMPL.dart';
 import 'package:hezma/utils/API/api_service.dart';
 
 final getIt = GetIt.instance;
 
-void serviceLocator (){
-  getIt.registerSingleton<HomeProductRepoIMPL>( HomeProductRepoIMPL(ApiService(Dio())));
-  getIt.registerSingleton<FavProductRepoImpl>( FavProductRepoImpl(ApiService(Dio())));
+void serviceLocator() {
+  getIt.registerSingleton<ApiService>(ApiService(Dio()));
+
+  getIt.registerSingleton<HomeProductRepoIMPL>(
+      HomeProductRepoIMPL(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<FavProductRepoImpl>(
+      FavProductRepoImpl(getIt.get<ApiService>()));
+
+        getIt.registerSingleton<DistrictsRepoImpl>(
+      DistrictsRepoImpl(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<CartProductRepoIMPL>(
+      CartProductRepoIMPL(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<SignInRegisterRepoIMPL>(
+      SignInRegisterRepoIMPL(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<OtpRepoImpl>(OtpRepoImpl(getIt.get<ApiService>()));
 }

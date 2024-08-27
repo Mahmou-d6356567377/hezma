@@ -12,11 +12,13 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.6.0
   easy_stepper: ^0.8.5+1
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_launcher_icons: ^0.13.1
   flutter_pannable_rating_bar: ^2.7.2+1
+  flutter_slidable: ^3.1.1
   font_awesome_flutter: ^10.7.0
   geocoding: ^3.0.0
   get_it: ^7.7.0

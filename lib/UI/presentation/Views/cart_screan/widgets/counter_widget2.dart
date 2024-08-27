@@ -39,7 +39,7 @@ class _CounterWidgetState extends State<CounterWidget2> {
             onTap: () {
               setState(() {
                 count++;
-                widget.onCountChanged(count); 
+                widget.onCountChanged(count);
               });
             },
             child: const Icon(
@@ -65,7 +65,7 @@ class _CounterWidgetState extends State<CounterWidget2> {
               setState(() {
                 if (count > 1) {
                   count--;
-                  widget.onCountChanged(count); 
+                  widget.onCountChanged(count);
                 }
               });
             },

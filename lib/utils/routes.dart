@@ -125,10 +125,11 @@ abstract class AppRoutes {
         builder: (context, state) {
           // ignore: avoid_print
           print('Go to Main Item Screan ');
-          return   ItemScrean(
-              productdetails: (state.extra as Map<String, dynamic>)['product'] as Product,
-                rating: (state.extra as Map<String, dynamic>)['rating'] as double,
-);
+          return ItemScrean(
+            productdetails:
+                (state.extra as Map<String, dynamic>)['product'] as Product,
+            rating: (state.extra as Map<String, dynamic>)['rating'] as double,
+          );
         }),
     GoRoute(
         path: ns,

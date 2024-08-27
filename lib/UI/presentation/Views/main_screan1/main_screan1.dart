@@ -34,6 +34,6 @@ class _MainScrean1State extends State<MainScrean1> {
         ],
       ),
       body: const Custom_scroll_view(),
-      );
+    );
   }
 }
