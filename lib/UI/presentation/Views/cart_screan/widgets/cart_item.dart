@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/counter_widget2.dart';
+import 'package:hezma/Data/models/home_products_model/product.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/fonts.dart';
+import 'counter_widget2.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
+    required this.product,
   });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -26,45 +30,51 @@ class CartItem extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  Column(
                     children: [
-                      Text(
-                        'البرتقال',
-                        style: arabicstyle2,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            product.name!,
+                            style: arabicstyle2,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const Text(
+                            'ر.س/كجم',
+                            style: arabicstyle2,
+                          ),
+                          Text(
+                            product.price!,
+                            style: arabicstyle3,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 4.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         CounterWidget2(
-                            initialCount: 1, onCountChanged: (value) {}),
-                        const Spacer(),
-                        const Text(
+                          initialCount: 1,
+                        ),
+                        Spacer(),
+                        Text(
                           'فواكه',
                           style: TextStyle(
-                              fontFamily: karabicFont1,
-                              fontWeight: FontWeight.w800,
-                              color: Color.fromARGB(255, 106, 106, 106)),
+                            fontFamily: karabicFont1,
+                            fontWeight: FontWeight.w800,
+                            color: Color.fromARGB(255, 106, 106, 106),
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'ر.س/كجم',
-                        style: arabicstyle2,
-                      ),
-                      Text(
-                        ' 20.00',
-                        style: arabicstyle3,
-                      ),
-                    ],
                   ),
                 ],
               ),
@@ -75,11 +85,12 @@ class CartItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                    color: const Color(backgroundcolor1),
-                  ),
-                  child: Image.asset(konrange)),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  color: const Color(backgroundcolor1),
+                ),
+                child: Image.network(product.image!),
+              ),
             ),
           ),
         ],

@@ -4,12 +4,10 @@ import 'package:hezma/utils/fonts.dart';
 
 class CounterWidget2 extends StatefulWidget {
   final int initialCount;
-  final ValueChanged<int> onCountChanged;
 
   const CounterWidget2({
     super.key,
     required this.initialCount,
-    required this.onCountChanged,
   });
 
   @override
@@ -30,18 +28,17 @@ class _CounterWidgetState extends State<CounterWidget2> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: const Color(backgroundcustomgreen2),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                count++;
-                widget.onCountChanged(count);
-              });
-            },
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              count++;
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color(backgroundcustomgreen2),
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: const Icon(
               Icons.add,
               color: Colors.white,
@@ -55,20 +52,19 @@ class _CounterWidgetState extends State<CounterWidget2> {
             style: arabicstyle2,
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-            color: const Color(backgroundcustomgreen2),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                if (count > 1) {
-                  count--;
-                  widget.onCountChanged(count);
-                }
-              });
-            },
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              if (count > 1) {
+                count--;
+              }
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color(backgroundcustomgreen2),
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: const Icon(
               Icons.remove,
               color: Colors.white,

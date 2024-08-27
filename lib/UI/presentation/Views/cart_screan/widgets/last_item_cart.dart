@@ -10,8 +10,9 @@ class LastItemCart extends StatelessWidget {
   const LastItemCart({
     super.key,
     required this.iscartscrean,
+    required this.totalPrice,
   });
-
+  final int totalPrice;
   final bool iscartscrean;
   @override
   Widget build(BuildContext context) {
@@ -61,23 +62,24 @@ class LastItemCart extends StatelessWidget {
                 child: SwitchBotton(checkevening: false, title: 'ادفع')),
           ),
           const Spacer(),
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
+              const Text(
                 'المجموع',
                 style: arabicstyle2,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'ر.س',
                       style: arabicstyle3,
                     ),
                     Text(
-                      ' 20.00',
+                      totalPrice.toString(),
                       style: arabicstyle3,
                     ),
                   ],

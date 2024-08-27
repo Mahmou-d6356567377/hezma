@@ -15,7 +15,8 @@ class CartProductModel {
     this.product,
   });
 
-  factory CartProductModel.fromJson(Map<String, dynamic> json) => CartProductModel(
+  factory CartProductModel.fromJson(Map<String, dynamic> json) =>
+      CartProductModel(
         cartId: json['cart_id'] as int?,
         quantity: json['quantity'] as String?,
         totalPrice: json['total_price'] as String?,

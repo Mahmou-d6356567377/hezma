@@ -31,7 +31,9 @@ class FavProductRepoImpl implements FavoriteProductRepo {
   Future<void> addFavProducts(Product productModel) async {
     try {
       await apiService.post(
-          url: '${baseURL}favorites/${productModel.id}', token: kToken);
+          url: '${baseURL}favorites/${productModel.id}',
+          token: kToken,
+          body: null);
     } catch (e) {
       Text('error in add favorite product $e');
     }

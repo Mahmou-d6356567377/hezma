@@ -70,11 +70,6 @@ class _ItemScreanState extends State<ItemScrean> {
                           children: [
                             CounterWidget2(
                               initialCount: count,
-                              onCountChanged: (newCount) {
-                                setState(() {
-                                  count = newCount;
-                                });
-                              },
                             ),
                             const Spacer(),
                             PannableRatingBar(
@@ -133,7 +128,10 @@ class _ItemScreanState extends State<ItemScrean> {
                 ],
               ),
             ),
-            PriceDetailsContainer(totalprice: totalprice),
+            PriceDetailsContainer(
+              totalprice: totalprice,
+              productModel: widget.productdetails,
+            ),
           ],
         ),
       ),
