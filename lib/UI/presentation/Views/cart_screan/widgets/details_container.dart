@@ -6,12 +6,15 @@ class DetailsContainer extends StatelessWidget {
   const DetailsContainer({
     super.key,
     required this.controller,
+    required this.totalprice,
   });
 
   final TextEditingController controller;
-
+  final int totalprice;
   @override
   Widget build(BuildContext context) {
+    double tax = .15 * totalprice;
+    double pricewithtax = tax + totalprice;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -68,48 +71,48 @@ class DetailsContainer extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(
+            Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'ر.س',
                         style: arabicstyle3,
                       ),
                       Text(
-                        ' 20.00',
+                        totalprice.toString(),
                         style: arabicstyle3,
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Text(
+                  const Spacer(),
+                  const Text(
                     'قيمة المنتجات',
                     style: arabicstyle2,
                   ),
                 ],
               ),
             ),
-            const Expanded(
+            Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'ر.س',
                         style: arabicstyle3,
                       ),
                       Text(
-                        ' 20.00',
+                        tax.toString(),
                         style: arabicstyle3,
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Text(
+                  const Spacer(),
+                  const Text(
                     'ضريبه القيمه المضافه %15',
                     style: arabicstyle2,
                   ),
@@ -117,24 +120,24 @@ class DetailsContainer extends StatelessWidget {
               ),
             ),
             const Divider(),
-            const Expanded(
+            Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'ر.س',
                         style: arabicstyle3,
                       ),
                       Text(
-                        ' 20.00',
+                        pricewithtax.toString(),
                         style: arabicstyle3,
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Text(
+                  const Spacer(),
+                  const Text(
                     'المجموع',
                     style: arabicstyle2,
                   ),

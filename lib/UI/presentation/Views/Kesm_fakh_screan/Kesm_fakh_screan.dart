@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hezma/UI/presentation/Views/Kesm_Khdar_screan/widgets/customGridView2.dart';
 import 'package:hezma/UI/presentation/Views/katlog_hezma_screan/widgets/customGridViw1.dart';
 import 'package:hezma/utils/fonts.dart';
 
@@ -29,7 +30,7 @@ class KesmfakhScrean extends StatelessWidget {
           Expanded(
               child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: CustomGridView1(),
+            child: CustomGridView2(subCategoryId: "6"),
           )),
         ],
       ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hezma/UI/presentation/Views/main_screan1/widgets/category_row_image.dart';
 import 'package:hezma/UI/presentation/Views/main_screan1/widgets/custom_list_view.dart';
+import 'package:hezma/UI/presentation/Views/main_screan1/widgets/first_image_widget.dart';
 import 'package:hezma/utils/routes.dart';
-import '../../../../../utils/constants.dart';
 import '../../../../../utils/fonts.dart';
 
 class Custom_scroll_view extends StatelessWidget {
@@ -21,27 +21,7 @@ class Custom_scroll_view extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GestureDetector(
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                            child: GestureDetector(
-                                onTap: () {
-                                  GoRouter.of(context).push(AppRoutes.ks);
-                                },
-                                child: Image.asset(
-                                  kfrstimgmain,
-                                  fit: BoxFit.fill,
-                                ))),
-                      ],
-                    ),
-                  )),
+              const FirstImageWidget(),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
                 child: Row(
@@ -54,31 +34,7 @@ class Custom_scroll_view extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 80,
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context).push(AppRoutes.ks1);
-                            },
-                            child: Image.asset(khdaricon))),
-                    Expanded(
-                        child: GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context).push(AppRoutes.ks3);
-                            },
-                            child: Image.asset(kfakhIcon))),
-                    Expanded(
-                        child: GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context).push(AppRoutes.ks2);
-                            },
-                            child: Image.asset(kwaterIcon))),
-                  ],
-                ),
-              ),
+              const CategoryRowImage(),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
@@ -86,13 +42,14 @@ class Custom_scroll_view extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).push(AppRoutes.ks);
-                        },
-                        child: const Text(
-                          'الكل',
-                          style: arabicstyle1,
-                        )),
+                      onTap: () {
+                        GoRouter.of(context).push(AppRoutes.ks);
+                      },
+                      child: const Text(
+                        'الكل',
+                        style: arabicstyle1,
+                      ),
+                    ),
                     const Spacer(),
                     const Text(
                       'المنتجات',
@@ -102,8 +59,9 @@ class Custom_scroll_view extends StatelessWidget {
                 ),
               ),
               const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  child: CustomGridView()),
+                padding: EdgeInsets.symmetric(horizontal: 12.0),
+                child: CustomGridView(),
+              ),
             ],
           ),
         ),

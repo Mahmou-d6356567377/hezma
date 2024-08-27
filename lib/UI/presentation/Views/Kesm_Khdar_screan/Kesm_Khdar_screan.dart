@@ -29,7 +29,7 @@ class KesmKhdarScrean extends StatelessWidget {
           Expanded(
               child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: CustomGridView2(),
+            child: CustomGridView2(subCategoryId: "4"),
           )),
         ],
       ),

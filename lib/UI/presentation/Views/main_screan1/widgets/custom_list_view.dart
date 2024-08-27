@@ -41,7 +41,7 @@ class _CustomGridViewState extends State<CustomGridView> {
             },
           );
         } else if (state is HomeProductFailure1) {
-          return Text(state.errMsg);
+          return const Center(child: Text('!'));
         } else {
           return const Center(child: CircularProgressIndicator());
         }
