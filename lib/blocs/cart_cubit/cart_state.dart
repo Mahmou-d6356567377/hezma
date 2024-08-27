@@ -12,9 +12,13 @@ final class CartInitial extends CartState {}
 final class CartLoading extends CartState {}
 
 final class CartSuccess extends CartState {
-  final List<CartProductModel> cartProduct;
+  final List<Product> cartProduct;
+  final int totalPrice;
 
-  const CartSuccess(this.cartProduct);
+  const CartSuccess(this.cartProduct, this.totalPrice);
+
+  @override
+  List<Object> get props => [cartProduct, totalPrice];
 }
 
 final class CartFailure extends CartState {

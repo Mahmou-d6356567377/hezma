@@ -1,24 +1,41 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hezma/Data/Repo/cart_repo/cart_repo.dart';
-import 'package:hezma/Data/models/cart_model/datum.dart';
+import 'package:hezma/Data/models/home_products_model/product.dart';
+
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
-  CartProductRepo cartProductRepo;
-  CartCubit(this.cartProductRepo) : super(CartInitial());
+  final List<Product> _cartProducts = [];
 
-  Future<void> fetchCartProducts() async {
+  CartCubit() : super(CartInitial());
+
+  void addProductToCart(Product product) {
+    _cartProducts.add(product);
+    _emitSuccessState();
+  }
+
+  void fetchCartProducts() {
     emit(CartLoading());
-    var result = await cartProductRepo.fetchCartProduct();
+    if (_cartProducts.isNotEmpty) {
+      _emitSuccessState();
+    } else {
+      emit(CartInitial());
+    }
+  }
 
-    result.fold(
-      (failure) {
-        emit(CartFailure(failure.errorMSG));
-      },
-      (cartProducts) {
-        emit(CartSuccess(cartProducts));
+  void removeProductFromCart(Product product) {
+    _cartProducts.remove(product);
+    _emitSuccessState();
+  }
+
+  void _emitSuccessState() {
+    final totalPrice = _cartProducts.fold(
+      0,
+      (sum, item) {
+        int price = int.parse(item.price!);
+        return sum + price;
       },
     );
+    emit(CartSuccess(_cartProducts, totalPrice));
   }
 }
