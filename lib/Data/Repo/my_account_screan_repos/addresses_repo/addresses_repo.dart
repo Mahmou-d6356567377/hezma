@@ -4,7 +4,7 @@ import 'package:hezma/Data/Errors/failures.dart';
 import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
 
 abstract class AddressesRepo {
-Future<Either<Failure, AddressData>> getAddresses ();
+Future<Either<Failure, List<AddressData>>> getAddresses ();
 
 Future<Either<Failure, AddressData>> createAddresses({
     required String name ,

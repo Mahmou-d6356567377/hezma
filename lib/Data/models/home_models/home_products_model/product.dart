@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 class Product {
   int? id;
   String? name;
@@ -11,6 +9,7 @@ class Product {
   String? subCategoryId;
   bool? isFavorite;
   String? image;
+  int quantity; // New field
 
   Product({
     this.id,
@@ -23,7 +22,25 @@ class Product {
     this.subCategoryId,
     this.isFavorite,
     this.image,
+    this.quantity = 1, // Default quantity is 1
   });
+
+  // Copy constructor to create a new instance with updated quantity
+  Product copyWith({int? quantity}) {
+    return Product(
+      id: id,
+      name: name,
+      desc: desc,
+      price: price,
+      priceAfter: priceAfter,
+      amount: amount,
+      stock: stock,
+      subCategoryId: subCategoryId,
+      isFavorite: isFavorite,
+      image: image,
+      quantity: quantity ?? this.quantity,
+    );
+  }
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json['id'] as int?,
@@ -36,6 +53,7 @@ class Product {
         subCategoryId: json['sub_category_id'] as String?,
         isFavorite: json['is_favorite'] as bool?,
         image: json['image'] as String?,
+        quantity: 1, // Default to 1 when creating from JSON
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,26 +67,6 @@ class Product {
         'sub_category_id': subCategoryId,
         'is_favorite': isFavorite,
         'image': image,
+        // Quantity is omitted since it's not part of the server-side data
       };
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! Product) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      name.hashCode ^
-      desc.hashCode ^
-      price.hashCode ^
-      priceAfter.hashCode ^
-      amount.hashCode ^
-      stock.hashCode ^
-      subCategoryId.hashCode ^
-      isFavorite.hashCode ^
-      image.hashCode;
 }

@@ -18,25 +18,34 @@ class AddressesRepoImpl implements AddressesRepo {
   @override
   
 
-  Future<Either<Failure, AddressData>> getAddresses() async{
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String token1 = pref.getString(sharedToken)!;
-   try {
-      var result =  await  apiService.get(url: '${baseURL}address', token: token1);
-    List<AddressData> addressdata = result['data'];
-      List<AddressData> dataAddresses  = [];
-
-      for (var item in addressdata) {
-          dataAddresses.add(item);
-      }
-
-      return right(dataAddresses as AddressData);
-   }on DioException catch (e) {
-     return left(ServerFailure(e.toString()));
-   }catch (e) {
-     return left(ServerFailure(e.toString()));
-   }
+  Future<Either<Failure, List<AddressData>>> getAddresses() async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  String? token1 = pref.getString(sharedToken);
+  
+  if (token1 == null) {
+    return left(ServerFailure("Token is null"));
   }
+
+  try {
+    var result = await apiService.get(url: '${baseURL}address', token: token1);
+    
+    if (result['data'] == null) {
+      return left(ServerFailure("No data available"));
+    }
+
+    List<AddressData> addressdata = (result['data'] as List)
+        .map((item) => AddressData.fromJson(item))
+        .toList();
+
+    return right(addressdata);
+  } on DioException catch (e) {
+    print('Get Address Dio Error $e');
+    return left(ServerFailure(e.toString()));
+  } catch (e) {
+    print('Get Address Error $e');
+    return left(ServerFailure(e.toString()));
+  }
+}
 
 
 
@@ -120,7 +129,7 @@ class AddressesRepoImpl implements AddressesRepo {
     }catch (e) {
       return left(ServerFailure(e.toString()));
     }
-    
+
   }
 
 }

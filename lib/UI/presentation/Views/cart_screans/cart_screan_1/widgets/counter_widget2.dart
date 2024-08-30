@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
+import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class CounterWidget2 extends StatefulWidget {
   final int initialCount;
+  final Product product; // Add the product here
 
   const CounterWidget2({
     super.key,
     required this.initialCount,
+    required this.product,
   });
 
   @override
@@ -23,6 +28,11 @@ class _CounterWidgetState extends State<CounterWidget2> {
     count = widget.initialCount;
   }
 
+  void _updateCartQuantity() {
+    final cartCubit = context.read<CartCubit>();
+    cartCubit.updateProductQuantity(widget.product, count);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -33,6 +43,7 @@ class _CounterWidgetState extends State<CounterWidget2> {
             setState(() {
               count++;
             });
+            _updateCartQuantity();
           },
           child: Container(
             decoration: BoxDecoration(
@@ -57,6 +68,7 @@ class _CounterWidgetState extends State<CounterWidget2> {
             setState(() {
               if (count > 1) {
                 count--;
+                _updateCartQuantity();
               }
             });
           },

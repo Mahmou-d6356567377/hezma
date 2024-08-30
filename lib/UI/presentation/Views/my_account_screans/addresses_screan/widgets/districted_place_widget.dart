@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/address_widget.dart';
-import 'package:hezma/blocs/my_account_cubits/district_places_cubit/district_places_cubit.dart';
+import 'package:hezma/blocs/my_account_cubits/addresses_cubit/get_addresses_cubit/get_addresses_cubit.dart';
 
 class DistrictedPlacesWidget extends StatelessWidget {
   const DistrictedPlacesWidget({
@@ -10,21 +10,23 @@ class DistrictedPlacesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DistrictPlacesCubit, DistrictPlacesState>(
+    context.read<GetAddressesCubit>().fetchAddresses();
+
+    return BlocBuilder<GetAddressesCubit, GetAddressesState>(
       builder: (context, state) {
-        if (state is DistrictPlacesSuccess) {
+        if (state is GetAddressesSuccess) {
           return Row(
-            children: state.districtedPlaces.map((place) {
+            children: state.dataAddress.map((place) {
               return AddressItem(districtedPlace: place);
             }).toList(),
           );
-        } else if (state is DistrictPlacesFailure) {
+        } else if (state is GetAddressesFailure) {
           print(state.errMsg);
           return Text(state.errMsg);
-        } else if (state is DistrictPlacesLoading) {
+        } else if (state is GetAddressesLoading) {
           return const CircularProgressIndicator();
         } else {
-          return const Text('!!!!!!!!!!!!');
+          return const Text('No data available');
         }
       },
     );

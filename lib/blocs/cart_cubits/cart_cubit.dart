@@ -10,7 +10,28 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
 
   void addProductToCart(Product product) {
-    _cartProducts.add(product);
+    final existingProduct = _cartProducts.firstWhere(
+      (p) => p.id == product.id,
+      orElse: () => product,
+    );
+
+    if (_cartProducts.contains(existingProduct)) {
+      final index = _cartProducts.indexOf(existingProduct);
+      _cartProducts[index] = existingProduct.copyWith(
+        quantity: existingProduct.quantity + 1,
+      );
+    } else {
+      _cartProducts.add(product);
+    }
+
+    _emitSuccessState();
+  }
+
+  void updateProductQuantity(Product product, int newQuantity) {
+    final index = _cartProducts.indexWhere((p) => p.id == product.id);
+    if (index != -1) {
+      _cartProducts[index] = _cartProducts[index].copyWith(quantity: newQuantity);
+    }
     _emitSuccessState();
   }
 
@@ -32,10 +53,11 @@ class CartCubit extends Cubit<CartState> {
     final totalPrice = _cartProducts.fold(
       0,
       (sum, item) {
-        int price = int.parse(item.price!);
+        int price = int.parse(item.price!) * item.quantity;
         return sum + price;
       },
     );
     emit(CartSuccess(_cartProducts, totalPrice));
   }
 }
+

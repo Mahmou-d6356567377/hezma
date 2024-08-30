@@ -70,6 +70,7 @@ class _ItemScreanState extends State<ItemScrean> {
                           children: [
                             CounterWidget2(
                               initialCount: count,
+                              product: widget.productdetails, // Pass the correct product reference
                             ),
                             const Spacer(),
                             PannableRatingBar(

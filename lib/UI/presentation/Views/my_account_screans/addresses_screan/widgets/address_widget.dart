@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/Data/models/my_account_screan_models/dirstrict_model/datum.dart';
+import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
@@ -8,7 +8,7 @@ class AddressItem extends StatelessWidget {
     super.key,
     required this.districtedPlace,
   });
-  final DistrictModel districtedPlace;
+  final AddressData districtedPlace;
   @override
   Widget build(BuildContext context) {
     return Padding(
