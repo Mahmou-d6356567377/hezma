@@ -13,8 +13,10 @@ class LastItemCart extends StatelessWidget {
   });
   final int totalPrice;
   final bool iscartscrean;
+  
   @override
   Widget build(BuildContext context) {
+    double  tatalPricewithtax = 1.15 *totalPrice;
     return Container(
       height: 70,
       decoration: BoxDecoration(
@@ -78,7 +80,7 @@ class LastItemCart extends StatelessWidget {
                       style: arabicstyle3,
                     ),
                     Text(
-                      totalPrice.toString(),
+                      tatalPricewithtax.toString(),
                       style: arabicstyle3,
                     ),
                   ],

@@ -13,6 +13,7 @@ class MyOrderScrean extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double  totalpricewithtax ;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -37,6 +38,7 @@ class MyOrderScrean extends StatelessWidget {
                   child: BlocBuilder<CartCubit, CartState>(
                     builder: (context, state) {
                       if (state is CartSuccess) {
+                          totalpricewithtax = 1.15 * state.totalPrice;
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -45,7 +47,7 @@ class MyOrderScrean extends StatelessWidget {
                               style: arabicstyle2,
                             ),
                             Text(
-                              state.totalPrice.toString(),
+                              totalpricewithtax.toString(),
                               style: arabicstyle4,
                             ),
                             const Spacer(),

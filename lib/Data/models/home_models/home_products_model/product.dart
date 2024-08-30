@@ -9,7 +9,7 @@ class Product {
   String? subCategoryId;
   bool? isFavorite;
   String? image;
-  int quantity; // New field
+  int quantity; 
 
   Product({
     this.id,
@@ -22,10 +22,9 @@ class Product {
     this.subCategoryId,
     this.isFavorite,
     this.image,
-    this.quantity = 1, // Default quantity is 1
+    this.quantity = 1,
   });
 
-  // Copy constructor to create a new instance with updated quantity
   Product copyWith({int? quantity}) {
     return Product(
       id: id,
