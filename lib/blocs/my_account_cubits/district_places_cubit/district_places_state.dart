@@ -8,15 +8,17 @@ sealed class DistrictPlacesState extends Equatable {
 }
 
 final class DistrictPlacesInitial extends DistrictPlacesState {}
+
 final class DistrictPlacesLoading extends DistrictPlacesState {}
+
 final class DistrictPlacesSuccess extends DistrictPlacesState {
   final List<DistrictModel> districtedPlaces;
 
   const DistrictPlacesSuccess(this.districtedPlaces);
 }
+
 final class DistrictPlacesFailure extends DistrictPlacesState {
   final String errMsg;
 
- const  DistrictPlacesFailure(this.errMsg);
-
+  const DistrictPlacesFailure(this.errMsg);
 }

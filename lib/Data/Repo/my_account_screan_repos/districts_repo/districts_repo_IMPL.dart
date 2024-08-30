@@ -1,5 +1,3 @@
-
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hezma/Data/Errors/failures.dart';
@@ -16,10 +14,12 @@ class DistrictsRepoImpl implements DistrictRepo {
   @override
   Future<Either<Failure, List<DistrictModel>>> fetchDistrictPlaces() async {
     try {
-      var response = await apiService.get(url: '${baseURL}districts', token: '');
+      var response =
+          await apiService.get(url: '${baseURL}districts', token: '');
 
       List<DistrictModel> districtPlaces = (response['data'] as List)
-          .map((element) => DistrictModel.fromJson(element as Map<String, dynamic>))
+          .map((element) =>
+              DistrictModel.fromJson(element as Map<String, dynamic>))
           .toList();
 
       print('Fetched districts successfully');

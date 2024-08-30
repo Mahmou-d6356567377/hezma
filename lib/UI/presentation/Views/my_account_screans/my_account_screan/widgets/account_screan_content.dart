@@ -86,42 +86,39 @@ class AccountScreanContent extends StatelessWidget {
                 ontap: () {
                   GoRouter.of(context).push(AppRoutes.rs2);
                 }),
-
-            BlocConsumer<LogOutCubit, LogOutState>(
-              listener: (context, state) {
-                if (state is LogOutSuccess) {
-                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
-                }else if (state is LogOutFailure) {
-                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errMsg)));
-                }else{
-                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: LinearProgressIndicator()));
-
-                }
-              },
-              builder: (context, state) {
-                return MyAccountItem(
-                    title: 'تسجيل خروج',
-                    icon: const Icon(
-                      Icons.logout,
-                      color: Color(backgroundcustomgreen),
-                    ),
-                    ontap: () async{
-                          final SharedPreferences prefs = await SharedPreferences.getInstance();
-                       bool isLogin =    prefs.getBool(sharedIslogin) ?? false;
-                      if (isLogin){
+            BlocConsumer<LogOutCubit, LogOutState>(listener: (context, state) {
+              if (state is LogOutSuccess) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.message)));
+              } else if (state is LogOutFailure) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.errMsg)));
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: LinearProgressIndicator()));
+              }
+            }, builder: (context, state) {
+              return MyAccountItem(
+                  title: 'تسجيل خروج',
+                  icon: const Icon(
+                    Icons.logout,
+                    color: Color(backgroundcustomgreen),
+                  ),
+                  ontap: () async {
+                    final SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    bool isLogin = prefs.getBool(sharedIslogin) ?? false;
+                    if (isLogin) {
                       context.read<LogOutCubit>().fetchLogOUT();
                       print('Loged out ');
-                        prefs.setBool(sharedIslogin, false);
-                       GoRouter.of(context).pop();
-                      }else{
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('You Did not log in to log out')));
-                      }
-                    
+                      prefs.setBool(sharedIslogin, false);
+                      GoRouter.of(context).pop();
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('You Did not log in to log out')));
                     }
-                    );
-              }
-              
-            ),
+                  });
+            }),
           ],
         ),
       ),

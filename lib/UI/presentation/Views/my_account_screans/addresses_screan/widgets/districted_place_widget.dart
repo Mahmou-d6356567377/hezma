@@ -13,17 +13,17 @@ class DistrictedPlacesWidget extends StatelessWidget {
     return BlocBuilder<DistrictPlacesCubit, DistrictPlacesState>(
       builder: (context, state) {
         if (state is DistrictPlacesSuccess) {
-          return  Row(
-          children: state.districtedPlaces.map((place){
-            return AddressItem(districtedPlace: place);
-          }).toList() ,
-        );
-        }else if (state is DistrictPlacesFailure) {
+          return Row(
+            children: state.districtedPlaces.map((place) {
+              return AddressItem(districtedPlace: place);
+            }).toList(),
+          );
+        } else if (state is DistrictPlacesFailure) {
           print(state.errMsg);
-        return Text(state.errMsg);
-        }else if(state is DistrictPlacesLoading){
+          return Text(state.errMsg);
+        } else if (state is DistrictPlacesLoading) {
           return const CircularProgressIndicator();
-        }else{
+        } else {
           return const Text('!!!!!!!!!!!!');
         }
       },

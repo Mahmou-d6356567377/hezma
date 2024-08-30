@@ -18,8 +18,8 @@ class MyCartScrean extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-         leading: const  Icon(Icons.shopping_cart),
-        centerTitle:  true,
+        leading: const Icon(Icons.shopping_cart),
+        centerTitle: true,
         title: const Text(
           'السله',
           style: arabicstyle2,
@@ -48,11 +48,11 @@ class MyCartScrean extends StatelessWidget {
                       );
                     }
                     return DetailsContainer(
-                        key: const ValueKey(
-                            'details_${0}'), // Unique key based on the total price
-                        controller: controller,
-                        totalprice: 0,
-                      );
+                      key: const ValueKey(
+                          'details_${0}'), // Unique key based on the total price
+                      controller: controller,
+                      totalprice: 0,
+                    );
                   },
                 ),
                 const TextRow(title: 'المجموع'),
@@ -62,22 +62,20 @@ class MyCartScrean extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: LastItemCart(
-                          key: ValueKey(
-                              'lastItem_${state.totalPrice}'), 
+                          key: ValueKey('lastItem_${state.totalPrice}'),
                           iscartscrean: true,
                           totalPrice: state.totalPrice,
                         ),
                       );
                     }
                     return const Padding(
-                        padding:  EdgeInsets.all(16.0),
-                        child: LastItemCart(
-                          key: ValueKey(
-                              'lastItem_${0}'), 
-                          iscartscrean: true,
-                          totalPrice: 0,
-                        ),
-                      );
+                      padding: EdgeInsets.all(16.0),
+                      child: LastItemCart(
+                        key: ValueKey('lastItem_${0}'),
+                        iscartscrean: true,
+                        totalPrice: 0,
+                      ),
+                    );
                   },
                 ),
               ],

@@ -5,7 +5,8 @@ import 'package:hezma/utils/fonts.dart';
 
 class AddressItem extends StatelessWidget {
   const AddressItem({
-    super.key, required this.districtedPlace,
+    super.key,
+    required this.districtedPlace,
   });
   final DistrictModel districtedPlace;
   @override

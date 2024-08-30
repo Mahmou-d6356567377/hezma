@@ -8,16 +8,13 @@ class DistrictPlacesCubit extends Cubit<DistrictPlacesState> {
   DistrictPlacesCubit(this.districtsRepo) : super(DistrictPlacesInitial());
   final DistrictRepo districtsRepo;
 
-Future<void> fetchDistrictPlaces () async{
-  
+  Future<void> fetchDistrictPlaces() async {
     emit(DistrictPlacesLoading());
-  var districtedPlaces = await  districtsRepo.fetchDistrictPlaces();
-   districtedPlaces.fold((failure){
-   emit(DistrictPlacesFailure(failure.toString()));
-   }, (districtedplaced){
-    emit(DistrictPlacesSuccess(districtedplaced as List<DistrictModel> ));
-   });
-  
-}
-  
+    var districtedPlaces = await districtsRepo.fetchDistrictPlaces();
+    districtedPlaces.fold((failure) {
+      emit(DistrictPlacesFailure(failure.toString()));
+    }, (districtedplaced) {
+      emit(DistrictPlacesSuccess(districtedplaced as List<DistrictModel>));
+    });
+  }
 }

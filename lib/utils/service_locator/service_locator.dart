@@ -19,14 +19,14 @@ void serviceLocator() {
   getIt.registerSingleton<FavProductRepoImpl>(
       FavProductRepoImpl(getIt.get<ApiService>()));
 
-        getIt.registerSingleton<DistrictsRepoImpl>(
+  getIt.registerSingleton<DistrictsRepoImpl>(
       DistrictsRepoImpl(getIt.get<ApiService>()));
-
 
   getIt.registerSingleton<SignInRegisterRepoIMPL>(
       SignInRegisterRepoIMPL(getIt.get<ApiService>()));
 
   getIt.registerSingleton<OtpRepoImpl>(OtpRepoImpl(getIt.get<ApiService>()));
-  
-  getIt.registerSingleton<LogOutRepoImpl>(LogOutRepoImpl(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<LogOutRepoImpl>(
+      LogOutRepoImpl(getIt.get<ApiService>()));
 }

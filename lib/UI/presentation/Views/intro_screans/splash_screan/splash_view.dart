@@ -26,9 +26,9 @@ class _SplashViewState extends State<SplashView> {
 
     Timer(const Duration(seconds: 3), () {
       if (isLoggedIn) {
-        GoRouter.of(context).push(AppRoutes.cpns); 
+        GoRouter.of(context).push(AppRoutes.cpns);
       } else {
-        GoRouter.of(context).push(AppRoutes.os); 
+        GoRouter.of(context).push(AppRoutes.os);
       }
     });
   }

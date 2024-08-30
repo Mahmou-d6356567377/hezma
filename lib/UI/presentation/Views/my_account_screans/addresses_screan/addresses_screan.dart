@@ -54,12 +54,13 @@ class AdressesScrean extends StatelessWidget {
                   BlocBuilder<DistrictPlacesCubit, DistrictPlacesState>(
                     builder: (context, state) {
                       if (state is DistrictPlacesSuccess) {
-                        // Assuming your state has a list of places with LatLng data
-                        List<Circle> circles = state.districtedPlaces.map((place) {
+                        List<Circle> circles =
+                            state.districtedPlaces.map((place) {
                           return Circle(
                             circleId: CircleId(place.id.toString()),
-                            center: LatLng(double.parse(place.latitude!),double.parse(place.longitude!)),
-                            radius: 500, // Adjust radius as needed
+                            center: LatLng(double.parse(place.latitude!),
+                                double.parse(place.longitude!)),
+                            radius: 500,
                             strokeColor: Colors.green,
                             strokeWidth: 2,
                             fillColor: Colors.green.withOpacity(0.1),
@@ -70,13 +71,14 @@ class AdressesScrean extends StatelessWidget {
                           flex: 7,
                           child: GoogleMap(
                             circles: Set.from(circles),
-                         //  cameraTargetBounds: CameraTargetBounds(LatLngBounds(
-                         //    northeast: const LatLng(40, 40),
-                         //    southwest: const LatLng(35, 35),
-                         //  )),
+                            //  cameraTargetBounds: CameraTargetBounds(LatLngBounds(
+                            //    northeast: const LatLng(40, 40),
+                            //    southwest: const LatLng(35, 35),
+                            //  )),
                             zoomControlsEnabled: false,
                             initialCameraPosition: const CameraPosition(
-                                target: LatLng(24.7326759868516, 46.657733877636275),
+                                target: LatLng(
+                                    24.7326759868516, 46.657733877636275),
                                 zoom: 5),
                           ),
                         );

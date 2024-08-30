@@ -5,7 +5,8 @@ class DistrictModel {
   String? longitude;
   String? distance;
 
-  DistrictModel({this.id, this.name, this.latitude, this.longitude, this.distance});
+  DistrictModel(
+      {this.id, this.name, this.latitude, this.longitude, this.distance});
 
   factory DistrictModel.fromJson(Map<String, dynamic> json) => DistrictModel(
         id: json['id'] as int?,

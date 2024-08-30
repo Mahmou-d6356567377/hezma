@@ -24,7 +24,6 @@ import 'package:hezma/UI/presentation/Views/my_account_screans/privacy_rules_scr
 import 'package:hezma/UI/presentation/Views/my_account_screans/rules_screan/rules_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/technical_support_screan/technical_spuuort_screan.dart';
 
-
 abstract class AppRoutes {
   static const sps = '/splashScrean';
   static const os = '/OnboardingScrean';

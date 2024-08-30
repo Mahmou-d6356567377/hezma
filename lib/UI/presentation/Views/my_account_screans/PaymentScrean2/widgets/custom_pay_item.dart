@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hezma/utils/constants.dart';
 
-
 class CustompayItem extends StatefulWidget {
   const CustompayItem({
     super.key,

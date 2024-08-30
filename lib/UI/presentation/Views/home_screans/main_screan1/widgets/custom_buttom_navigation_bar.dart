@@ -13,8 +13,9 @@ class Custom_buttom_navigation_bar extends StatefulWidget {
       Custom_buttom_navigation_barState();
 }
 
-class Custom_buttom_navigation_barState extends State<Custom_buttom_navigation_bar> {
-  int selectedIndex = 3; 
+class Custom_buttom_navigation_barState
+    extends State<Custom_buttom_navigation_bar> {
+  int selectedIndex = 3;
 
   final List<Widget> screans = [
     const MyAccountScrean(),

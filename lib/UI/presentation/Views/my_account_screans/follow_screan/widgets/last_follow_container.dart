@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
-
 class LastFollowContainer extends StatelessWidget {
   const LastFollowContainer({
     super.key,

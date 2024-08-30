@@ -13,10 +13,11 @@ class SignRegisterCubit extends Cubit<SignRegisterState> {
   Future<void> fetchLogindata({
     required String emailOrphone,
     required String password,
-    required bool isphone ,
+    required bool isphone,
   }) async {
     emit(SignRegisterloading());
-    var result = await signInRegisterRepo.signInRepo(emailOrphone: emailOrphone, password: password, isphone: isphone);
+    var result = await signInRegisterRepo.signInRepo(
+        emailOrphone: emailOrphone, password: password, isphone: isphone);
     result.fold((failure) {
       print('There is an error in fetch login data ${failure.errorMSG}');
       emit(SignRegisterfailure(failure.errorMSG));

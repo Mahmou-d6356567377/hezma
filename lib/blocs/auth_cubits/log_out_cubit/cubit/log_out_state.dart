@@ -8,12 +8,15 @@ sealed class LogOutState extends Equatable {
 }
 
 final class LogOutInitial extends LogOutState {}
+
 final class LogOutLoading extends LogOutState {}
+
 final class LogOutSuccess extends LogOutState {
- final String message ;
+  final String message;
 
   const LogOutSuccess(this.message);
 }
+
 final class LogOutFailure extends LogOutState {
   final String errMsg;
   const LogOutFailure(this.errMsg);

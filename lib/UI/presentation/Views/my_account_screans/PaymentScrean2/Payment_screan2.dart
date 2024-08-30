@@ -4,7 +4,6 @@ import 'package:hezma/UI/presentation/Views/my_account_screans/PaymentScrean2/wi
 import 'package:hezma/UI/presentation/Views/my_account_screans/PaymentScrean2/widgets/custom_pay_item.dart';
 import 'package:hezma/utils/fonts.dart';
 
-
 class PaymentScrean2 extends StatelessWidget {
   const PaymentScrean2({super.key});
 

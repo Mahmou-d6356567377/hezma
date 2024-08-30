@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
-
 class RulesScrean extends StatelessWidget {
   const RulesScrean({super.key});
 

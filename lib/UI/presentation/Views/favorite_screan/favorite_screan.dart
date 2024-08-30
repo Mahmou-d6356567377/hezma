@@ -9,7 +9,7 @@ class FavoriteScrean extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       leading : const Icon(Icons.favorite),
+        leading: const Icon(Icons.favorite),
         centerTitle: true,
         title: const Text(
           'المفضله',

@@ -6,16 +6,15 @@ part 'log_out_state.dart';
 class LogOutCubit extends Cubit<LogOutState> {
   LogOutCubit(this.logOutRepo) : super(LogOutInitial());
   final LogOutRepo logOutRepo;
-  
-  Future<void> fetchLogOUT () async{
-   emit(LogOutLoading());
-  
-   var logoutresponce = await logOutRepo.logoutSummon();
-   logoutresponce.fold((failure){
-    emit(LogOutFailure(failure.errorMSG));
-   }, (message){
-   emit(LogOutSuccess(message));
-   }
-   );
+
+  Future<void> fetchLogOUT() async {
+    emit(LogOutLoading());
+
+    var logoutresponce = await logOutRepo.logoutSummon();
+    logoutresponce.fold((failure) {
+      emit(LogOutFailure(failure.errorMSG));
+    }, (message) {
+      emit(LogOutSuccess(message));
+    });
   }
 }

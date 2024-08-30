@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
-
 class TechnicalSupportScrean extends StatelessWidget {
   const TechnicalSupportScrean({super.key});
 

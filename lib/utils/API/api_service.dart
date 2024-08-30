@@ -47,14 +47,15 @@ class ApiService {
     return response.data;
   }
 
-  Future<void> del({required String url, @required String? token}) async {
+  Future<Map<String, dynamic>> del({required String url, @required String? token}) async {
     Map<String, String> headers = {};
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-    await _dio.delete(
+    var response = await _dio.delete(
       url,
       options: Options(headers: headers),
     );
+    return response.data;
   }
 }

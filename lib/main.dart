@@ -40,9 +40,10 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => OtpCubit(getIt.get<OtpRepoImpl>())..fetchOtp(),
         ),
-
         BlocProvider(
-          create: (context) => DistrictPlacesCubit(getIt.get<DistrictsRepoImpl>())..fetchDistrictPlaces(),
+          create: (context) =>
+              DistrictPlacesCubit(getIt.get<DistrictsRepoImpl>())
+                ..fetchDistrictPlaces(),
         ),
         BlocProvider(
           create: (context) =>

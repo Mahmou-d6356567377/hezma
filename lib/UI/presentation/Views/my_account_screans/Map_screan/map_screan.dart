@@ -124,36 +124,35 @@ class _PageMapState extends State<MapScrean> {
         children: [
           BlocBuilder<DistrictPlacesCubit, DistrictPlacesState>(
             builder: (context, state) {
-              
               if (state is DistrictPlacesSuccess) {
-                 List<Circle> circles = state.districtedPlaces.map((places){
+                List<Circle> circles = state.districtedPlaces.map((places) {
                   return Circle(
                     circleId: CircleId(places.id.toString()),
-                    radius:  double.parse(places.distance!),
+                    radius: double.parse(places.distance!),
                     strokeColor: Colors.green,
                     strokeWidth: 2,
                     fillColor: Colors.green.withOpacity(.5),
-                    center: LatLng(double.parse(places.latitude!), double.parse(places.longitude!)),
+                    center: LatLng(double.parse(places.latitude!),
+                        double.parse(places.longitude!)),
                   );
-                 }).toList();
-                  return GoogleMap(
-                    circles: circles.toSet(),
-                zoomControlsEnabled: false,
-                onTap: _onMapTapped,
-                initialCameraPosition: initialCameraPosition,
-                onMapCreated: (GoogleMapController controller) {
-                  mapController = controller;
-                },
-                markers: _markers,
-              );
-                
-              }else if (state is DistrictPlacesFailure) {
-                        return Text(state.errMsg);
-                      } else if (state is DistrictPlacesLoading) {
-                        return const CircularProgressIndicator();
-                      } else {
-                        return const Text('!!!!!!!!!!!!');
-                      }
+                }).toList();
+                return GoogleMap(
+                  circles: circles.toSet(),
+                  zoomControlsEnabled: false,
+                  onTap: _onMapTapped,
+                  initialCameraPosition: initialCameraPosition,
+                  onMapCreated: (GoogleMapController controller) {
+                    mapController = controller;
+                  },
+                  markers: _markers,
+                );
+              } else if (state is DistrictPlacesFailure) {
+                return Text(state.errMsg);
+              } else if (state is DistrictPlacesLoading) {
+                return const CircularProgressIndicator();
+              } else {
+                return const Text('!!!!!!!!!!!!');
+              }
             },
           ),
           Positioned(
