@@ -1,10 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+import 'package:hezma/blocs/my_account_cubits/district_places_cubit/district_places_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
@@ -120,14 +122,39 @@ class _PageMapState extends State<MapScrean> {
     return Scaffold(
       body: Stack(
         children: [
-          GoogleMap(
-            zoomControlsEnabled: false,
-            onTap: _onMapTapped,
-            initialCameraPosition: initialCameraPosition,
-            onMapCreated: (GoogleMapController controller) {
-              mapController = controller;
+          BlocBuilder<DistrictPlacesCubit, DistrictPlacesState>(
+            builder: (context, state) {
+              
+              if (state is DistrictPlacesSuccess) {
+                 List<Circle> circles = state.districtedPlaces.map((places){
+                  return Circle(
+                    circleId: CircleId(places.id.toString()),
+                    radius:  double.parse(places.distance!),
+                    strokeColor: Colors.green,
+                    strokeWidth: 2,
+                    fillColor: Colors.green.withOpacity(.5),
+                    center: LatLng(double.parse(places.latitude!), double.parse(places.longitude!)),
+                  );
+                 }).toList();
+                  return GoogleMap(
+                    circles: circles.toSet(),
+                zoomControlsEnabled: false,
+                onTap: _onMapTapped,
+                initialCameraPosition: initialCameraPosition,
+                onMapCreated: (GoogleMapController controller) {
+                  mapController = controller;
+                },
+                markers: _markers,
+              );
+                
+              }else if (state is DistrictPlacesFailure) {
+                        return Text(state.errMsg);
+                      } else if (state is DistrictPlacesLoading) {
+                        return const CircularProgressIndicator();
+                      } else {
+                        return const Text('!!!!!!!!!!!!');
+                      }
             },
-            markers: _markers,
           ),
           Positioned(
             top: 40.0,
