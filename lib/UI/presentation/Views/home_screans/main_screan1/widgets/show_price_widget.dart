@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/widgets/listItem.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/widgets/listItem.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class ShowPriceWidget extends StatelessWidget {

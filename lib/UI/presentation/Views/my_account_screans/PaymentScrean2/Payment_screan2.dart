@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/PaymentScrean2/widgets/custom_pay_botton.dart';
-import 'package:hezma/UI/presentation/Views/PaymentScrean2/widgets/custom_pay_item.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/PaymentScrean2/widgets/custom_pay_botton.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/PaymentScrean2/widgets/custom_pay_item.dart';
+import 'package:hezma/utils/fonts.dart';
 
-import '../../../../utils/fonts.dart';
 
 class PaymentScrean2 extends StatelessWidget {
   const PaymentScrean2({super.key});

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hezma/UI/presentation/Views/addresses_screan/widgets/districted_place_widget.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/location_botton.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/text_row.dart';
-import 'package:hezma/blocs/district_places_cubit/district_places_cubit.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/location_botton.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/text_row.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/districted_place_widget.dart';
+import 'package:hezma/blocs/my_account_cubits/district_places_cubit/district_places_cubit.dart';
 import 'package:hezma/utils/constants.dart';
-import '../../../../utils/fonts.dart';
+import 'package:hezma/utils/fonts.dart';
 
 class AdressesScrean extends StatelessWidget {
   const AdressesScrean({super.key});

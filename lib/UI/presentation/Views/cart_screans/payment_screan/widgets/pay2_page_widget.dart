@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/text_row.dart';
-import 'package:hezma/UI/presentation/Views/register_screan/widgets/customTextField.dart';
-import '../../../../../utils/constants.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/widgets/customTextField.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/text_row.dart';
+import 'package:hezma/utils/constants.dart';
 
 class Pay2PageWidget extends StatelessWidget {
   const Pay2PageWidget(

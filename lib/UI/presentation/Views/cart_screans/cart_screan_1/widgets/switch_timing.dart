@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/switch_botton.dart';
-
-import '../../../../../utils/constants.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/switch_botton.dart';
 
 class SwitchTime extends StatefulWidget {
   const SwitchTime({super.key});

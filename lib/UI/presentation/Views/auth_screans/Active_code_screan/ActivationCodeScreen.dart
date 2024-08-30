@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/Active_code_screan/widgets/custom_timer_button.dart';
-import 'package:hezma/UI/presentation/Views/Active_code_screan/widgets/pin_code_text_field.dart';
-import 'package:hezma/blocs/otp_cubit/otp_cubit.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/routes.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/Active_code_screan/widgets/custom_timer_button.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/Active_code_screan/widgets/pin_code_text_field.dart';
+import 'package:hezma/blocs/auth_cubits/otp_cubit/otp_cubit.dart';
+import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/routes.dart';
 import '../register_screan/widgets/arabicTXT.dart';
 
 class ActivationCodeScreen extends StatefulWidget {

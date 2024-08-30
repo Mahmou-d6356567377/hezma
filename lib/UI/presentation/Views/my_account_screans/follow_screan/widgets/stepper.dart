@@ -1,7 +1,7 @@
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
+import 'package:hezma/utils/constants.dart';
 
-import '../../../../../utils/constants.dart';
 
 class CustomStepper extends StatefulWidget {
   const CustomStepper({super.key});

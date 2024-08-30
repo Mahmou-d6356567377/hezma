@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/fonts.dart';
-import '../../cart_screan/widgets/text_row.dart';
-import '../../register_screan/widgets/customTextField.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/widgets/customTextField.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/text_row.dart';
+import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/fonts.dart';
 
 class CustomPayBotton2 extends StatelessWidget {
   const CustomPayBotton2({

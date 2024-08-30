@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/UI/presentation/Views/payment_screan/widgets/switch_pay_containers.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/last_item_cart.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/payment_screan/widgets/switch_pay_containers.dart';
 import 'package:hezma/utils/constants.dart';
-import '../../../../utils/fonts.dart';
-import '../cart_screan/widgets/last_item_cart.dart';
+import 'package:hezma/utils/fonts.dart';
 import 'widgets/pay_way_botton.dart';
 
 class PaymentScrean extends StatefulWidget {

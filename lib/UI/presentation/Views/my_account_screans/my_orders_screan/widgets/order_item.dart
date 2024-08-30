@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hezma/Data/models/home_products_model/product.dart';
-import 'package:hezma/UI/presentation/Views/my_orders_screan/widgets/location_widget.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/fonts.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/my_orders_screan/widgets/location_widget.dart';
+import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/fonts.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem({

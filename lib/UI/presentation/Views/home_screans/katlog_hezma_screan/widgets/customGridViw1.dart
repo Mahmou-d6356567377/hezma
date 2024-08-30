@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hezma/UI/presentation/Views/katlog_hezma_screan/widgets/listItem1.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/katlog_hezma_screan/widgets/listItem1.dart';
 
 class CustomGridView1 extends StatelessWidget {
   const CustomGridView1({

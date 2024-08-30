@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/blocs/home_images_cubit/home_images_cubit.dart';
+import 'package:hezma/blocs/home_cubits/home_images_cubit/home_images_cubit.dart';
 import 'package:hezma/utils/routes.dart';
 
 class CategoryRowImage extends StatelessWidget {

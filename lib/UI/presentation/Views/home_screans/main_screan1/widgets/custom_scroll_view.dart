@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/widgets/category_row_image.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/widgets/custom_list_view.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/widgets/first_image_widget.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/widgets/category_row_image.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/widgets/custom_list_view.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/widgets/first_image_widget.dart';
+import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
-import '../../../../../utils/fonts.dart';
 
 class Custom_scroll_view extends StatelessWidget {
   const Custom_scroll_view({

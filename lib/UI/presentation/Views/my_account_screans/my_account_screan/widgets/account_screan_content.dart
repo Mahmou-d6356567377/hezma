@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/my_account_screan/widgets/my_account_item.dart';
-import 'package:hezma/blocs/log_out_cubit/cubit/log_out_cubit.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/my_account_screan/widgets/my_account_item.dart';
+import 'package:hezma/blocs/auth_cubits/log_out_cubit/cubit/log_out_cubit.dart';
+import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../../utils/constants.dart';
 
 class AccountScreanContent extends StatelessWidget {
   const AccountScreanContent({

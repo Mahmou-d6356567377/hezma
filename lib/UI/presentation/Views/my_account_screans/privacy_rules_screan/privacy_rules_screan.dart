@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/fonts.dart';
 
-import '../../../../utils/fonts.dart';
 
 class PrivacyRulesScrean extends StatelessWidget {
   const PrivacyRulesScrean({super.key});

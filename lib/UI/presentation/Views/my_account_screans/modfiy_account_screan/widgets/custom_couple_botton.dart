@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/fonts.dart';
+import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/fonts.dart';
 
 class CustomCoupleBotton extends StatelessWidget {
   const CustomCoupleBotton({

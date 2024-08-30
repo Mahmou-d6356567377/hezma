@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pannable_rating_bar/flutter_pannable_rating_bar.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/Data/models/home_products_model/product.dart';
-import 'package:hezma/UI/presentation/Views/Item_screan/widgets/customGridView3.dart';
-import 'package:hezma/UI/presentation/Views/Item_screan/widgets/price_details_container.dart';
-import 'package:hezma/UI/presentation/Views/Item_screan/widgets/product_desc.dart';
-import 'package:hezma/UI/presentation/Views/Item_screan/widgets/product_name_widget.dart';
-import 'package:hezma/UI/presentation/Views/Item_screan/widgets/product_price.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/counter_widget2.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/customGridView3.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/price_details_container.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/product_desc.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/product_name_widget.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/product_price.dart';
 import 'package:hezma/utils/fonts.dart';
-import '../cart_screan/widgets/counter_widget2.dart';
 
 class ItemScrean extends StatefulWidget {
   const ItemScrean({

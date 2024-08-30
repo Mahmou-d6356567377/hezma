@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hezma/Data/models/home_products_model/product.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/fonts.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
+import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/fonts.dart';
 import 'counter_widget2.dart';
 
 class CartItem extends StatelessWidget {

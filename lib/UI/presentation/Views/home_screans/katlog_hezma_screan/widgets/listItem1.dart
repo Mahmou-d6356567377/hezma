@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pannable_rating_bar/flutter_pannable_rating_bar.dart';
+import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
-import '../../../../../utils/constants.dart';
 
 class ListItem1 extends StatefulWidget {
   const ListItem1({

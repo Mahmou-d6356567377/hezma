@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import '../../../../../utils/fonts.dart';
+import 'package:hezma/utils/fonts.dart';
 
 class TextRow extends StatelessWidget {
   const TextRow({

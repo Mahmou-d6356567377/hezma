@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/follow_screan/widgets/follow_details_container.dart';
-import 'package:hezma/UI/presentation/Views/follow_screan/widgets/last_follow_container.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/follow_screan/widgets/follow_details_container.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/follow_screan/widgets/last_follow_container.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 

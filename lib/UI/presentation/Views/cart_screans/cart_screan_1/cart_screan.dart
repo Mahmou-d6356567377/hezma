@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hezma/blocs/cart_cubit/cart_cubit.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/custom_list_cart_item.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/details_container.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/last_item_cart.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/location_botton.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/switch_timing.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/text_row.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/custom_list_cart_item.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/details_container.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/last_item_cart.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/location_botton.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/switch_timing.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/text_row.dart';
+import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class MyCartScrean extends StatelessWidget {

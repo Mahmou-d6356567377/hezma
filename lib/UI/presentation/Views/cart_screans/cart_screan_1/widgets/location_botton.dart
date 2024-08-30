@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/routes.dart';
-
-import '../../../../../utils/constants.dart';
 
 class LocatoinBotton extends StatelessWidget {
   const LocatoinBotton({

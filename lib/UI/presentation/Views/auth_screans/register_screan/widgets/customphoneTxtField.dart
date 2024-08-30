@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/utils/fonts.dart';
+import 'package:hezma/utils/constants.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../../../../utils/constants.dart';
 
 class CustomIntlPhoneField extends StatelessWidget {
   final String hintText;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hezma/Data/Repo/log_out_repo/log_out_repo_IMPL.dart';
-import 'package:hezma/blocs/log_out_cubit/cubit/log_out_cubit.dart';
+import 'package:hezma/Data/Repo/Auth_repos/log_out_repo/log_out_repo_IMPL.dart';
+import 'package:hezma/blocs/auth_cubits/log_out_cubit/cubit/log_out_cubit.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/service_locator/service_locator.dart';
 import 'widgets/account_screan_content.dart';

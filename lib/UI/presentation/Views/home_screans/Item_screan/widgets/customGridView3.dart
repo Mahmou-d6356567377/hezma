@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/widgets/listItem.dart';
-import 'package:hezma/blocs/home_product_cubit/home_product_cubit.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/widgets/listItem.dart';
+import 'package:hezma/blocs/home_cubits/home_product_cubit/home_product_cubit.dart';
 
 class CustomGridView3 extends StatelessWidget {
   const CustomGridView3({

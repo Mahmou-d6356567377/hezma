@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/Data/models/home_products_model/product.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class ProductDesc extends StatelessWidget {

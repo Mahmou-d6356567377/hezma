@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/modfiy_account_screan/widgets/custom_couple_botton.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/widgets/customTextField.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/widgets/customphoneTxtField.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/modfiy_account_screan/widgets/custom_couple_botton.dart';
+import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
-
-import '../../../../utils/constants.dart';
-import '../register_screan/widgets/customTextField.dart';
-import '../register_screan/widgets/customphoneTxtField.dart';
 
 class ModifyAccountScrean extends StatelessWidget {
   ModifyAccountScrean({super.key});

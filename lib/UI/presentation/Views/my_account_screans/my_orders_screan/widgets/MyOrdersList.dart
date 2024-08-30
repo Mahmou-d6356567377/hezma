@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hezma/UI/presentation/Views/my_orders_screan/widgets/order_item.dart';
-import 'package:hezma/blocs/cart_cubit/cart_cubit.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/my_orders_screan/widgets/order_item.dart';
+import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
 
 class MyordersList extends StatelessWidget {
   const MyordersList({

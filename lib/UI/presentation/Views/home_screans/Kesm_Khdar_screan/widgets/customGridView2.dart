@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/widgets/listItem.dart';
-import 'package:hezma/blocs/category_products_cubit/category_products_cubit.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/widgets/listItem.dart';
+import 'package:hezma/blocs/home_cubits/category_products_cubit/category_products_cubit.dart';
 
 class CustomGridView2 extends StatefulWidget {
   const CustomGridView2({

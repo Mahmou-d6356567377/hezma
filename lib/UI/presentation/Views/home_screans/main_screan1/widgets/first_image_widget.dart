@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/blocs/first_img_cubit/first_imge_cubit.dart';
+import 'package:hezma/blocs/home_cubits/first_img_cubit/first_imge_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/routes.dart';
 

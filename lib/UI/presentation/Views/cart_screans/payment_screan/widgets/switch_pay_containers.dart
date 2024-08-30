@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/UI/presentation/Views/payment_screan/widgets/pay2_page_widget.dart';
-import 'package:hezma/UI/presentation/Views/payment_screan/widgets/pay3_page_widget.dart';
-import 'package:hezma/UI/presentation/Views/payment_screan/widgets/pay4_way_widget.dart';
-
-import '../../../../../utils/constants.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/payment_screan/widgets/pay2_page_widget.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/payment_screan/widgets/pay3_page_widget.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/payment_screan/widgets/pay4_way_widget.dart';
+import 'package:hezma/utils/constants.dart';
 
 class SwitchPayContainers extends StatelessWidget {
   const SwitchPayContainers(

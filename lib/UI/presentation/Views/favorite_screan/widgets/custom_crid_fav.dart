@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/widgets/listItem.dart';
-import 'package:hezma/blocs/fav_products_cubit/cubit/fav_product_cubit.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/widgets/listItem.dart';
+import 'package:hezma/blocs/fav_screan_cubits/fav_products_cubit/cubit/fav_product_cubit.dart';
 
 class CustomGridFav extends StatefulWidget {
   const CustomGridFav({

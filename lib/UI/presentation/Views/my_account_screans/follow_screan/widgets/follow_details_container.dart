@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/UI/presentation/Views/follow_screan/widgets/stepper.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/follow_screan/widgets/stepper.dart';
 import 'package:hezma/utils/constants.dart';
-
-import '../../../../../utils/fonts.dart';
+import 'package:hezma/utils/fonts.dart';
 
 class FollowDetailsContainer extends StatelessWidget {
   const FollowDetailsContainer({

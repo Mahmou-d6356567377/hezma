@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/Data/models/dirstrict_model/datum.dart';
-
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/fonts.dart';
+import 'package:hezma/Data/models/my_account_screan_models/dirstrict_model/datum.dart';
+import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/fonts.dart';
 
 class AddressItem extends StatelessWidget {
   const AddressItem({

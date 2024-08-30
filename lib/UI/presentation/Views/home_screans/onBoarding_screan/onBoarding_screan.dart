@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/Intro_screans/pg1.dart';
-import 'package:hezma/UI/presentation/Views/Intro_screans/pg2.dart';
-import 'package:hezma/UI/presentation/Views/Intro_screans/pg3.dart';
+import 'package:hezma/UI/presentation/Views/intro_screans/Intro_screans_1/pg1.dart';
+import 'package:hezma/UI/presentation/Views/intro_screans/Intro_screans_1/pg2.dart';
+import 'package:hezma/UI/presentation/Views/intro_screans/Intro_screans_1/pg3.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';

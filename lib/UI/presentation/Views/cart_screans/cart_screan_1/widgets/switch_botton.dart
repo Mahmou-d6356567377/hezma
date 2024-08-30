@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hezma/utils/constants.dart';
 
-import '../../../../../utils/constants.dart';
 
 class SwitchBotton extends StatelessWidget {
   const SwitchBotton({

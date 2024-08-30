@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/katlog_hezma_screan/widgets/customGridViw1.dart';
-import 'package:hezma/UI/presentation/Views/katlog_hezma_screan/widgets/navigation_button.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/katlog_hezma_screan/widgets/customGridViw1.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/katlog_hezma_screan/widgets/navigation_button.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class KatologHezmaScrean extends StatefulWidget {

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/widgets/switch_botton.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/switch_botton.dart';
+import 'package:hezma/utils/constants.dart';
+import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
-
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/fonts.dart';
 
 class LastItemCart extends StatelessWidget {
   const LastItemCart({

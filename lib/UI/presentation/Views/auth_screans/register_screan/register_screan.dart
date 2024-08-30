@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/register_screan/widgets/customTextField.dart';
-import 'package:hezma/UI/presentation/Views/register_screan/widgets/customphoneTxtField.dart';
-import 'package:hezma/UI/presentation/Views/register_screan/widgets/passwordTxTfield.dart';
-import 'package:hezma/blocs/signIn_register_cubit/cubit/sign_register_cubit.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/widgets/customTextField.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/widgets/customphoneTxtField.dart';
+import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/widgets/passwordTxTfield.dart';
+import 'package:hezma/blocs/auth_cubits/signIn_register_cubit/cubit/sign_register_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';

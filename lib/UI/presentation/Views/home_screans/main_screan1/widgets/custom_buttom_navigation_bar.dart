@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hezma/UI/presentation/Views/cart_screan/cart_screan.dart';
+import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/cart_screan.dart';
 import 'package:hezma/UI/presentation/Views/favorite_screan/favorite_screan.dart';
-import 'package:hezma/UI/presentation/Views/main_screan1/main_screan1.dart';
-import 'package:hezma/UI/presentation/Views/my_account_screan/my_account_screan.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/main_screan1.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/my_account_screan/my_account_screan.dart';
 import 'package:hezma/utils/constants.dart';
 
 class Custom_buttom_navigation_bar extends StatefulWidget {
