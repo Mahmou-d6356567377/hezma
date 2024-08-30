@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hezma/Data/Repo/Auth_repos/otp_repo/otp_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/Auth_repos/signIn_register_repo/signin_register_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/fav_products_repo/fav_product_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/home_products_repo/home_product_repo_Impl.dart';
-import 'package:hezma/Data/Repo/otp_repo/otp_repo_IMPL.dart';
-import 'package:hezma/Data/Repo/signIn_register_repo/signin_register_repo_IMPL.dart';
-import 'package:hezma/blocs/cart_cubit/cart_cubit.dart';
-import 'package:hezma/blocs/category_products_cubit/category_products_cubit.dart';
-import 'package:hezma/blocs/district_places_cubit/district_places_cubit.dart';
-import 'package:hezma/blocs/fav_products_cubit/cubit/fav_product_cubit.dart';
-import 'package:hezma/blocs/first_img_cubit/first_imge_cubit.dart';
-import 'package:hezma/blocs/home_images_cubit/home_images_cubit.dart';
-import 'package:hezma/blocs/home_product_cubit/home_product_cubit.dart';
-import 'package:hezma/blocs/otp_cubit/otp_cubit.dart';
-import 'package:hezma/blocs/register_cubit/register_cubit.dart';
-import 'package:hezma/blocs/signIn_register_cubit/cubit/sign_register_cubit.dart';
+import 'package:hezma/Data/Repo/my_account_screan_repos/districts_repo/districts_repo_IMPL.dart';
+import 'package:hezma/blocs/auth_cubits/otp_cubit/otp_cubit.dart';
+import 'package:hezma/blocs/auth_cubits/register_cubit/register_cubit.dart';
+import 'package:hezma/blocs/auth_cubits/signIn_register_cubit/cubit/sign_register_cubit.dart';
+import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
+import 'package:hezma/blocs/fav_screan_cubits/fav_products_cubit/cubit/fav_product_cubit.dart';
+import 'package:hezma/blocs/home_cubits/category_products_cubit/category_products_cubit.dart';
+import 'package:hezma/blocs/home_cubits/first_img_cubit/first_imge_cubit.dart';
+import 'package:hezma/blocs/home_cubits/home_images_cubit/home_images_cubit.dart';
+import 'package:hezma/blocs/home_cubits/home_product_cubit/home_product_cubit.dart';
+import 'package:hezma/blocs/my_account_cubits/district_places_cubit/district_places_cubit.dart';
 import 'package:hezma/utils/routes.dart';
 import 'package:hezma/utils/service_locator/service_locator.dart';
-
-import 'Data/Repo/districts_repo/districts_repo_IMPL.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

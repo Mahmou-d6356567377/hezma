@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hezma/Data/Errors/failures.dart';
 import 'package:hezma/Data/Repo/home_products_repo/home_product_repo.dart';
-import 'package:hezma/Data/models/home_products_model/category.dart';
-import 'package:hezma/Data/models/home_products_model/product.dart';
-import 'package:hezma/Data/models/home_products_model/slider.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/category.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/slider.dart';
 import 'package:hezma/utils/API/api_service.dart';
 import 'package:hezma/utils/constants.dart';
 

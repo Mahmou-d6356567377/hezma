@@ -9,6 +9,8 @@ const backgroundcustomgreen = 0xff8DC245;
 const backgroundcustomgreen2 = 0xff029445;
 const String klogo = 'assets/logos/Logo Hezma.png';
 const String kNextIcon = 'assets/images/Group 2.png';
+const String sharedIslogin ='isLoggedIn';
+const String sharedToken = 'token';
 final BoxDecoration customBoxDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(18),
   color: const Color(darkwhite),

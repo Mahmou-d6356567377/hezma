@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/favorite_screan/widgets/custom_crid_fav.dart';
 import 'package:hezma/utils/fonts.dart';
 
@@ -10,14 +9,7 @@ class FavoriteScrean extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              GoRouter.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            )),
+       leading : const Icon(Icons.favorite),
         centerTitle: true,
         title: const Text(
           'المفضله',

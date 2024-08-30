@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:hezma/Data/Errors/failures.dart';
 import 'package:hezma/Data/Repo/fav_products_repo/fav_product_repo.dart';
-import 'package:hezma/Data/models/home_products_model/product.dart';
+import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
 import 'package:hezma/utils/API/api_service.dart';
 import 'package:hezma/utils/constants.dart';
 
