@@ -52,7 +52,7 @@ class Product {
         subCategoryId: json['sub_category_id'] as String?,
         isFavorite: json['is_favorite'] as bool?,
         image: json['image'] as String?,
-        quantity: 1, // Default to 1 when creating from JSON
+        quantity: 1, 
       );
 
   Map<String, dynamic> toJson() => {
@@ -66,6 +66,5 @@ class Product {
         'sub_category_id': subCategoryId,
         'is_favorite': isFavorite,
         'image': image,
-        // Quantity is omitted since it's not part of the server-side data
       };
 }

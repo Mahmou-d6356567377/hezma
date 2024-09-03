@@ -34,7 +34,14 @@ class CategoryRowImage extends StatelessWidget {
                               backgroundColor: Colors.grey[300],
                             )),
                           )
-                        : const Center(child: Text('!')),
+                        : Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: CircleAvatar(
+                              radius: 50,
+                              backgroundColor: Colors.red.shade100,
+                            )),
+                          ),
               ),
               Expanded(
                 child: state is HomeImagesSuccess
@@ -53,7 +60,14 @@ class CategoryRowImage extends StatelessWidget {
                               backgroundColor: Colors.grey[300],
                             )),
                           )
-                        : const Center(child: Text('!')),
+                        :  Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: CircleAvatar(
+                              radius: 50,
+                              backgroundColor: Colors.red.shade100,
+                            )),
+                          ),
               ),
               Expanded(
                 child: state is HomeImagesSuccess
@@ -72,7 +86,14 @@ class CategoryRowImage extends StatelessWidget {
                               backgroundColor: Colors.grey[300],
                             )),
                           )
-                        : const Center(child: Text('!')),
+                        :  Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: CircleAvatar(
+                              radius: 50,
+                              backgroundColor: Colors.red.shade100,
+                            )),
+                          ),
               ),
             ],
           );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/utils/constants.dart';
+import 'package:hezma/blocs/my_account_cubits/terms_cubit/terms_cubit.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class RulesScrean extends StatelessWidget {
@@ -22,17 +23,27 @@ class RulesScrean extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset(
-                krulestxt,
+      body: BlocBuilder<TermsCubit, TermsState>(
+        builder: (context, state) {
+          if (state is TermsSuccess) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text(state.value),
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+          }else if (state is TermsLoading) {
+          
+            return const Center(child: CircularProgressIndicator(),);
+          }else {
+            return const Center(child: CircularProgressIndicator(color: Colors.red,),);
+          }
+        
+        },
       ),
     );
   }

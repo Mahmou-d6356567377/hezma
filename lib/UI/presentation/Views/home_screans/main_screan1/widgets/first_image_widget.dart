@@ -28,8 +28,8 @@ class FirstImageWidget extends StatelessWidget {
                           onTap: () {
                             GoRouter.of(context).push(AppRoutes.ks);
                           },
-                          child: Image.asset(
-                            kfrstimgmain,
+                          child: Image.network(
+                            state.slideImge[0].image!,
                             fit: BoxFit.fill,
                           ),
                         )
@@ -41,10 +41,14 @@ class FirstImageWidget extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(17),
                                   color: Colors.grey[300]),
                             ))
-                          : const Padding(
-                              padding: EdgeInsets.all(50.0),
-                              child: Center(child: Text('!')),
-                            )),
+                          : Center(
+                              child: Container(
+                              height: 150,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(17),
+                                  color: Colors.red.shade100),
+                            ))
+                            ),
             ],
           );
         },

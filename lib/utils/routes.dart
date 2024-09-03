@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
+import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
 import 'package:hezma/UI/presentation/Views/auth_screans/Active_code_screan/ActivationCodeScreen.dart';
 import 'package:hezma/UI/presentation/Views/auth_screans/build_accont_screan/build_acount_screan.dart';
 import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/register_screan.dart';
@@ -17,6 +19,8 @@ import 'package:hezma/UI/presentation/Views/intro_screans/splash_screan/splash_v
 import 'package:hezma/UI/presentation/Views/my_account_screans/Map_screan/map_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/PaymentScrean2/Payment_screan2.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/addresses_screan.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/create_address_screan.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/edit_address_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/follow_screan/follow_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/modfiy_account_screan/modify_account_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/my_orders_screan/MyOrdersScrean.dart';
@@ -48,6 +52,8 @@ abstract class AppRoutes {
   static const tss = '/TechnicalSupportScrean';
   static const prs = '/Privacyrulesscrean';
   static const rs2 = '/rulesscrean';
+  static const eas = '/EditAddressScrean';
+  static const cas = '/CreateAddressScrean';
 
   static final GoRouter router = GoRouter(initialLocation: sps, routes: [
     GoRoute(
@@ -185,7 +191,7 @@ abstract class AppRoutes {
         builder: (context, state) {
           // ignore: avoid_print
           print('Go to  Addresses Screan ');
-          return const AdressesScrean();
+          return const AddressesScrean();
         }),
     GoRoute(
         path: pms2,
@@ -214,6 +220,21 @@ abstract class AppRoutes {
           // ignore: avoid_print
           print('Go to  Rules Screan');
           return const RulesScrean();
+        }),
+        GoRoute(
+        path: eas,
+        builder: (context, state) {
+          // ignore: avoid_print
+          print('Go to  Edit Addresses Screan ');
+          final AddressData addressData = state.extra as AddressData;
+          return  EditAddressScrean(place: addressData);
+        }),
+        GoRoute(
+        path: cas,
+        builder: (context, state) {
+          // ignore: avoid_print
+          print('Go to  Create Address Screan');
+          return const CreateAddressScrean();
         }),
   ]);
 }

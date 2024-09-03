@@ -13,19 +13,60 @@ class MyordersList extends StatelessWidget {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
         if (state is CartLoading) {
-          return const CircularProgressIndicator();
-        } else if (state is CartSuccess) {
-          return Column(
-            children: state.cartProduct.map((product) {
-              return Container(
+          return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(), 
+            shrinkWrap: true, 
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
                   width: double.infinity,
                   height: 150,
                   margin: const EdgeInsets.symmetric(vertical: 5),
-                  child: OrderItem(productDetails: product));
-            }).toList(),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(17),
+                    color: Colors.grey.shade100,
+                  ),
+                ),
+              );
+            },
+          );
+        } else if (state is CartSuccess) {
+          return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(), 
+            shrinkWrap: true,
+            itemCount: state.cartProduct.length,
+            itemBuilder: (context, index) {
+              final product = state.cartProduct[index];
+              return Container(
+                width: double.infinity,
+                height: 150,
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                child: OrderItem(productDetails: product),
+              );
+            },
           );
         } else {
-          return const Text('');
+          return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true, 
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 150,
+                  margin: const EdgeInsets.symmetric(vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(17),
+                    color: Colors.red.shade100,
+                  ),
+                ),
+              );
+            },
+          );
         }
       },
     );

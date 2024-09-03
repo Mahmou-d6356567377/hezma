@@ -1,125 +1,145 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/location_botton.dart';
-import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/text_row.dart';
+import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/districted_place_widget.dart';
-import 'package:hezma/blocs/my_account_cubits/district_places_cubit/district_places_cubit.dart';
 import 'package:hezma/utils/constants.dart';
-import 'package:hezma/utils/fonts.dart';
+import 'package:hezma/utils/routes.dart';
 
-class AdressesScrean extends StatelessWidget {
-  const AdressesScrean({super.key});
+class AddressesScrean extends StatefulWidget {
+  const AddressesScrean({super.key});
+
+  @override
+  AddressesScreanState createState() => AddressesScreanState();
+}
+
+class AddressesScreanState extends State<AddressesScrean> {
+  GoogleMapController? _mapController;
+  LatLng? _selectedLatLng;
+  AddressData? place2;
+  void _onAddressSelected(AddressData place1) async {
+    setState(() {
+      // Assign LatLng object with latitude and longitude from place1
+      _selectedLatLng = LatLng(double.parse(place1.lat!), double.parse(place1.lng!));
+       place2 = place1;
+    });
+
+    _mapController?.animateCamera(
+      CameraUpdate.newLatLng(_selectedLatLng!),
+    );
+
+    // Fetch and print detailed address using Geocoding
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        _selectedLatLng!.latitude,
+        _selectedLatLng!.longitude,
+      );
+
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks.first;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+                'Full Address: ${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}')));
+        print('Full Address: ${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}');
+        print('Postal Code: ${place.postalCode}');
+      } else {
+        print('No placemarks found.');
+      }
+    } catch (e) {
+      print('Error retrieving address details: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-        title: const Text(
-          'العناوين',
-          style: arabicstyle2,
-        ),
+        actions: [
+          IconButton(onPressed: (){
+            GoRouter.of(context).push(AppRoutes.cas);
+          }, icon: const Icon(Icons.add ,color: Color(backgroundcustomgreen),))
+        ],
+        title: const Text('العناوين'),
         centerTitle: true,
       ),
       body: Column(
         children: [
-          const TextRow(title: 'تحديد على الخريطة'),
-          const LocatoinBotton(),
-          const TextRow(title: 'العناوين المستخدم التوصيل'),
-          const DistrictedPlacesWidget(),
+          DistrictedPlacesWidget(
+            onAddressSelected: _onAddressSelected,
+          ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
             child: Container(
-              height: 350,
+              height: 450,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(17),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.1),
-                    blurRadius: 2,
-                    spreadRadius: 2,
-                    offset: const Offset(1, 1),
-                  ),
-                ],
               ),
-              child: Column(
+              child: Stack(
                 children: [
-                  BlocBuilder<DistrictPlacesCubit, DistrictPlacesState>(
-                    builder: (context, state) {
-                      if (state is DistrictPlacesSuccess) {
-                        List<Circle> circles =
-                            state.districtedPlaces.map((place) {
-                          return Circle(
-                            circleId: CircleId(place.id.toString()),
-                            center: LatLng(double.parse(place.latitude!),
-                                double.parse(place.longitude!)),
-                            radius: 500,
-                            strokeColor: Colors.green,
-                            strokeWidth: 2,
-                            fillColor: Colors.green.withOpacity(0.1),
-                          );
-                        }).toList();
-
-                        return Expanded(
-                          flex: 7,
-                          child: GoogleMap(
-                            circles: Set.from(circles),
-                            //  cameraTargetBounds: CameraTargetBounds(LatLngBounds(
-                            //    northeast: const LatLng(40, 40),
-                            //    southwest: const LatLng(35, 35),
-                            //  )),
-                            zoomControlsEnabled: false,
-                            initialCameraPosition: const CameraPosition(
-                                target: LatLng(
-                                    24.7326759868516, 46.657733877636275),
-                                zoom: 5),
-                          ),
-                        );
-                      } else if (state is DistrictPlacesFailure) {
-                        print(state.errMsg);
-                        return Text(state.errMsg);
-                      } else if (state is DistrictPlacesLoading) {
-                        return const CircularProgressIndicator();
-                      } else {
-                        return const Text('!!!!!!!!!!!!');
-                      }
+                  GoogleMap(
+                    zoomControlsEnabled: false,
+                    compassEnabled: false,
+                    onMapCreated: (controller) {
+                      _mapController = controller;
                     },
-                  ),
-                  const Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: Color(backgroundcustomgreen2),
-                        ),
-                        Spacer(),
-                        Column(
-                          children: [
-                            Text(
-                              'العناوين المستخدم التوصيل',
-                              style: TextStyle(
-                                color: Color(backgroundcustomgreen),
+                    initialCameraPosition: CameraPosition(
+                      target: _selectedLatLng ?? const LatLng(0, 0),
+                      zoom: 4.0,
+                    ),
+                    markers: _selectedLatLng != null
+                        ? {
+                            Marker(
+                              infoWindow: InfoWindow(
+                                title: place2?.name  , 
                               ),
+                              markerId: const MarkerId('selected-address'),
+                              position: _selectedLatLng!,
                             ),
-                            Text('الرحمانيه ,الرياض ,السعودية',
-                                style: arabicstyle2),
-                          ],
-                        ),
-                      ],
+                          }
+                        : {},
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      color: Colors.white,
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(place2?.address ?? 'unknown place'),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () {
+                              if (place2?.id == null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Text('حدد العنوان اولا'),
+                                        ],
+                                      )),
+                                );
+                              } else {
+                                GoRouter.of(context)
+                                    .push(AppRoutes.eas, extra: place2);
+                              }
+                            },
+                            icon: const Icon(Icons.edit,
+                                color: Color(backgroundcustomgreen2)),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

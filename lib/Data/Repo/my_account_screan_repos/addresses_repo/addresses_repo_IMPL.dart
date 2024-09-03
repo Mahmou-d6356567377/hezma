@@ -68,42 +68,48 @@ class AddressesRepoImpl implements AddressesRepo {
 
 
 
-  @override
-  Future<Either<Failure, AddressData>> editAddresses({
-    required String name ,
-    required String address ,
-    required String latitude,
-    required String longitude,
-    required String id,
-  })  async{
-     Map<String, dynamic> body = {
-    'name':name,
-    'address':address,
-    'lat':latitude,
-    'lng':longitude,
-    };
+ @override
+Future<Either<Failure, AddressData>> editAddresses({
+  required String namee,
+  required String addresss,
+  required String latitudee,
+  required String longitudee,
+  required String idd,
+}) async {
+  Map<String, dynamic> body = {
+    'name' : namee,
+    'address' : addresss,
+    'lat' : latitudee,
+    'lng' : longitudee,
+    '_method': 'PUT',
+    'district_id':'2',
+    'distance':'10',
+  };
 
-         SharedPreferences pref = await SharedPreferences.getInstance();
-         String token1 = pref.getString(sharedToken)!;
-
-    try {
-     var result = await apiService.post(url: '${baseURL}address/update/$id', token: token1, body: body);
-     AddressData createdAddress = result['data'];
-     return right(createdAddress);
-    } on DioException catch (e) {
-      return left(ServerFailure(e.toString()));
-    }catch (e) {
-      return left(ServerFailure(e.toString()));
-    }
-
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  String token1 = pref.getString(sharedToken)!;
+  try {
+    var result = await apiService.post(
+      url: '${baseURL}address/update/$idd',
+      token: token1,
+      body: body,
+    );
+    print(' edit meassaage ::::::${result['message']}');
+    print(' edit status ::::::${result['status']}');
+    AddressData updatedAddress = AddressData.fromJson(result['data']);
+    return right(updatedAddress);
+  } on DioException catch (e) {
+    return left(ServerFailure(e.toString()));
+  } catch (e) {
+    return left(ServerFailure(e.toString()));
   }
+}
 
 
 
   @override
   Future<Either<Failure, AddressData>> createAddresses({
     required String name ,
-    required String districtId,
     required String address ,
     required String latitude,
     required String longitude,
@@ -111,10 +117,11 @@ class AddressesRepoImpl implements AddressesRepo {
 
     Map<String, dynamic> body = {
       'name':name , 
-      'district_id': districtId,
       'address':address,
       'lat':latitude,
       'lng':longitude,
+     'district_id':'1',
+    'distance':'10',
     };
 
        SharedPreferences pref = await SharedPreferences.getInstance();

@@ -49,8 +49,7 @@ const String ktxt3Pg3 =
 const String kimgPg2 = 'assets/images/pngegg (33) 1.png';
 const String ktext1Pg2 = 'assets/images/Kesmfakh.png';
 
-const String kimgPg3 =
-    'assets/images/tres-botellas-plastico-agua-gas-tapa-azul_104576-417 1.png';
+const String kimgPg3 = 'assets/images/tres-botellas-plastico-agua-gas-tapa-azul_104576-417 1.png';
 const String ktext1Pg3 = 'assets/images/KesmMah.png';
 
 const String krectangle = 'assets/images/Rectangle 4.png';
@@ -80,7 +79,6 @@ const String kpleaseenteractivecode = 'assets/images/Enter active code.png';
 
 const String klogomain = 'assets/logos/logoMainsc.png';
 const String kmainActionIcon = 'assets/images/mainActionIcon.png';
-const String kfrstimgmain = 'assets/images/firstImgMain.png';
 const String khdaricon = 'assets/images/khdarIcon.png';
 const String kfakhIcon = 'assets/images/fakhIcon.png';
 const String kwaterIcon = 'assets/images/waterIcon.png';
@@ -112,20 +110,16 @@ const String kpay4rec1 = 'assets/images/Rectangle70.png';
 const String kpay4rec2 = 'assets/images/Rectangle71.png';
 
 const String kfollowImg = 'assets/images/followimg1.png';
-const String kline = 'assets/images/Line.png';
 const String kgreenwhitecircle = 'assets/images/whiteGreencircle.png';
 const String kvector = 'assets/images/Vector.png';
 const String kgreencircle = 'assets/images/greenCircle.png';
 const String kcircleImge = 'assets/images/circleImgfollow.png';
-
-const String kmapIMG = 'assets/images/mapimg.png';
 
 const String kmada = 'assets/images/mada.png';
 const String kvisa = 'assets/images/Visa.png';
 
 const String kframe = 'assets/images/Frame.png';
 const String kprivacytxt = 'assets/images/privacytxt.png';
-const String krulestxt = 'assets/images/rulestxt.png';
 const String kAppIcon = 'assets/logos/appicon.png';
 
 const String kscopeIcon = 'assets/logos/scopeIcon.png';

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
+import 'package:hezma/utils/routes.dart';
 
 class LastFollowContainer extends StatelessWidget {
   const LastFollowContainer({
@@ -16,22 +18,27 @@ class LastFollowContainer extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(backgroundcustomgreen),
-                      Color(backgroundcustomgreen2),
-                    ]),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'تواصل مع الدعم',
-                  style: arabicstyle5,
+            GestureDetector(
+              onTap: (){
+                 GoRouter.of(context).push(AppRoutes.tss);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(backgroundcustomgreen),
+                        Color(backgroundcustomgreen2),
+                      ]),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'تواصل مع الدعم',
+                    style: arabicstyle5,
+                  ),
                 ),
               ),
             ),

@@ -7,6 +7,7 @@ import 'package:hezma/Data/Repo/fav_products_repo/fav_product_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/home_products_repo/home_product_repo_Impl.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/addresses_repo/addresses_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/districts_repo/districts_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/my_account_screan_repos/terms_repo/terms_repo_IMPL.dart';
 import 'package:hezma/utils/API/api_service.dart';
 
 final getIt = GetIt.instance;
@@ -22,6 +23,9 @@ void serviceLocator() {
 
   getIt.registerSingleton<AddressesRepoImpl>(
       AddressesRepoImpl(getIt.get<ApiService>()));
+
+      getIt.registerSingleton<TermsRepoImpl>(
+      TermsRepoImpl(getIt.get<ApiService>()));
 
       getIt.registerSingleton<DistrictsRepoImpl>(
       DistrictsRepoImpl(getIt.get<ApiService>()));

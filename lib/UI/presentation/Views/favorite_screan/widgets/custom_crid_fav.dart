@@ -33,7 +33,7 @@ class _CustomGridFavState extends State<CustomGridFav> {
                 );
               });
         } else if (state is FavProductFailure) {
-          return Text(state.errMsg);
+          return const  Center(child: CircularProgressIndicator(color: Colors.red,));
         } else {
           return const Center(
             child: CircularProgressIndicator(),

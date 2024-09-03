@@ -13,84 +13,96 @@ class MyOrderScrean extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double  totalpricewithtax ;
+    double totalpricewithtax;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              GoRouter.of(context).pop();
-            },
-            icon: const Icon(Icons.arrow_back_ios)),
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
         title: const Text('طلباتى'),
         centerTitle: true,
       ),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          const SliverToBoxAdapter(child: MyordersList()),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 50,
-                decoration: customBoxDecoration.copyWith(border: Border.all()),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: BlocBuilder<CartCubit, CartState>(
-                    builder: (context, state) {
-                      if (state is CartSuccess) {
-                          totalpricewithtax = 1.15 * state.totalPrice;
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            const Text(
-                              'ر.س',
-                              style: arabicstyle2,
-                            ),
-                            Text(
-                              totalpricewithtax.toString(),
-                              style: arabicstyle4,
-                            ),
-                            const Spacer(),
-                            const Text(
-                              'مجموع السعر بعد الضريبة',
-                              style: arabicstyle2,
-                            ),
-                          ],
-                        );
-                      } else if (state is CartLoading) {
-                        return const Center(
-                          child: LinearProgressIndicator(),
-                        );
-                      } else {
-                        return const Text('!');
-                      }
-                    },
-                  ),
-                ),
+      body: Column(
+        children: [
+          const Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                   MyordersList(),
+                ],
               ),
             ),
           ),
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 120,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: CustomCoupleBotton(
-              title1: 'تتبع',
-              title2: 'الغاء الطلب',
-              ontap1: () {
-                GoRouter.of(context).push(AppRoutes.fs);
-              },
-              ontap2: () {
-                GoRouter.of(context).pop();
-              },
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 50,
-            ),
+           Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 50,
+                      decoration: customBoxDecoration.copyWith(border: Border.all()),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: BlocBuilder<CartCubit, CartState>(
+                          builder: (context, state) {
+                            if (state is CartSuccess) {
+                              totalpricewithtax = 1.15 * state.totalPrice;
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  const Text(
+                                    'ر.س',
+                                    style: arabicstyle2,
+                                  ),
+                                  Text(
+                                    totalpricewithtax.toString(),
+                                    style: arabicstyle4,
+                                  ),
+                                  const Spacer(),
+                                  const Text(
+                                    'مجموع السعر بعد الضريبة',
+                                    style: arabicstyle2,
+                                  ),
+                                ],
+                              );
+                            } else if (state is CartLoading) {
+                              return const Center(
+                                child: LinearProgressIndicator(),
+                              );
+                            } else {
+                              return const Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'ر.س',
+                                    style: arabicstyle2,
+                                  ),
+                                  Text(
+                                    '0',
+                                    style: arabicstyle4,
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    'مجموع السعر بعد الضريبة',
+                                    style: arabicstyle2,
+                                  ),
+                                ],
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+          CustomCoupleBotton(
+            title1: 'تتبع',
+            title2: 'الغاء الطلب',
+            ontap1: () {
+              GoRouter.of(context).push(AppRoutes.fs);
+            },
+            ontap2: () {
+              GoRouter.of(context).pop();
+            },
           ),
         ],
       ),
