@@ -27,7 +27,7 @@ class EditAddressCubit extends Cubit<EditAddressState> {
 
     result.fold(
       (failure) => emit(EditAddressFailure(failure.errorMSG)),
-      (addressData) => emit(const EditAddressSuccess('Address updated successfully')),
+      (addressData) => emit(const EditAddressSuccess('تم التعديل بنجاح')),
     );
   }
 }

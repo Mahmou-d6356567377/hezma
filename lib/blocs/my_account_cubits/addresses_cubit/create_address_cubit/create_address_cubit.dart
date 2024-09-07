@@ -26,7 +26,7 @@ class CreateAddressCubit extends Cubit<CreateAddressState> {
 
     result.fold(
       (failure) => emit(CreateAddressFailure(failure.errorMSG)),
-      (addressData) => emit(const CreateAddressSuccess('Address created successfully')),
+      (addressData) => emit(const CreateAddressSuccess('تم اضافه عنوان بنجاح')),
     );
   }
 }

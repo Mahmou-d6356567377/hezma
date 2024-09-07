@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +8,7 @@ import 'package:hezma/UI/presentation/Views/auth_screans/register_screan/widgets
 import 'package:hezma/blocs/auth_cubits/register_cubit/register_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BuildAccountScrean extends StatefulWidget {
   const BuildAccountScrean({super.key});
@@ -22,39 +22,47 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmpasswordController =
-      TextEditingController();
+  final TextEditingController confirmpasswordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  void _submitForm() {
+  void _submitForm() async {
     if (confirmpasswordController.text != passwordController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('تاكيد كلمه المرور ليس مثل كلمه المرور'),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text('تاكيد كلمه المرور ليس مثل كلمه المرور'),
+            ],
+          ),
         ),
       );
       return;
     }
 
     if (_formKey.currentState!.validate()) {
+
       Map<String, dynamic> body = {
         "name": nameController.text,
         "phone": phoneController.text,
         "email": emailController.text,
         "password": passwordController.text,
-        "fcm": kToken,
+        "fcm": 'd-G53x4dQCKm0IA3qS3cUb:APA91bFTsbA-ZQE-PF4v0hwUY-LV09ecPg9jjJrkJLAWPLavIxiMG5CDiF7XXHmc55bVpscMVDPLtnOVrvHACM__MDX5cDqVVgonhgtZXMVbJIMlegJThJ6nEoSKeO3rfefKv4z32kgH', // Pass the token
       };
 
       context.read<RegisterCubit>().fetchRegisterdata(body);
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) {
           if (state is Registersuccess) {
+            print(state.logindata1.otp);
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Registration successful')),
             );
@@ -124,8 +132,7 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 15.0),
+                                  padding: const EdgeInsets.symmetric(vertical: 15.0),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -162,12 +169,10 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
                                 ),
                                 const SizedBox(height: 80),
                                 const Arabictext(
-                                  arabicText:
-                                      'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه',
+                                  arabicText: 'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه',
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 8.0, horizontal: 8),
+                                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
                                   child: GestureDetector(
                                     onTap: _submitForm,
                                     child: state is Registerloading

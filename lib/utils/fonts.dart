@@ -16,6 +16,7 @@ const arabicstyle1 = TextStyle(
   textBaseline: TextBaseline.alphabetic,
 );
 
+
 const arabicstyle2 = TextStyle(
   fontFamily: karabicFont3,
   fontWeight: FontWeight.bold,

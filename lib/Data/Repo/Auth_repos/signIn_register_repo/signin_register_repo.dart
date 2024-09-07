@@ -8,5 +8,5 @@ abstract class SignInRegisterRepo {
     required String password,
     required bool isphone,
   });
-  Future<Either<Failure, dynamic>> registerRepo(Map<String, dynamic> body);
+  Future<Either<Failure, LoginData>> registerRepo(Map<String, dynamic> body);
 }

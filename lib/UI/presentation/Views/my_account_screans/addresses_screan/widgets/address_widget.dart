@@ -50,16 +50,21 @@ class AddressItem extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: PopupMenuButton(
+                  splashRadius: 25,
+                  offset: const Offset(20, 10),
+                  elevation: 15,
+                  surfaceTintColor: Colors.green[100],
                   onSelected: (value) => _onSelected(context, value),
                   itemBuilder: (context) => [
-                    const PopupMenuItem(
-                      value: 'erase',
-                      child: Text('Erase'),
-                    ),
                     const PopupMenuItem(
                       value: 'edit',
                       child: Text('edit'),
                     ),
+                    const PopupMenuItem(
+                      value: 'erase',
+                      child: Text('Erase'),
+                    ),
+                    
                   ],
                   child: const Icon(
                     Icons.more_vert,

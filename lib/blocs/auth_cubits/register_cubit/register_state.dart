@@ -10,7 +10,7 @@ sealed class RegisterState extends Equatable {
 final class RegisterInitial extends RegisterState {}
 
 final class Registersuccess extends RegisterState {
-  final dynamic logindata1;
+  final LoginData logindata1;
   const Registersuccess(this.logindata1);
 }
 

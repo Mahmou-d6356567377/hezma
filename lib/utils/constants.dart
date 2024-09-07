@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const String baseURL = 'https://hezma-traning.eltamiuz.net/api/v1/';
-const String kToken = '152|qaYT5NsUjSLFUGyHQt52Q1F6XVeSGoFCR7pDRf5F5b47266f';
+const String kToken = '506|GLlv6sanAbxr2tyrLDKLi9gOxpvvwdkD4ayeZtjN0deaa967';
 
 const darkwhite = 0xffF0F0F0;
 const backgroundcolor1 = 0xffFFFFFF;
@@ -11,6 +11,7 @@ const String klogo = 'assets/logos/Logo Hezma.png';
 const String kNextIcon = 'assets/images/Group 2.png';
 const String sharedIslogin = 'isLoggedIn';
 const String sharedToken = 'token';
+const String sharedregisterToken = 'registerToken';
 final BoxDecoration customBoxDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(18),
   color: const Color(darkwhite),

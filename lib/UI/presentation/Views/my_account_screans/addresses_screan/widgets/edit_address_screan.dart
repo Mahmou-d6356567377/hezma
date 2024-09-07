@@ -125,9 +125,15 @@ class _EditAddressScreanState extends State<EditAddressScrean> {
               child:  BlocListener<EditAddressCubit, EditAddressState>(
                         listener: (context, state) {
                           if (state is EditAddressSuccess) {
-                            GoRouter.of(context).pop();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                               SnackBar(content: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                 children: [
+                                   Text(state.msg),
+                                 ],
+                               )),
+                            );
                           } else if (state is EditAddressFailure) {
-                            print(state.errMsg);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text(state.errMsg)),
                             );
@@ -143,7 +149,7 @@ class _EditAddressScreanState extends State<EditAddressScrean> {
                           longitude: _selectedLatLng!.longitude.toString(),
                           address: widget.place.address!,
                         );
-
+                         
                         context.read<GetAddressesCubit>().fetchAddresses();
                         GoRouter.of(context).pop();
                   },

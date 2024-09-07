@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hezma/Data/Repo/Auth_repos/signIn_register_repo/signin_register_repo.dart';
+import 'package:hezma/Data/models/auth_models/login_model/data.dart';
 
 part 'register_state.dart';
 

@@ -136,6 +136,9 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
               child: BlocListener<EditAddressCubit, EditAddressState>(
                 listener: (context, state) {
                   if (state is EditAddressSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.msg)
+                      ));
                     GoRouter.of(context).pop();
                   } else if (state is EditAddressFailure) {
                     print(state.errMsg);
@@ -145,16 +148,24 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
                   }
                 },
                 child: GestureDetector(
-                  onTap: () async {
+                  onTap: ()  {
                     if (_address != null) {
-                      await context.read<CreateAddressCubit>().createAddress(
+                       context.read<CreateAddressCubit>().createAddress(
                             name: nameController.text,
                             latitude: _selectedLatLng!.latitude.toString(),
                             longitude: _selectedLatLng!.longitude.toString(),
                             address: _address!, // Use the reverse-geocoded address
                           );
-
+                         ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text('تم الاضافه بنجاح'),
+                        ],
+                      )),
+                    );
                       context.read<GetAddressesCubit>().fetchAddresses();
+
                       GoRouter.of(context).pop();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

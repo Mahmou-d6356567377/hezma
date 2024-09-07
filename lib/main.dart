@@ -22,6 +22,7 @@ import 'package:hezma/blocs/my_account_cubits/addresses_cubit/edit_address_cubit
 import 'package:hezma/blocs/my_account_cubits/addresses_cubit/get_addresses_cubit/get_addresses_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/district_places_cubit/district_places_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/terms_cubit/terms_cubit.dart';
+import 'package:hezma/blocs/receive_otp_cubit/receive_otp_cubit.dart';
 import 'package:hezma/utils/routes.dart';
 import 'package:hezma/utils/service_locator/service_locator.dart';
 
@@ -40,60 +41,51 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              HomeProductCubit(getIt.get<HomeProductRepoIMPL>())
-                ..fetchHomeProducts(),
+          create: (context) =>HomeProductCubit(getIt.get<HomeProductRepoIMPL>())..fetchHomeProducts(),
         ),
-       
         BlocProvider(
           create: (context) => OtpCubit(getIt.get<OtpRepoImpl>())..fetchOtp(),
         ),
-        BlocProvider(
-          create: (context) =>
-              DistrictPlacesCubit(getIt.get<DistrictsRepoImpl>())
-                ..fetchDistrictPlaces(),
+         BlocProvider(
+          create: (context) => ReceiveOtpCubit(getIt.get<OtpRepoImpl>()),
         ),
         BlocProvider(
-          create: (context) =>
-              CategoryProductsCubit(getIt.get<HomeProductRepoIMPL>()),
+          create: (context) =>DistrictPlacesCubit(getIt.get<DistrictsRepoImpl>())..fetchDistrictPlaces(),
         ),
         BlocProvider(
-          create: (context) => HomeImagesCubit(getIt.get<HomeProductRepoIMPL>())
-            ..fetchHomeImages(),
+          create: (context) => CategoryProductsCubit(getIt.get<HomeProductRepoIMPL>()),
         ),
         BlocProvider(
-          create: (context) => FirstImgeCubit(getIt.get<HomeProductRepoIMPL>())
-            ..fetchHomeslider(),
+          create: (context) => HomeImagesCubit(getIt.get<HomeProductRepoIMPL>()) ..fetchHomeImages(),
         ),
         BlocProvider(
-          create: (context) => FavProductCubit(getIt.get<FavProductRepoImpl>())
-            ..fetchFavProductsCubit(),
+          create: (context) => FirstImgeCubit(getIt.get<HomeProductRepoIMPL>())..fetchHomeslider(),
+        ),
+        BlocProvider(
+          create: (context) => FavProductCubit(getIt.get<FavProductRepoImpl>())..fetchFavProductsCubit(),
         ),
         BlocProvider(
           create: (context) => CartCubit()..fetchCartProducts(),
         ),
         BlocProvider(
-          create: (context) =>
-              SignRegisterCubit(getIt.get<SignInRegisterRepoIMPL>()),
+          create: (context) => SignRegisterCubit(getIt.get<SignInRegisterRepoIMPL>()),
         ),
         BlocProvider(
-            create: (context) =>
-                RegisterCubit(getIt.get<SignInRegisterRepoIMPL>())),
-                 BlocProvider(
-                create: (context) => DelAddressCubit(getIt.get<AddressesRepoImpl>()),
+          create: (context) => RegisterCubit(getIt.get<SignInRegisterRepoIMPL>())),
+        BlocProvider(
+          create: (context) => DelAddressCubit(getIt.get<AddressesRepoImpl>()),
               ),
-              BlocProvider(
-                create: (context) => EditAddressCubit(getIt.get<AddressesRepoImpl>()),
+         BlocProvider(
+          create: (context) => EditAddressCubit(getIt.get<AddressesRepoImpl>()),
               ),
-              BlocProvider(
-                create: (context) => CreateAddressCubit(getIt.get<AddressesRepoImpl>()),
+        BlocProvider(
+         create: (context) => CreateAddressCubit(getIt.get<AddressesRepoImpl>()),
               ),
-              BlocProvider(
-                create: (context) => TermsCubit(getIt.get<TermsRepoImpl>() )..fetchTermsData(),
+        BlocProvider(
+        create: (context) => TermsCubit(getIt.get<TermsRepoImpl>() )..fetchTermsData(),
               ),
-              
-               BlocProvider(
-                 create: (context) => GetAddressesCubit(getIt.get<AddressesRepoImpl>()), ),
+        BlocProvider(
+       create: (context) => GetAddressesCubit(getIt.get<AddressesRepoImpl>()), ),
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,
