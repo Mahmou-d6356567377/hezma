@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/auth_screans/Active_code_screan/widgets/custom_timer_button.dart';
 import 'package:hezma/UI/presentation/Views/auth_screans/Active_code_screan/widgets/pin_code_text_field.dart';
 import 'package:hezma/blocs/auth_cubits/otp_cubit/otp_cubit.dart';
-import 'package:hezma/blocs/receive_otp_cubit/receive_otp_cubit.dart';
+import 'package:hezma/blocs/auth_cubits/receive_otp_cubit/receive_otp_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';

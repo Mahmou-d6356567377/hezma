@@ -7,7 +7,9 @@ import 'package:hezma/Data/Repo/home_products_repo/home_product_repo_Impl.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/addresses_repo/addresses_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/districts_repo/districts_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/terms_repo/terms_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/my_account_screan_repos/wallet_repo/wallet_repo_IMPL.dart';
 import 'package:hezma/blocs/auth_cubits/otp_cubit/otp_cubit.dart';
+import 'package:hezma/blocs/auth_cubits/receive_otp_cubit/receive_otp_cubit.dart';
 import 'package:hezma/blocs/auth_cubits/register_cubit/register_cubit.dart';
 import 'package:hezma/blocs/auth_cubits/signIn_register_cubit/cubit/sign_register_cubit.dart';
 import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
@@ -22,7 +24,7 @@ import 'package:hezma/blocs/my_account_cubits/addresses_cubit/edit_address_cubit
 import 'package:hezma/blocs/my_account_cubits/addresses_cubit/get_addresses_cubit/get_addresses_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/district_places_cubit/district_places_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/terms_cubit/terms_cubit.dart';
-import 'package:hezma/blocs/receive_otp_cubit/receive_otp_cubit.dart';
+import 'package:hezma/blocs/my_account_cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:hezma/utils/routes.dart';
 import 'package:hezma/utils/service_locator/service_locator.dart';
 
@@ -86,6 +88,9 @@ class MainApp extends StatelessWidget {
               ),
         BlocProvider(
        create: (context) => GetAddressesCubit(getIt.get<AddressesRepoImpl>()), ),
+
+       BlocProvider(
+       create: (context) => WalletCubit(getIt.get<WalletRepoImpl>())..fetchWalletData(),),
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,
