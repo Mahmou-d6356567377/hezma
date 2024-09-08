@@ -18,7 +18,4 @@ class OtpCubit extends Cubit<OtpState> {
       emit(OtpSuccess(otp));
     });
   }
-
-
-  
 }

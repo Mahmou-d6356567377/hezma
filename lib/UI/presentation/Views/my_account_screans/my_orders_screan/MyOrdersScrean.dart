@@ -31,69 +31,69 @@ class MyOrderScrean extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                   MyordersList(),
+                  MyordersList(),
                 ],
               ),
             ),
           ),
-           Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: 50,
-                      decoration: customBoxDecoration.copyWith(border: Border.all()),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: BlocBuilder<CartCubit, CartState>(
-                          builder: (context, state) {
-                            if (state is CartSuccess) {
-                              totalpricewithtax = 1.15 * state.totalPrice;
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const Text(
-                                    'ر.س',
-                                    style: arabicstyle2,
-                                  ),
-                                  Text(
-                                    totalpricewithtax.toString(),
-                                    style: arabicstyle4,
-                                  ),
-                                  const Spacer(),
-                                  const Text(
-                                    'مجموع السعر بعد الضريبة',
-                                    style: arabicstyle2,
-                                  ),
-                                ],
-                              );
-                            } else if (state is CartLoading) {
-                              return const Center(
-                                child: LinearProgressIndicator(),
-                              );
-                            } else {
-                              return const Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'ر.س',
-                                    style: arabicstyle2,
-                                  ),
-                                  Text(
-                                    '0',
-                                    style: arabicstyle4,
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    'مجموع السعر بعد الضريبة',
-                                    style: arabicstyle2,
-                                  ),
-                                ],
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              height: 50,
+              decoration: customBoxDecoration.copyWith(border: Border.all()),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: BlocBuilder<CartCubit, CartState>(
+                  builder: (context, state) {
+                    if (state is CartSuccess) {
+                      totalpricewithtax = 1.15 * state.totalPrice;
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const Text(
+                            'ر.س',
+                            style: arabicstyle2,
+                          ),
+                          Text(
+                            totalpricewithtax.toString(),
+                            style: arabicstyle4,
+                          ),
+                          const Spacer(),
+                          const Text(
+                            'مجموع السعر بعد الضريبة',
+                            style: arabicstyle2,
+                          ),
+                        ],
+                      );
+                    } else if (state is CartLoading) {
+                      return const Center(
+                        child: LinearProgressIndicator(),
+                      );
+                    } else {
+                      return const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'ر.س',
+                            style: arabicstyle2,
+                          ),
+                          Text(
+                            '0',
+                            style: arabicstyle4,
+                          ),
+                          Spacer(),
+                          Text(
+                            'مجموع السعر بعد الضريبة',
+                            style: arabicstyle2,
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                ),
+              ),
+            ),
+          ),
           CustomCoupleBotton(
             title1: 'تتبع',
             title2: 'الغاء الطلب',

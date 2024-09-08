@@ -30,7 +30,8 @@ class CartCubit extends Cubit<CartState> {
   void updateProductQuantity(Product product, int newQuantity) {
     final index = _cartProducts.indexWhere((p) => p.id == product.id);
     if (index != -1) {
-      _cartProducts[index] = _cartProducts[index].copyWith(quantity: newQuantity);
+      _cartProducts[index] =
+          _cartProducts[index].copyWith(quantity: newQuantity);
     }
     _emitSuccessState();
   }
@@ -60,4 +61,3 @@ class CartCubit extends Cubit<CartState> {
     emit(CartSuccess(_cartProducts, totalPrice));
   }
 }
-

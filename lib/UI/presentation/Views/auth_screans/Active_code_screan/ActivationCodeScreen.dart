@@ -26,6 +26,7 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isLoggedIn', true);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,10 +164,8 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
                                       bottom: 50.0, left: 8, right: 8, top: 8),
                                   child: GestureDetector(
                                     onTap: () async {
-                                      print(
-                                          'tapped on the active code button');
+                                      print('tapped on the active code button');
                                       if (_pinController.text == otpFromState) {
-
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           const SnackBar(
@@ -176,7 +175,10 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
                                           ),
                                         );
                                         // Call receiveOtp function
-                                        context.read<ReceiveOtpCubit>().receiveOtp(  otp1: _pinController.text);
+                                        context
+                                            .read<ReceiveOtpCubit>()
+                                            .receiveOtp(
+                                                otp1: _pinController.text);
 
                                         GoRouter.of(context)
                                             .push(AppRoutes.cpns);
@@ -185,8 +187,8 @@ class _ActivationCodeScreenState extends State<ActivationCodeScreen> {
                                             .showSnackBar(
                                           const SnackBar(
                                             content: Center(
-                                              child: Text(
-                                                  'كود التفعيل غير صحيح'),
+                                              child:
+                                                  Text('كود التفعيل غير صحيح'),
                                             ),
                                           ),
                                         );

@@ -56,18 +56,17 @@ class CartItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                       CounterWidget2(
+                        CounterWidget2(
                           initialCount: product.quantity,
                           product: product, // Pass the product here
                         ),
-
-                       const  Spacer(),
-                       const  Text(
+                        const Spacer(),
+                        const Text(
                           'فواكه',
                           style: TextStyle(
                             fontFamily: karabicFont1,

@@ -184,7 +184,7 @@ abstract class AppRoutes {
         builder: (context, state) {
           // ignore: avoid_print
           print('Go to  Follow Screan ');
-          return const FollowScrean();
+          return const FollowScrean(id2: 4);
         }),
     GoRoute(
         path: ads,
@@ -221,15 +221,15 @@ abstract class AppRoutes {
           print('Go to  Rules Screan');
           return const RulesScrean();
         }),
-        GoRoute(
+    GoRoute(
         path: eas,
         builder: (context, state) {
           // ignore: avoid_print
           print('Go to  Edit Addresses Screan ');
           final AddressData addressData = state.extra as AddressData;
-          return  EditAddressScrean(place: addressData);
+          return EditAddressScrean(place: addressData);
         }),
-        GoRoute(
+    GoRoute(
         path: cas,
         builder: (context, state) {
           // ignore: avoid_print

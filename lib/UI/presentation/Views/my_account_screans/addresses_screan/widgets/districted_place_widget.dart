@@ -66,9 +66,10 @@ class _DistrictedPlacesWidgetState extends State<DistrictedPlacesWidget> {
               child: Row(
                 children: state.dataAddress.map((place) {
                   int index = state.dataAddress.indexOf(place);
-                  
+
                   return BlocProvider(
-                    create: (_) => EditAddressCubit(context.read<AddressesRepo>()),
+                    create: (_) =>
+                        EditAddressCubit(context.read<AddressesRepo>()),
                     child: AddressItem(
                       districtedPlace: place,
                       selected: selectedIndex == index,
@@ -76,16 +77,17 @@ class _DistrictedPlacesWidgetState extends State<DistrictedPlacesWidget> {
                         setState(() {
                           selectedIndex = index;
                         });
-                        
+
                         // Convert lat and lng strings to double and create LatLng object
                         double? latitude = double.tryParse(place.lat ?? '');
                         double? longitude = double.tryParse(place.lng ?? '');
-                        
+
                         if (latitude != null && longitude != null) {
                           widget.onAddressSelected(place);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Invalid coordinates')),
+                            const SnackBar(
+                                content: Text('Invalid coordinates')),
                           );
                         }
                       },

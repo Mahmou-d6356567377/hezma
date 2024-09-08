@@ -9,7 +9,7 @@ class Product {
   String? subCategoryId;
   bool? isFavorite;
   String? image;
-  int quantity; 
+  int quantity;
 
   Product({
     this.id,
@@ -52,7 +52,7 @@ class Product {
         subCategoryId: json['sub_category_id'] as String?,
         isFavorite: json['is_favorite'] as bool?,
         image: json['image'] as String?,
-        quantity: 1, 
+        quantity: 1,
       );
 
   Map<String, dynamic> toJson() => {

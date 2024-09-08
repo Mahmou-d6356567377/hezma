@@ -122,24 +122,24 @@ class _EditAddressScreanState extends State<EditAddressScrean> {
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child:  BlocListener<EditAddressCubit, EditAddressState>(
-                        listener: (context, state) {
-                          if (state is EditAddressSuccess) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                               SnackBar(content: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                 children: [
-                                   Text(state.msg),
-                                 ],
-                               )),
-                            );
-                          } else if (state is EditAddressFailure) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(state.errMsg)),
-                            );
-                          }
-                        },
-                
+              child: BlocListener<EditAddressCubit, EditAddressState>(
+                listener: (context, state) {
+                  if (state is EditAddressSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(state.msg),
+                        ],
+                      )),
+                    );
+                  } else if (state is EditAddressFailure) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.errMsg)),
+                    );
+                  }
+                },
                 child: GestureDetector(
                   onTap: () {
                     context.read<EditAddressCubit>().editAddress(
@@ -149,9 +149,9 @@ class _EditAddressScreanState extends State<EditAddressScrean> {
                           longitude: _selectedLatLng!.longitude.toString(),
                           address: widget.place.address!,
                         );
-                         
-                        context.read<GetAddressesCubit>().fetchAddresses();
-                        GoRouter.of(context).pop();
+
+                    context.read<GetAddressesCubit>().fetchAddresses();
+                    GoRouter.of(context).pop();
                   },
                   child: Container(
                       width: double.infinity,

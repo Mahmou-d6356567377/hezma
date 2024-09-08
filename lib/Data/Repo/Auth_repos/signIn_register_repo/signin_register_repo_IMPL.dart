@@ -58,25 +58,23 @@ class SignInRegisterRepoIMPL implements SignInRegisterRepo {
 
   @override
   Future<Either<Failure, LoginData>> registerRepo(
-    
       Map<String, dynamic> body) async {
     try {
+      var getRegisterData = await apiService.post(
+          url: '${baseURL}register', token: kToken, body: body);
+      print(' the status of register repo ${getRegisterData['status']}');
+      print('the message of register repo ${getRegisterData['message']}');
+      print('the token of register repo ${getRegisterData['token']}');
+      print('the email of register repo ${getRegisterData['email']}');
 
-      var getRegisterData = await apiService.post(  url: '${baseURL}register', token: kToken, body: body);
-        print(' the status of register repo ${getRegisterData['status']}');
-        print('the message of register repo ${getRegisterData['message']}');
-        print('the token of register repo ${getRegisterData['token']}');
-        print('the email of register repo ${getRegisterData['email']}');
-        
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString(sharedregisterToken, getRegisterData['token']);
 
-            final SharedPreferences prefs = await SharedPreferences.getInstance();
-               prefs.setString(sharedregisterToken, getRegisterData['token']);
+      LoginData registerData = LoginData.fromJson(getRegisterData['data']);
 
-          LoginData registerData =   LoginData.fromJson(getRegisterData['data']);
-           
-            print(registerData.otp);
-            print(registerData.email);
-            print(registerData.id);
+      print(registerData.otp);
+      print(registerData.email);
+      print(registerData.id);
       return right(registerData);
     } on DioException catch (e) {
       print('DioException in registerRepo: ${e.message}');

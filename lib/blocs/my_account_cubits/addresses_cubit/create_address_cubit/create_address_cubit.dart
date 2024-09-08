@@ -8,7 +8,6 @@ class CreateAddressCubit extends Cubit<CreateAddressState> {
   CreateAddressCubit(this.addressesRepo) : super(CreateAddressInitial());
   final AddressesRepo addressesRepo;
 
-
   Future<void> createAddress({
     required String name,
     required String address,
@@ -19,10 +18,10 @@ class CreateAddressCubit extends Cubit<CreateAddressState> {
 
     var result = await addressesRepo.createAddresses(
       name: name,
-       address: address,
-        latitude: latitude,
-         longitude: longitude,
-          );
+      address: address,
+      latitude: latitude,
+      longitude: longitude,
+    );
 
     result.fold(
       (failure) => emit(CreateAddressFailure(failure.errorMSG)),

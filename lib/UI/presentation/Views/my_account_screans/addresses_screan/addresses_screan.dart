@@ -23,8 +23,9 @@ class AddressesScreanState extends State<AddressesScrean> {
   void _onAddressSelected(AddressData place1) async {
     setState(() {
       // Assign LatLng object with latitude and longitude from place1
-      _selectedLatLng = LatLng(double.parse(place1.lat!), double.parse(place1.lng!));
-       place2 = place1;
+      _selectedLatLng =
+          LatLng(double.parse(place1.lat!), double.parse(place1.lng!));
+      place2 = place1;
     });
 
     _mapController?.animateCamera(
@@ -43,7 +44,8 @@ class AddressesScreanState extends State<AddressesScrean> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
                 'Full Address: ${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}')));
-        print('Full Address: ${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}');
+        print(
+            'Full Address: ${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}');
         print('Postal Code: ${place.postalCode}');
       } else {
         print('No placemarks found.');
@@ -58,9 +60,14 @@ class AddressesScreanState extends State<AddressesScrean> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: (){
-            GoRouter.of(context).push(AppRoutes.cas);
-          }, icon: const Icon(Icons.add ,color: Color(backgroundcustomgreen),))
+          IconButton(
+              onPressed: () {
+                GoRouter.of(context).push(AppRoutes.cas);
+              },
+              icon: const Icon(
+                Icons.add,
+                color: Color(backgroundcustomgreen),
+              ))
         ],
         title: const Text('العناوين'),
         centerTitle: true,
@@ -93,7 +100,7 @@ class AddressesScreanState extends State<AddressesScrean> {
                         ? {
                             Marker(
                               infoWindow: InfoWindow(
-                                title: place2?.name  , 
+                                title: place2?.name,
                               ),
                               markerId: const MarkerId('selected-address'),
                               position: _selectedLatLng!,
@@ -118,11 +125,11 @@ class AddressesScreanState extends State<AddressesScrean> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          Text('حدد العنوان اولا'),
-                                        ],
-                                      )),
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text('حدد العنوان اولا'),
+                                    ],
+                                  )),
                                 );
                               } else {
                                 GoRouter.of(context)

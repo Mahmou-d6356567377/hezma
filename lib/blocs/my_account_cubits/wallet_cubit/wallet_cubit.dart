@@ -6,31 +6,30 @@ part 'wallet_state.dart';
 
 class WalletCubit extends Cubit<WalletState> {
   WalletCubit(this.wallectRepo) : super(WalletInitial());
-  
+
   WallectRepo wallectRepo;
 
-
-  Future <void> fetchWalletData() async {
+  Future<void> fetchWalletData() async {
     emit(WalletLoading());
     var result = await wallectRepo.fetchWalletData();
-    result.fold((failure){
-     emit(WalletFailure(failure.errorMSG));
-    }, (data){
+    result.fold((failure) {
+      emit(WalletFailure(failure.errorMSG));
+    }, (data) {
       emit(WalletSuccess(data));
-    }
-    );
+    });
   }
 
-
-  Future <void> chargeWalletData({required int amount , required int paymentMethodId}) async {
+  Future<void> chargeWalletData(
+      {required int amount, required int paymentMethodId}) async {
     emit(WalletLoading());
-    var result = await wallectRepo.chargeWalletData(amount: amount, paymentMethodId: paymentMethodId);
-    result.fold((failure){
-     emit(WalletFailure(failure.errorMSG));
-     print('there is an error in charge wallet Cubit function ${WalletFailure(failure.errorMSG)}');
-    }, (data){
+    var result = await wallectRepo.chargeWalletData(
+        amount: amount, paymentMethodId: paymentMethodId);
+    result.fold((failure) {
+      emit(WalletFailure(failure.errorMSG));
+      print(
+          'there is an error in charge wallet Cubit function ${WalletFailure(failure.errorMSG)}');
+    }, (data) {
       emit(WalletSuccess(data));
-    }
-    );
+    });
   }
 }

@@ -6,8 +6,8 @@ import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class FollowScrean extends StatelessWidget {
-  const FollowScrean({super.key});
-
+  const FollowScrean({super.key , required this.id2});
+  final int id2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class FollowScrean extends StatelessWidget {
                     width: double.infinity,
                     fit: BoxFit.fill,
                   )),
-              const FollowDetailsContainer(),
+               FollowDetailsContainer(id1: id2 ),
               const LastFollowContainer(),
             ],
           ),

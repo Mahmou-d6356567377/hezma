@@ -15,7 +15,7 @@ class OtpRepoImpl implements OtpRepo {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       String shToken = pref.getString(sharedregisterToken)!;
-             var result = await apiService.post(
+      var result = await apiService.post(
           url: '${baseURL}send_otp', token: shToken, body: '');
       Otp otp = Otp.fromJson(result);
       print(' otp rep Impl  ${otp.otp}');
@@ -25,18 +25,16 @@ class OtpRepoImpl implements OtpRepo {
     }
   }
 
-
-
   Future<Either<Failure, String>> receiveOtp({required String otp1}) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       String shToken = pref.getString(sharedregisterToken)!;
-     Map<String, dynamic> body = {
-      'otp': otp1 , 
-     };
+      Map<String, dynamic> body = {
+        'otp': otp1,
+      };
 
-          var result = await apiService.post(
-       url: '${baseURL}received_otp', token: shToken, body: body);
+      var result = await apiService.post(
+          url: '${baseURL}received_otp', token: shToken, body: body);
       String recieveMsg = result['message'];
       return right(recieveMsg);
     } catch (e) {

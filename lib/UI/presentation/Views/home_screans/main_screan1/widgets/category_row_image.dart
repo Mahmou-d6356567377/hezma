@@ -60,7 +60,7 @@ class CategoryRowImage extends StatelessWidget {
                               backgroundColor: Colors.grey[300],
                             )),
                           )
-                        :  Padding(
+                        : Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Center(
                                 child: CircleAvatar(
@@ -86,7 +86,7 @@ class CategoryRowImage extends StatelessWidget {
                               backgroundColor: Colors.grey[300],
                             )),
                           )
-                        :  Padding(
+                        : Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Center(
                                 child: CircleAvatar(

@@ -195,7 +195,9 @@ class _RegisterScreanState extends State<RegisterScrean> {
                                         );
                                       } else {
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar( content:  Text('Validation Error')));
+                                            .showSnackBar(const SnackBar(
+                                                content:
+                                                    Text('Validation Error')));
                                       }
                                     },
                                     child: Image.asset(kEnterButtom),

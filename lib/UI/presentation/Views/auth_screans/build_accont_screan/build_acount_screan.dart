@@ -22,7 +22,8 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmpasswordController = TextEditingController();
+  final TextEditingController confirmpasswordController =
+      TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
   void _submitForm() async {
@@ -41,23 +42,21 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
     }
 
     if (_formKey.currentState!.validate()) {
-
       Map<String, dynamic> body = {
         "name": nameController.text,
         "phone": phoneController.text,
         "email": emailController.text,
         "password": passwordController.text,
-        "fcm": 'd-G53x4dQCKm0IA3qS3cUb:APA91bFTsbA-ZQE-PF4v0hwUY-LV09ecPg9jjJrkJLAWPLavIxiMG5CDiF7XXHmc55bVpscMVDPLtnOVrvHACM__MDX5cDqVVgonhgtZXMVbJIMlegJThJ6nEoSKeO3rfefKv4z32kgH', // Pass the token
+        "fcm":
+            'd-G53x4dQCKm0IA3qS3cUb:APA91bFTsbA-ZQE-PF4v0hwUY-LV09ecPg9jjJrkJLAWPLavIxiMG5CDiF7XXHmc55bVpscMVDPLtnOVrvHACM__MDX5cDqVVgonhgtZXMVbJIMlegJThJ6nEoSKeO3rfefKv4z32kgH', // Pass the token
       };
 
       context.read<RegisterCubit>().fetchRegisterdata(body);
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) {
@@ -132,7 +131,8 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 15.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 15.0),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -169,10 +169,12 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
                                 ),
                                 const SizedBox(height: 80),
                                 const Arabictext(
-                                  arabicText: 'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه',
+                                  arabicText:
+                                      'بتسجيك فى الحزمه فانت توافق فى سياسةالخصوصيه',
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8.0, horizontal: 8),
                                   child: GestureDetector(
                                     onTap: _submitForm,
                                     child: state is Registerloading

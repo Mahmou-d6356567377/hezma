@@ -41,7 +41,10 @@ class _CustomGridViewState extends State<CustomGridView> {
             },
           );
         } else if (state is HomeProductFailure1) {
-          return const Center(child: CircularProgressIndicator(color: Colors.red,));
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Colors.red,
+          ));
         } else {
           return const Center(child: CircularProgressIndicator());
         }

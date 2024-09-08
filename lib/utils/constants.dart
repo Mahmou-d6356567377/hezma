@@ -50,7 +50,8 @@ const String ktxt3Pg3 =
 const String kimgPg2 = 'assets/images/pngegg (33) 1.png';
 const String ktext1Pg2 = 'assets/images/Kesmfakh.png';
 
-const String kimgPg3 = 'assets/images/tres-botellas-plastico-agua-gas-tapa-azul_104576-417 1.png';
+const String kimgPg3 =
+    'assets/images/tres-botellas-plastico-agua-gas-tapa-azul_104576-417 1.png';
 const String ktext1Pg3 = 'assets/images/KesmMah.png';
 
 const String krectangle = 'assets/images/Rectangle 4.png';

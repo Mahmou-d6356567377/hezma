@@ -32,17 +32,20 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
       _selectedLatLng = latlng;
     });
 
-    List<Placemark> placemarks = await placemarkFromCoordinates(latlng.latitude, latlng.longitude);
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(latlng.latitude, latlng.longitude);
     if (placemarks.isNotEmpty) {
       Placemark place = placemarks.first;
-      String formattedAddress = "${place.street}, ${place.locality}, ${place.country}";
+      String formattedAddress =
+          "${place.street}, ${place.locality}, ${place.country}";
       setState(() {
         _address = formattedAddress;
       });
     }
 
     _mapController1?.animateCamera(
-      CameraUpdate.newCameraPosition(CameraPosition(target: latlng, zoom: 10.0)),
+      CameraUpdate.newCameraPosition(
+          CameraPosition(target: latlng, zoom: 10.0)),
     );
   }
 
@@ -136,9 +139,8 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
               child: BlocListener<EditAddressCubit, EditAddressState>(
                 listener: (context, state) {
                   if (state is EditAddressSuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.msg)
-                      ));
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(state.msg)));
                     GoRouter.of(context).pop();
                   } else if (state is EditAddressFailure) {
                     print(state.errMsg);
@@ -148,28 +150,32 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
                   }
                 },
                 child: GestureDetector(
-                  onTap: ()  {
+                  onTap: () {
                     if (_address != null) {
-                       context.read<CreateAddressCubit>().createAddress(
+                      context.read<CreateAddressCubit>().createAddress(
                             name: nameController.text,
                             latitude: _selectedLatLng!.latitude.toString(),
                             longitude: _selectedLatLng!.longitude.toString(),
-                            address: _address!, // Use the reverse-geocoded address
+                            address:
+                                _address!, // Use the reverse-geocoded address
                           );
-                         ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text('تم الاضافه بنجاح'),
-                        ],
-                      )),
-                    );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text('تم الاضافه بنجاح'),
+                          ],
+                        )),
+                      );
                       context.read<GetAddressesCubit>().fetchAddresses();
 
                       GoRouter.of(context).pop();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Please select a location on the map")),
+                        const SnackBar(
+                            content:
+                                Text("Please select a location on the map")),
                       );
                     }
                   },

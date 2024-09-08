@@ -8,14 +8,14 @@ class TermsCubit extends Cubit<TermsState> {
   TermsCubit(this.termsRepo) : super(TermsInitial());
   TermsRepo termsRepo;
 
-  Future<void> fetchTermsData () async {
+  Future<void> fetchTermsData() async {
     emit(TermsLoading());
-   var result = await termsRepo.fetchTerms();
-  result.fold((failure){
-  emit(TermsFailure(failure.errorMSG));
-  }, (terms){
-    print(terms);
-  emit(TermsSuccess(terms));
-  });
+    var result = await termsRepo.fetchTerms();
+    result.fold((failure) {
+      emit(TermsFailure(failure.errorMSG));
+    }, (terms) {
+      print(terms);
+      emit(TermsSuccess(terms));
+    });
   }
 }

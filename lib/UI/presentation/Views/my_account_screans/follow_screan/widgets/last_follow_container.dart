@@ -19,8 +19,8 @@ class LastFollowContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GestureDetector(
-              onTap: (){
-                 GoRouter.of(context).push(AppRoutes.tss);
+              onTap: () {
+                GoRouter.of(context).push(AppRoutes.tss);
               },
               child: Container(
                 decoration: BoxDecoration(

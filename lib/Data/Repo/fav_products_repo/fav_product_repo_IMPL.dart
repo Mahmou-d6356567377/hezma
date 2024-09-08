@@ -14,8 +14,8 @@ class FavProductRepoImpl implements FavoriteProductRepo {
   @override
   Future<Either<Failure, List<Product>>> fetchFavProducts() async {
     try {
-           SharedPreferences pref = await SharedPreferences.getInstance();
-    String token1 = pref.getString(sharedToken)!;
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      String token1 = pref.getString(sharedToken)!;
       var result =
           await apiService.get(url: '${baseURL}favorites', token: token1);
 
@@ -26,11 +26,10 @@ class FavProductRepoImpl implements FavoriteProductRepo {
       }
 
       return right(favProduct);
-    }  on DioException catch (e) {
-       print(ServerFailure.DioException(e));
+    } on DioException catch (e) {
+      print(ServerFailure.DioException(e));
       return left(ServerFailure.DioException(e));
-    }
-    catch (e) {
+    } catch (e) {
       print(ServerFailure(e.toString()));
       return left(ServerFailure(e.toString()));
     }
@@ -39,8 +38,8 @@ class FavProductRepoImpl implements FavoriteProductRepo {
   @override
   Future<void> addFavProducts(Product productModel) async {
     try {
-           SharedPreferences pref = await SharedPreferences.getInstance();
-              String token1 = pref.getString(sharedToken)!;
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      String token1 = pref.getString(sharedToken)!;
       await apiService.post(
           url: '${baseURL}favorites/${productModel.id}',
           token: token1,
@@ -53,8 +52,8 @@ class FavProductRepoImpl implements FavoriteProductRepo {
   @override
   Future<void> removeFavProducts(Product productModel) async {
     try {
-           SharedPreferences pref = await SharedPreferences.getInstance();
-           String token1 = pref.getString(sharedToken)!;
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      String token1 = pref.getString(sharedToken)!;
       await apiService.del(
           url: '${baseURL}favorites/${productModel.id}', token: token1);
     } catch (e) {

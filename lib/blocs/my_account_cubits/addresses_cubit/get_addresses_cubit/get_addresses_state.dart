@@ -8,9 +8,11 @@ sealed class GetAddressesState extends Equatable {
 }
 
 final class GetAddressesInitial extends GetAddressesState {}
+
 final class GetAddressesLoading extends GetAddressesState {}
+
 final class GetAddressesSuccess extends GetAddressesState {
-  final List<AddressData> dataAddress ;
+  final List<AddressData> dataAddress;
 
   const GetAddressesSuccess(this.dataAddress);
 }
@@ -18,5 +20,5 @@ final class GetAddressesSuccess extends GetAddressesState {
 final class GetAddressesFailure extends GetAddressesState {
   final String errMsg;
 
- const  GetAddressesFailure(this.errMsg);
+  const GetAddressesFailure(this.errMsg);
 }

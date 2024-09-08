@@ -47,8 +47,7 @@ class FirstImageWidget extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(17),
                                   color: Colors.red.shade100),
-                            ))
-                            ),
+                            ))),
             ],
           );
         },

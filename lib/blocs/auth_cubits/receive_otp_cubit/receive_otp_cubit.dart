@@ -6,7 +6,7 @@ part 'receive_otp_state.dart';
 
 class ReceiveOtpCubit extends Cubit<ReceiveOtpState> {
   ReceiveOtpCubit(this.otpRepo) : super(ReceiveOtpInitial());
-    OtpRepo otpRepo;
+  OtpRepo otpRepo;
 
   Future<void> receiveOtp({required String otp1}) async {
     emit(ReceiveOtpLoading());

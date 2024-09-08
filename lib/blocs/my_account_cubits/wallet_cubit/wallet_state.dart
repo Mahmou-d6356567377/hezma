@@ -8,14 +8,17 @@ sealed class WalletState extends Equatable {
 }
 
 final class WalletInitial extends WalletState {}
+
 final class WalletLoading extends WalletState {}
+
 final class WalletSuccess extends WalletState {
-  final String data ;
+  final String data;
 
   const WalletSuccess(this.data);
 }
+
 final class WalletFailure extends WalletState {
-  final String  errMsg;
+  final String errMsg;
 
   const WalletFailure(this.errMsg);
 }

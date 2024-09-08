@@ -117,25 +117,25 @@ class AccountScreanContent extends StatelessWidget {
     );
   }
 
- void _logOutHandler(BuildContext context) {
-  _checkLoginStatus().then((isLogin) {
-    if (isLogin) {
-      context.read<LogOutCubit>().fetchLogOUT();
-            print('Logged out');
-            GoRouter.of(context).push(AppRoutes.rs);
-      
-      SharedPreferences.getInstance().then((prefs) {
-        prefs.setBool(sharedIslogin, false);
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('You did not log in to log out')));
-    }
-  });
-}
+  void _logOutHandler(BuildContext context) {
+    _checkLoginStatus().then((isLogin) {
+      if (isLogin) {
+        context.read<LogOutCubit>().fetchLogOUT();
+        print('Logged out');
+        GoRouter.of(context).push(AppRoutes.rs);
 
-Future<bool> _checkLoginStatus() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getBool(sharedIslogin) ?? false;
-}
+        SharedPreferences.getInstance().then((prefs) {
+          prefs.setBool(sharedIslogin, false);
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('You did not log in to log out')));
+      }
+    });
+  }
+
+  Future<bool> _checkLoginStatus() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(sharedIslogin) ?? false;
+  }
 }

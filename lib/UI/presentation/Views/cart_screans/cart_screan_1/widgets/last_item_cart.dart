@@ -13,10 +13,10 @@ class LastItemCart extends StatelessWidget {
   });
   final int totalPrice;
   final bool iscartscrean;
-  
+
   @override
   Widget build(BuildContext context) {
-    double  tatalPricewithtax = 1.15 *totalPrice;
+    double tatalPricewithtax = 1.15 * totalPrice;
     return Container(
       height: 70,
       decoration: BoxDecoration(

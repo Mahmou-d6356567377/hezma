@@ -12,12 +12,12 @@ class AddressItem extends StatelessWidget {
     super.key,
     required this.districtedPlace,
     required this.selected,
-    required this.onTap, 
+    required this.onTap,
   });
 
   final AddressData districtedPlace;
-  final bool selected; 
-  final VoidCallback onTap; 
+  final bool selected;
+  final VoidCallback onTap;
 
   void _onSelected(BuildContext context, String value) {
     switch (value) {
@@ -25,8 +25,8 @@ class AddressItem extends StatelessWidget {
         context.read<DelAddressCubit>().delAddresses(id: districtedPlace.id!);
         print("Erase tapped");
         break;
-          case 'edit':
-         GoRouter.of(context).push(AppRoutes.eas, extra: districtedPlace);
+      case 'edit':
+        GoRouter.of(context).push(AppRoutes.eas, extra: districtedPlace);
         print("Edit tapped");
         break;
     }
@@ -42,7 +42,9 @@ class AddressItem extends StatelessWidget {
           height: 120,
           width: 90,
           decoration: customBoxDecoration2.copyWith(
-            color: selected ? Colors.green.withOpacity(.5) : Colors.white, // Change color based on selection
+            color: selected
+                ? Colors.green.withOpacity(.5)
+                : Colors.white, // Change color based on selection
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +66,6 @@ class AddressItem extends StatelessWidget {
                       value: 'erase',
                       child: Text('Erase'),
                     ),
-                    
                   ],
                   child: const Icon(
                     Icons.more_vert,
@@ -83,14 +84,14 @@ class AddressItem extends StatelessWidget {
                 districtedPlace.name!,
                 style: arabicstyle2.copyWith(fontSize: 11),
               ),
-               Flexible(
-                 child: Text(
-                   overflow: TextOverflow.ellipsis,
-                   maxLines: 1,
+              Flexible(
+                child: Text(
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                   districtedPlace.address!,
                   style: arabicstyle2.copyWith(fontSize: 11),
-                               ),
-               ),
+                ),
+              ),
             ],
           ),
         ),

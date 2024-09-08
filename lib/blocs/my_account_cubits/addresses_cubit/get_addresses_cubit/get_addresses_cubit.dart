@@ -9,15 +9,14 @@ class GetAddressesCubit extends Cubit<GetAddressesState> {
   GetAddressesCubit(this.addressesRepo) : super(GetAddressesInitial());
   final AddressesRepo addressesRepo;
 
-  Future<void> fetchAddresses () async {
+  Future<void> fetchAddresses() async {
     emit(GetAddressesLoading());
 
-   var result =  await addressesRepo.getAddresses();
-   result.fold((failure){
-    emit(GetAddressesFailure(failure.errorMSG));
-   }, (addresses){
-   emit(GetAddressesSuccess(addresses));
-   }
-   );
+    var result = await addressesRepo.getAddresses();
+    result.fold((failure) {
+      emit(GetAddressesFailure(failure.errorMSG));
+    }, (addresses) {
+      emit(GetAddressesSuccess(addresses));
+    });
   }
 }

@@ -8,14 +8,17 @@ sealed class TermsState extends Equatable {
 }
 
 final class TermsInitial extends TermsState {}
+
 final class TermsLoading extends TermsState {}
+
 final class TermsSuccess extends TermsState {
-  final String value ;
+  final String value;
 
   const TermsSuccess(this.value);
 }
+
 final class TermsFailure extends TermsState {
   final String errMsg;
 
- const  TermsFailure(this.errMsg);
+  const TermsFailure(this.errMsg);
 }

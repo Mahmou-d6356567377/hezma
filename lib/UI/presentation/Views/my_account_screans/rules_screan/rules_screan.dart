@@ -26,23 +26,27 @@ class RulesScrean extends StatelessWidget {
       body: BlocBuilder<TermsCubit, TermsState>(
         builder: (context, state) {
           if (state is TermsSuccess) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text(state.value),
-                ],
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text(state.value),
+                  ],
+                ),
               ),
-            ),
-          );
-          }else if (state is TermsLoading) {
-          
-            return const Center(child: CircularProgressIndicator(),);
-          }else {
-            return const Center(child: CircularProgressIndicator(color: Colors.red,),);
+            );
+          } else if (state is TermsLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.red,
+              ),
+            );
           }
-        
         },
       ),
     );

@@ -19,11 +19,11 @@ class EditAddressCubit extends Cubit<EditAddressState> {
     emit(EditAddressLoading());
 
     var result = await addressesRepo.editAddresses(
-      namee: name,
-       addresss: address,
+        namee: name,
+        addresss: address,
         latitudee: latitude,
-         longitudee: longitude,
-          idd: id);
+        longitudee: longitude,
+        idd: id);
 
     result.fold(
       (failure) => emit(EditAddressFailure(failure.errorMSG)),
