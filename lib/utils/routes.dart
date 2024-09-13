@@ -25,6 +25,7 @@ import 'package:hezma/UI/presentation/Views/my_account_screans/follow_screan/fol
 import 'package:hezma/UI/presentation/Views/my_account_screans/modfiy_account_screan/modify_account_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/my_orders_screan/MyOrdersScrean.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/privacy_rules_screan/privacy_rules_screan.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/profile_screan/profile_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/rules_screan/rules_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/technical_support_screan/technical_spuuort_screan.dart';
 
@@ -54,6 +55,7 @@ abstract class AppRoutes {
   static const rs2 = '/rulesscrean';
   static const eas = '/EditAddressScrean';
   static const cas = '/CreateAddressScrean';
+  static const ps = '/ProfileScrean';
 
   static final GoRouter router = GoRouter(initialLocation: sps, routes: [
     GoRoute(
@@ -235,6 +237,13 @@ abstract class AppRoutes {
           // ignore: avoid_print
           print('Go to  Create Address Screan');
           return const CreateAddressScrean();
+        }),
+    GoRoute(
+        path: ps,
+        builder: (context, state) {
+          // ignore: avoid_print
+          print('Go to  Create profile Screan');
+          return const ProfileScrean();
         }),
   ]);
 }

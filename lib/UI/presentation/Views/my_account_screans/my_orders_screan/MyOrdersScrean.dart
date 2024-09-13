@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/modfiy_account_screan/widgets/custom_couple_botton.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/my_orders_screan/widgets/MyOrdersList.dart';
-import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
+import 'package:hezma/blocs/cart_cubits/cart_cubit/cart_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';

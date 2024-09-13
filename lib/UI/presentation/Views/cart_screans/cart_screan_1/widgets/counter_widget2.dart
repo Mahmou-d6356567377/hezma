@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
-import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
+import 'package:hezma/blocs/cart_cubits/cart_cubit/cart_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 

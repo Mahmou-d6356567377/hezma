@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/Data/Repo/Auth_repos/otp_repo/otp_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/Auth_repos/signIn_register_repo/signin_register_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/cart_repos/pay_methods_repos/pay_methods_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/fav_products_repo/fav_product_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/home_products_repo/home_product_repo_Impl.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/addresses_repo/addresses_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/districts_repo/districts_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/my_orders_repo/my_orders_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/my_account_screan_repos/profile_repo/profile_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/terms_repo/terms_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/wallet_repo/wallet_repo_IMPL.dart';
 import 'package:hezma/blocs/auth_cubits/otp_cubit/otp_cubit.dart';
 import 'package:hezma/blocs/auth_cubits/receive_otp_cubit/receive_otp_cubit.dart';
 import 'package:hezma/blocs/auth_cubits/register_cubit/register_cubit.dart';
 import 'package:hezma/blocs/auth_cubits/signIn_register_cubit/cubit/sign_register_cubit.dart';
-import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
+import 'package:hezma/blocs/cart_cubits/cart_cubit/cart_cubit.dart';
+import 'package:hezma/blocs/cart_cubits/pay_method_cubit/pay_mothod_cubit.dart';
 import 'package:hezma/blocs/fav_screan_cubits/fav_products_cubit/cubit/fav_product_cubit.dart';
 import 'package:hezma/blocs/home_cubits/category_products_cubit/category_products_cubit.dart';
 import 'package:hezma/blocs/home_cubits/first_img_cubit/first_imge_cubit.dart';
@@ -26,6 +29,7 @@ import 'package:hezma/blocs/my_account_cubits/addresses_cubit/get_addresses_cubi
 import 'package:hezma/blocs/my_account_cubits/district_places_cubit/district_places_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/my_orders_cubit/my_orders_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/order_details_cubit/order_details_cubit.dart';
+import 'package:hezma/blocs/my_account_cubits/profile_cubit/profile_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/terms_cubit/terms_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:hezma/utils/routes.dart';
@@ -116,6 +120,14 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => OrderDetailsCubit(getIt.get<MyOrdersRepoImpl>()),
         ),
+        BlocProvider(
+          create: (context) => PayMothodCubit(getIt.get<PayMethodsRepoImpl>())
+            ..fetchPayMethods(),
+        ),
+         BlocProvider(
+          create: (context) => ProfileCubit(getIt.get<ProfileRepoImpl>())..fetchProfileData(),
+        ),
+        
       ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,

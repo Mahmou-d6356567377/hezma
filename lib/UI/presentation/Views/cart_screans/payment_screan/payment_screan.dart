@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/last_item_cart.dart';
 import 'package:hezma/UI/presentation/Views/cart_screans/payment_screan/widgets/switch_pay_containers.dart';
+import 'package:hezma/blocs/cart_cubits/pay_method_cubit/pay_mothod_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'widgets/pay_way_botton.dart';
@@ -17,18 +19,13 @@ class _PaymentScreanState extends State<PaymentScrean> {
   TextEditingController secondController = TextEditingController();
   TextEditingController thirdController = TextEditingController();
   TextEditingController fourthController = TextEditingController();
-  bool? isClick1;
-  bool? isClick2;
-  bool? isClick3;
-  bool? isClick4;
+
+  int? selectedPayMethodId;
 
   @override
   void initState() {
     super.initState();
-    isClick1 = true;
-    isClick2 = false;
-    isClick3 = false;
-    isClick4 = false;
+    selectedPayMethodId = 1;
   }
 
   @override
@@ -36,91 +33,53 @@ class _PaymentScreanState extends State<PaymentScrean> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('طريقه الدفع', style: arabicstyle2),
+        title: const Text('طريقة الدفع', style: arabicstyle2),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isClick1 = false;
-                        isClick2 = false;
-                        isClick3 = false;
-                        isClick4 = true;
-                      });
-                    },
-                    child: PayWayBotton(
-                      title: 'بوابات تقسيط',
-                      img: kpay4Logo,
-                      isclick: isClick4!,
+            child: BlocBuilder<PayMothodCubit, PayMothodState>(
+              builder: (context, state) {
+                if (state is PayMothodSuccess) {
+                  return SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.payMethods.length,
+                      itemBuilder: (context, index) {
+                        final method = state.payMethods[index];
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedPayMethodId = method.id;
+                            });
+                          },
+                          child: PayWayBotton(
+                            title: method.name!,
+                            img: method.image,
+                            id: method.id!,
+                            desc: method.desc!,
+                            isSelected: selectedPayMethodId == method.id,
+                          ),
+                        );
+                      },
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isClick1 = false;
-                        isClick2 = false;
-                        isClick3 = true;
-                        isClick4 = false;
-                      });
-                    },
-                    child: PayWayBotton(
-                      title: 'تحويل بنكى',
-                      img: kpay3Logo,
-                      isclick: isClick3!,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isClick1 = false;
-                        isClick2 = true;
-                        isClick3 = false;
-                        isClick4 = false;
-                      });
-                    },
-                    child: PayWayBotton(
-                      title: 'دفع الكترونى',
-                      img: kpay2Logo,
-                      isclick: isClick2!,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isClick1 = true;
-                        isClick2 = false;
-                        isClick3 = false;
-                        isClick4 = false;
-                      });
-                    },
-                    child: PayWayBotton(
-                      title: 'دفع عند الاستلام',
-                      img: kpay1Logo,
-                      isclick: isClick1!,
-                    ),
-                  ),
-                ),
-              ],
+                  );
+                } else if (state is PayMothodFailure) {
+                  return Text(state.errMsg);
+                } else {
+                  return const LinearProgressIndicator();
+                }
+              },
             ),
           ),
           Expanded(
             child: SwitchPayContainers(
-              iscontainer1: isClick1!,
-              iscontainer2: isClick2!,
-              iscontainer3: isClick3!,
-              iscontainer4: isClick4!,
+              iscontainer1: selectedPayMethodId == 1,
+              iscontainer2: selectedPayMethodId == 2,
+              iscontainer3: selectedPayMethodId == 3,
+              iscontainer4: selectedPayMethodId == 4,
               firstController: firstController,
               secondController: secondController,
               thirdController: thirdController,

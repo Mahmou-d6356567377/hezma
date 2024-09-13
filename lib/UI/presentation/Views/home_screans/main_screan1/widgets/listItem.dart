@@ -4,7 +4,7 @@ import 'package:flutter_pannable_rating_bar/flutter_pannable_rating_bar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/widgets/show_price_widget.dart';
-import 'package:hezma/blocs/cart_cubits/cart_cubit.dart';
+import 'package:hezma/blocs/cart_cubits/cart_cubit/cart_cubit.dart';
 import 'package:hezma/blocs/fav_screan_cubits/fav_products_cubit/cubit/fav_product_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
@@ -50,9 +50,7 @@ class _ListItemState extends State<ListItem> {
               left: 0,
               child: GestureDetector(
                 onTap: () {
-                  context
-                      .read<CartCubit>()
-                      .addProductToCart(widget.productModel);
+                  context.read<CartCubit>().addProductToCart(widget.productModel);
                 },
                 child: Container(
                   decoration: const BoxDecoration(

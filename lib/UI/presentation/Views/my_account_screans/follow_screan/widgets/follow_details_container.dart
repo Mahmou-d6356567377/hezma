@@ -6,8 +6,8 @@ import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
 class FollowDetailsContainer extends StatefulWidget {
-  const FollowDetailsContainer({super.key,required this.id1});
-   final int id1;
+  const FollowDetailsContainer({super.key, required this.id1});
+  final int id1;
   @override
   State<FollowDetailsContainer> createState() => _FollowDetailsContainerState();
 }
@@ -31,7 +31,7 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
               decoration: customBoxDecoration,
               child: Column(
                 children: [
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -40,7 +40,7 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
                           state.orderData.orderId.toString(),
                           style: arabicstyle4,
                         ),
-                       const  Text(
+                        const Text(
                           'تتبع توصيل طلبك رقم',
                           style: arabicstyle2,
                         ),
@@ -56,7 +56,7 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
                         Expanded(
                           child: Column(
                             children: [
-                             const  Text(
+                              const Text(
                                 'حالة الطلب',
                                 style: arabicstyle4,
                               ),
@@ -84,7 +84,7 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
                         Expanded(
                           child: Column(
                             children: [
-                            const   Text(
+                              const Text(
                                 'تاريخ الطلب',
                                 style: arabicstyle4,
                               ),
@@ -98,9 +98,9 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
                       ],
                     ),
                   ),
-                   Padding(
-                    padding:
-                       const EdgeInsets.symmetric(horizontal: 8.0, vertical: 18),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 18),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -108,7 +108,6 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
                           state.orderData.orderDeliveryTime ?? 'unknown',
                           style: arabicstyle6,
                         ),
-                       
                         const Text(
                           'بين الوقت',
                           style: arabicstyle2,

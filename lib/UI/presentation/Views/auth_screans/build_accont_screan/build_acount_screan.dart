@@ -67,9 +67,18 @@ class _BuildAccountScreanState extends State<BuildAccountScrean> {
             );
             GoRouter.of(context).push(AppRoutes.acs);
           } else if (state is Registerfailure) {
-            print(state.errMsg);
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.errMsg)),
+              SnackBar(content: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                       Flexible(
+                      child: Text(
+                        state.errMsg,
+                        overflow: TextOverflow.ellipsis, 
+                      ),
+                      ),
+                ],
+              )),
             );
           }
         },

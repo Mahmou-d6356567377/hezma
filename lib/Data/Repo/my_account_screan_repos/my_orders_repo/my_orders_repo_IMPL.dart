@@ -36,11 +36,12 @@ class MyOrdersRepoImpl implements MyOrderRepo {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       String t = pref.getString(sharedToken)!;
-      var result = await apiService.get( url: '${baseURL}order/details/$id', token: t);
+      var result =
+          await apiService.get(url: '${baseURL}order/details/$id', token: t);
       OrderData resultPlus = OrderData.fromJson(result['data']);
       return right(resultPlus);
     } on DioException catch (e) {
-        print('Dio Error $e');
+      print('Dio Error $e');
       return left(ServerFailure.DioException(e));
     } catch (e) {
       print('Error $e');
