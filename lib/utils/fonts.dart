@@ -12,7 +12,7 @@ const arabicstyle = TextStyle(
 const arabicstyle1 = TextStyle(
   fontFamily: karabicFont3,
   fontWeight: FontWeight.bold,
-  color: Color.fromARGB(255, 98, 89, 89),
+  color: Color.fromARGB(255, 130, 120, 120),
   textBaseline: TextBaseline.alphabetic,
 );
 

@@ -50,7 +50,7 @@ class Product {
         amount: json['amount'] as String?,
         stock: json['stock'] as String?,
         subCategoryId: json['sub_category_id'] as String?,
-        isFavorite: json['is_favorite'] as bool?,
+        isFavorite: json['is_favorite'] as bool,
         image: json['image'] as String?,
         quantity: 1,
       );

@@ -36,20 +36,19 @@ class MyCartScrean extends StatelessWidget {
                 const TextRow(title: 'حدد عنوان التوصيل'),
                 const LocatoinBotton(),
                 const TextRow(title: 'وقت التوصيل المفضل'),
-                const SwitchTime(),
+                DeliveryTimeWidget(onDateSelected: (DateTime t, int) {}),
                 BlocBuilder<CartCubit, CartState>(
                   builder: (context, state) {
                     if (state is CartSuccess) {
                       return DetailsContainer(
-                        key: ValueKey(
-                            'details_${state.totalPrice}'), // Unique key based on the total price
+                        key: const ValueKey('details_${1}'),
                         controller: controller,
-                        totalprice: state.totalPrice,
+                        totalprice:
+                            state.totalPrice.toInt(), // Pass total price here
                       );
                     }
                     return DetailsContainer(
-                      key: const ValueKey(
-                          'details_${0}'), // Unique key based on the total price
+                      key: const ValueKey('details_${0}'),
                       controller: controller,
                       totalprice: 0,
                     );
@@ -62,9 +61,10 @@ class MyCartScrean extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: LastItemCart(
-                          key: ValueKey('lastItem_${state.totalPrice}'),
+                          key: const ValueKey('lastItem_${1}'),
                           iscartscrean: true,
-                          totalPrice: state.totalPrice,
+                          totalPrice:
+                              state.totalPrice.toInt(), // Pass total price here
                         ),
                       );
                     }

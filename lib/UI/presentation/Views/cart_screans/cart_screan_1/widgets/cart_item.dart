@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
+import 'package:hezma/Data/models/cart_models/cart_product/datum.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'counter_widget2.dart';
@@ -11,7 +11,7 @@ class CartItem extends StatelessWidget {
     required this.product,
   });
 
-  final Product product;
+  final CartProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class CartItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            product.name!,
+                            product.product!.name!,
                             style: arabicstyle2,
                           ),
                         ],
@@ -49,7 +49,7 @@ class CartItem extends StatelessWidget {
                             style: arabicstyle2,
                           ),
                           Text(
-                            product.price!,
+                            product.totalPrice!,
                             style: arabicstyle3,
                           ),
                         ],
@@ -62,8 +62,9 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         CounterWidget2(
-                          initialCount: product.quantity,
-                          product: product, // Pass the product here
+                          initialCount: int.parse(product.product!.amount!),
+                          product: product.product!,
+                          cartId: product.cartId!, // Pass the product here
                         ),
                         const Spacer(),
                         const Text(
@@ -90,7 +91,7 @@ class CartItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                   color: const Color(backgroundcolor1),
                 ),
-                child: Image.network(product.image!),
+                child: Image.network(product.product!.image!),
               ),
             ),
           ),

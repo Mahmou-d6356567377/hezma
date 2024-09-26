@@ -1,13 +1,13 @@
 import 'datum.dart';
 
-class CartModel {
+class CartProduct {
   bool? status;
   String? message;
   List<CartProductModel>? data;
 
-  CartModel({this.status, this.message, this.data});
+  CartProduct({this.status, this.message, this.data});
 
-  factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
+  factory CartProduct.fromJson(Map<String, dynamic> json) => CartProduct(
         status: json['status'] as bool?,
         message: json['message'] as String?,
         data: (json['data'] as List<dynamic>?)

@@ -21,7 +21,7 @@ class ProfileScrean extends StatelessWidget {
         builder: (context, state) {
           return Column(
             children: [
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
@@ -43,34 +43,10 @@ class ProfileScrean extends StatelessWidget {
                   decoration: customBoxDecoration,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 12.0, left: 12),
-                    child: Text('Your Id : ${ state is ProfileSuccess ? state.profileData.id : state is ProfileFailure ? Text(state.errMsg) : const CircularProgressIndicator() } ',
-                      style: arabicstyle2,),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: customBoxDecoration,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 12.0, left: 12),
-                    child: Text('Name  : ${ state is ProfileSuccess ? state.profileData.name : state is ProfileFailure ? Text(state.errMsg) : const CircularProgressIndicator() } ',
-                     style: arabicstyle2,),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: customBoxDecoration,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 12.0, left: 12),
-                    child: Text('Email : ${ state is ProfileSuccess ? state.profileData.email : state is ProfileFailure ? Text(state.errMsg) : const CircularProgressIndicator() }',
-                     style: arabicstyle2,),
+                    child: Text(
+                      'Your Id : ${state is ProfileSuccess ? state.profileData.id : state is ProfileFailure ? Text(state.errMsg) : const Text('')} ',
+                      style: arabicstyle2,
+                    ),
                   ),
                 ),
               ),
@@ -83,7 +59,37 @@ class ProfileScrean extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 12.0, left: 12),
                     child: Text(
-                      'Phone : ${ state is ProfileSuccess ? state.profileData.phone : state is ProfileFailure ? Text(state.errMsg) : const CircularProgressIndicator() }',
+                      'Name  : ${state is ProfileSuccess ? state.profileData.name : state is ProfileFailure ? Text(state.errMsg) : const Text('')} ',
+                      style: arabicstyle2,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: customBoxDecoration,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0, left: 12),
+                    child: Text(
+                      'Email : ${state is ProfileSuccess ? state.profileData.email : state is ProfileFailure ? Text(state.errMsg) : const Text('')}',
+                      style: arabicstyle2,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: customBoxDecoration,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0, left: 12),
+                    child: Text(
+                      'Phone : ${state is ProfileSuccess ? state.profileData.phone : state is ProfileFailure ? Text(state.errMsg) : const Text('')}',
                       style: arabicstyle2,
                     ),
                   ),

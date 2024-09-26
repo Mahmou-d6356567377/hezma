@@ -1,63 +1,34 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
+import 'package:hezma/Data/Repo/cart_repos/cart_product_repo/cart_product_repo.dart';
+import 'package:hezma/Data/models/cart_models/cart_product/datum.dart';
 
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
-  final List<Product> _cartProducts = [];
+  final CartProductRepo cartProductRepo;
 
-  CartCubit() : super(CartInitial());
+  CartCubit(this.cartProductRepo) : super(CartInitial());
 
-  void addProductToCart(Product product) {
-    final existingProduct = _cartProducts.firstWhere(
-      (p) => p.id == product.id,
-      orElse: () => product,
-    );
-
-    if (_cartProducts.contains(existingProduct)) {
-      final index = _cartProducts.indexOf(existingProduct);
-      _cartProducts[index] = existingProduct.copyWith(
-        quantity: existingProduct.quantity + 1,
-      );
-    } else {
-      _cartProducts.add(product);
-    }
-
-    _emitSuccessState();
-  }
-
-  void updateProductQuantity(Product product, int newQuantity) {
-    final index = _cartProducts.indexWhere((p) => p.id == product.id);
-    if (index != -1) {
-      _cartProducts[index] =
-          _cartProducts[index].copyWith(quantity: newQuantity);
-    }
-    _emitSuccessState();
-  }
-
-  void fetchCartProducts() {
+  Future<void> fetchCartProducts() async {
     emit(CartLoading());
-    if (_cartProducts.isNotEmpty) {
-      _emitSuccessState();
-    } else {
-      emit(CartInitial());
-    }
-  }
 
-  void removeProductFromCart(Product product) {
-    _cartProducts.remove(product);
-    _emitSuccessState();
-  }
+    var result = await cartProductRepo.fetchCartProducts();
+    double totalPrice = 0;
 
-  void _emitSuccessState() {
-    final totalPrice = _cartProducts.fold(
-      0,
-      (sum, item) {
-        int price = int.parse(item.price!) * item.quantity;
-        return sum + price;
+    result.fold(
+      (failure) {
+        emit(CartFailure(failure.errorMSG));
+      },
+      (products) {
+        // Calculate the total price
+        for (var product in products) {
+          totalPrice += double.parse(product.totalPrice ?? '0');
+        }
+
+        // Emit CartSuccess with products and totalPrice
+        emit(CartSuccess(cartProducts: products, totalPrice: totalPrice));
       },
     );
-    emit(CartSuccess(_cartProducts, totalPrice));
   }
 }

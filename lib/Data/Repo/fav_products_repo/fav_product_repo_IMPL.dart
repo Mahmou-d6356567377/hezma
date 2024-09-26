@@ -18,19 +18,15 @@ class FavProductRepoImpl implements FavoriteProductRepo {
       String token1 = pref.getString(sharedToken)!;
       var result =
           await apiService.get(url: '${baseURL}favorites', token: token1);
-
       List<Product> favProduct = [];
-
       for (var item in result['data']) {
         favProduct.add(Product.fromJson(item));
       }
 
       return right(favProduct);
     } on DioException catch (e) {
-      print(ServerFailure.DioException(e));
       return left(ServerFailure.DioException(e));
     } catch (e) {
-      print(ServerFailure(e.toString()));
       return left(ServerFailure(e.toString()));
     }
   }

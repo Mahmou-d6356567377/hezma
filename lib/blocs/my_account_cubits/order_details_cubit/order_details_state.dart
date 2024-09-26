@@ -12,7 +12,7 @@ final class OrderDetailsInitial extends OrderDetailsState {}
 final class OrderDetailsLoading extends OrderDetailsState {}
 
 final class OrderDetailsISuccess extends OrderDetailsState {
-  final OrderData orderData;
+  final OrderProductModel orderData;
 
   const OrderDetailsISuccess(this.orderData);
 }

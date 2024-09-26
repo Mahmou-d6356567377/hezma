@@ -41,7 +41,7 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
                           style: arabicstyle4,
                         ),
                         const Text(
-                          'تتبع توصيل طلبك رقم',
+                          '    تتبع توصيل طلبك رقم',
                           style: arabicstyle2,
                         ),
                       ],
@@ -62,6 +62,7 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
                               ),
                               Text(
                                 state.orderData.statusName!,
+                                maxLines: 1,
                                 style: arabicstyle2,
                               ),
                             ],
@@ -101,25 +102,44 @@ class _FollowDetailsContainerState extends State<FollowDetailsContainer> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 8.0, vertical: 18),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    child: Column(
                       children: [
-                        Text(
-                          state.orderData.orderDeliveryTime ?? 'unknown',
-                          style: arabicstyle6,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              state.orderData.orderDeliveryData ?? 'unknown',
+                              style: arabicstyle6.copyWith(fontSize: 13),
+                            ),
+                            const Text(
+                              '   الوقت المتوقع الوصول فيه',
+                              style: arabicstyle2,
+                            ),
+                          ],
                         ),
-                        const Text(
-                          'بين الوقت',
-                          style: arabicstyle2,
-                        ),
-                        Text(
-                          state.orderData.orderDeliveryData ?? 'unknown',
-                          style: arabicstyle6,
-                        ),
-                        const Text(
-                          'الوقت المتوقع الوصول فيه',
-                          style: arabicstyle2,
-                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              state.orderData.orderDeliveryTime?.timeStart ??
+                                  'unknown',
+                              style: arabicstyle6.copyWith(fontSize: 13),
+                            ),
+                            const Text(
+                              '   و   ',
+                              style: arabicstyle2,
+                            ),
+                            Text(
+                              state.orderData.orderDeliveryTime?.timeEnd ??
+                                  'unknown',
+                              style: arabicstyle6.copyWith(fontSize: 13),
+                            ),
+                            const Text(
+                              '  بين الوقت',
+                              style: arabicstyle2,
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),

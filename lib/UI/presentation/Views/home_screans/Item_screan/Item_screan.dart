@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pannable_rating_bar/flutter_pannable_rating_bar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
-import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/counter_widget2.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/customGridView3.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/price_details_container.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/product_desc.dart';
@@ -68,11 +67,11 @@ class _ItemScreanState extends State<ItemScrean> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            CounterWidget2(
-                              initialCount: count,
-                              product: widget
-                                  .productdetails, // Pass the correct product reference
-                            ),
+                            //   CounterWidget2(
+                            //     initialCount: count,
+                            //     product: widget
+                            //         .productdetails, // Pass the correct product reference
+                            //   ),
                             const Spacer(),
                             PannableRatingBar(
                               textDirection: TextDirection.rtl,

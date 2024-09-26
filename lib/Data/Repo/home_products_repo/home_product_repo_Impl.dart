@@ -7,6 +7,7 @@ import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
 import 'package:hezma/Data/models/home_models/home_products_model/slider.dart';
 import 'package:hezma/utils/API/api_service.dart';
 import 'package:hezma/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeProductRepoIMPL implements HomeProductRepo {
   final ApiService apiservice;
@@ -18,10 +19,11 @@ class HomeProductRepoIMPL implements HomeProductRepo {
   @override
   Future<Either<Failure, List<Product>>> fetchHomeProduct() async {
     try {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      String token1 = pref.getString(sharedToken)!;
       var data = await apiservice.post(
-          url: '${baseURL}home?page=1', token: '', body: null);
+          url: '${baseURL}home?page=1', token: token1, body: null);
       List<Product> products = [];
-
       for (var item in data['data']['products']) {
         products.add(Product.fromJson(item));
       }
@@ -78,8 +80,10 @@ class HomeProductRepoIMPL implements HomeProductRepo {
   @override
   Future<Either<Failure, List<Slider>>> fetchHomeslider() async {
     try {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      String token1 = pref.getString(sharedToken)!;
       var data = await apiservice.post(
-          url: '${baseURL}home?page=1', token: '', body: null);
+          url: '${baseURL}home?page=1', token: token1, body: null);
       List<Slider> products = [];
 
       for (var item in data['extra_data']['sliders']) {

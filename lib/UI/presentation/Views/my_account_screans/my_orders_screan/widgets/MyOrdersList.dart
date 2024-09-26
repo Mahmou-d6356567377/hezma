@@ -13,7 +13,6 @@ class MyordersList extends StatelessWidget {
     return BlocBuilder<MyOrdersCubit, MyOrdersState>(
       builder: (context, state) {
         if (state is MyOrdersFailure) {
-          print(state.errMsg);
           return ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -42,7 +41,6 @@ class MyordersList extends StatelessWidget {
               final product = state.myOrders[index];
               return Container(
                 width: double.infinity,
-                height: 150,
                 margin: const EdgeInsets.symmetric(vertical: 5),
                 child: OrderItem(productDetails: product),
               );

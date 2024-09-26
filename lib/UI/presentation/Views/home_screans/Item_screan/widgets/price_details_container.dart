@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/widgets/total_price_widget.dart';
+import 'package:hezma/blocs/cart_cubits/cart_access_products_cubit/cart_access_cubit.dart';
 import 'package:hezma/blocs/cart_cubits/cart_cubit/cart_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
@@ -41,7 +42,11 @@ class PriceDetailsContainer extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     try {
-                      context.read<CartCubit>().addProductToCart(productModel);
+                      context.read<CartAccessCubit>().addProductToCart(
+                          productId: productModel.id!,
+                          count: productModel.amount!,
+                          price: productModel.price!);
+                      context.read<CartCubit>().fetchCartProducts();
                       showDialog(
                         context: context,
                         builder: (_) => AlertDialog(

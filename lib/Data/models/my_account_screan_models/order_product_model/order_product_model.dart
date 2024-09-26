@@ -1,19 +1,19 @@
 import 'data.dart';
 
-class OrderDetailsModel {
+class OrderProductModel1 {
   bool? status;
   String? message;
-  OrderData? data;
+  OrderProductModel1? data;
 
-  OrderDetailsModel({this.status, this.message, this.data});
+  OrderProductModel1({this.status, this.message, this.data});
 
-  factory OrderDetailsModel.fromJson(Map<String, dynamic> json) {
-    return OrderDetailsModel(
+  factory OrderProductModel1.fromJson(Map<String, dynamic> json) {
+    return OrderProductModel1(
       status: json['status'] as bool?,
       message: json['message'] as String?,
       data: json['data'] == null
           ? null
-          : OrderData.fromJson(json['data'] as Map<String, dynamic>),
+          : OrderProductModel1.fromJson(json['data'] as Map<String, dynamic>),
     );
   }
 

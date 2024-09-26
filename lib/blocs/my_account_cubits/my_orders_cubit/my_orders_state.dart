@@ -12,7 +12,7 @@ final class MyOrdersInitial extends MyOrdersState {}
 final class MyOrdersLoading extends MyOrdersState {}
 
 final class MyOrdersSuccess extends MyOrdersState {
-  final List<Product> myOrders;
+  final List<OrderData> myOrders;
 
   const MyOrdersSuccess(this.myOrders);
 }

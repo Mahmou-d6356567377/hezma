@@ -27,7 +27,7 @@ class SwitchPayContainers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget containerContent;
-    if (iscontainer1) {
+    if (iscontainer3) {
       containerContent = SizedBox(
         child: Image.asset(
           kpay1mg1,
@@ -42,7 +42,7 @@ class SwitchPayContainers extends StatelessWidget {
         thirdController: thirdController,
         fourthController: forthController,
       ));
-    } else if (iscontainer3) {
+    } else if (iscontainer4) {
       containerContent = SizedBox(
           child: Pay3PageWidget(
         firstController: firstController,

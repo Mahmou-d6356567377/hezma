@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hezma/Data/Errors/failures.dart';
@@ -14,20 +13,51 @@ class ProfileRepoImpl implements ProfileRepo {
   ProfileRepoImpl(this.apiService);
   @override
   Future<Either<Failure, ProfileData>> fetchProfileData() async {
-  try {
-     SharedPreferences pref  = await SharedPreferences.getInstance();
-    String t = pref.getString(sharedToken)!;
-   var result = await apiService.get(url: '${baseURL}get_profile', token: t) ;  
-   
-    ProfileData data = ProfileData.fromJson(result['data']);
-   return right(data);
-   } on DioException catch (e) {
-    print('1 ${ServerFailure.DioException(e)}');
-     return left(ServerFailure.DioException(e));
-   }catch (e) {
-    print('2 ${ServerFailure(e.toString())}');
-     return left(ServerFailure(e.toString()));
-   }
+    try {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      String t = pref.getString(sharedToken)!;
+      var result = await apiService.get(url: '${baseURL}get_profile', token: t);
+
+      ProfileData data = ProfileData.fromJson(result['data']);
+      return right(data);
+    } on DioException catch (e) {
+      print('1 ${ServerFailure.DioException(e)}');
+      return left(ServerFailure.DioException(e));
+    } catch (e) {
+      print('2 ${ServerFailure(e.toString())}');
+      return left(ServerFailure(e.toString()));
+    }
   }
 
+  @override
+  Future<Either<Failure, String>> updateProfileData({
+    required String name,
+    required String phone,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      String t = pref.getString(sharedToken)!;
+
+      Map<String, dynamic> body = {
+        '_method': 'PUT',
+        'name': name,
+        'phone': phone,
+        'email': email,
+        'password': password,
+      };
+      var result = await apiService.post(
+          url: '${baseURL}update_profile', token: t, body: body);
+      String data = result['message'];
+      print(data);
+      return right(data);
+    } on DioException catch (e) {
+      print(' ${ServerFailure.DioException(e)}');
+      return left(ServerFailure.DioException(e));
+    } catch (e) {
+      print(' ${ServerFailure(e.toString())}');
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

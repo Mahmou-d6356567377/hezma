@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/switch_botton.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
@@ -58,9 +57,25 @@ class LastItemCart extends StatelessWidget {
                       ),
                     );
             },
-            child: const SizedBox(
-                width: 120,
-                child: SwitchBotton(checkevening: false, title: 'ادفع')),
+            child: SizedBox(
+              width: 120,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(backgroundcustomgreen),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: const BorderSide(color: Colors.transparent),
+                  ),
+                ),
+                onPressed: () {
+                  GoRouter.of(context).push(AppRoutes.pms);
+                },
+                child: const Text(
+                  'ادفع',
+                  style: arabicstyle5,
+                ),
+              ),
+            ),
           ),
           const Spacer(),
           Column(

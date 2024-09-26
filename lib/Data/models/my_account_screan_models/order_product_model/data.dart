@@ -1,7 +1,10 @@
+
+import 'address.dart';
 import 'cart.dart';
+import 'order_delivery_time.dart';
 import 'user.dart';
 
-class OrderData {
+class OrderProductModel {
   int? orderId;
   int? usedCoupon;
   String? couponPrice;
@@ -17,13 +20,13 @@ class OrderData {
   String? paymentMethod;
   String? orderDate;
   String? orderTime;
-  dynamic orderDeliveryData;
-  dynamic orderDeliveryTime;
+  String? orderDeliveryData;
+  OrderDeliveryTime? orderDeliveryTime;
   List<Cart>? cart;
   User? user;
-  dynamic address;
+  Address? address;
 
-  OrderData({
+  OrderProductModel({
     this.orderId,
     this.usedCoupon,
     this.couponPrice,
@@ -46,7 +49,8 @@ class OrderData {
     this.address,
   });
 
-  factory OrderData.fromJson(Map<String, dynamic> json) => OrderData(
+  factory OrderProductModel.fromJson(Map<String, dynamic> json) =>
+      OrderProductModel(
         orderId: json['order_id'] as int?,
         usedCoupon: json['used_coupon'] as int?,
         couponPrice: json['coupon_price'] as String?,
@@ -62,15 +66,20 @@ class OrderData {
         paymentMethod: json['payment_method'] as String?,
         orderDate: json['order_date'] as String?,
         orderTime: json['order_time'] as String?,
-        orderDeliveryData: json['order_delivery_data'] as dynamic,
-        orderDeliveryTime: json['order_delivery_time'] as dynamic,
+        orderDeliveryData: json['order_delivery_data'] as String?,
+        orderDeliveryTime: json['order_delivery_time'] == null
+            ? null
+            : OrderDeliveryTime.fromJson(
+                json['order_delivery_time'] as Map<String, dynamic>),
         cart: (json['cart'] as List<dynamic>?)
             ?.map((e) => Cart.fromJson(e as Map<String, dynamic>))
             .toList(),
         user: json['user'] == null
             ? null
             : User.fromJson(json['user'] as Map<String, dynamic>),
-        address: json['address'] as dynamic,
+        address: json['address'] == null
+            ? null
+            : Address.fromJson(json['address'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
@@ -90,9 +99,9 @@ class OrderData {
         'order_date': orderDate,
         'order_time': orderTime,
         'order_delivery_data': orderDeliveryData,
-        'order_delivery_time': orderDeliveryTime,
+        'order_delivery_time': orderDeliveryTime?.toJson(),
         'cart': cart?.map((e) => e.toJson()).toList(),
         'user': user?.toJson(),
-        'address': address,
+        'address': address?.toJson(),
       };
 }

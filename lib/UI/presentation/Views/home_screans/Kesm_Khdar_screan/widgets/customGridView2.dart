@@ -31,6 +31,7 @@ class _CustomGridView2State extends State<CustomGridView2> {
           return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
+                childAspectRatio: 9 / 10,
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 20.0,
               ),

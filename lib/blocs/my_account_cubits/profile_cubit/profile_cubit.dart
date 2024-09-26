@@ -9,14 +9,14 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit(this.profileRepo) : super(ProfileInitial());
   ProfileRepo profileRepo;
 
-  Future<void> fetchProfileData () async {
+  Future<void> fetchProfileData() async {
     emit(ProfileLoading());
     var result = await profileRepo.fetchProfileData();
 
-    result.fold((failure){
-         emit(ProfileFailure(failure.errorMSG));
-    }, (data){
-        emit(ProfileSuccess(data));
+    result.fold((failure) {
+      emit(ProfileFailure(failure.errorMSG));
+    }, (data) {
+      emit(ProfileSuccess(data));
     });
   }
 }

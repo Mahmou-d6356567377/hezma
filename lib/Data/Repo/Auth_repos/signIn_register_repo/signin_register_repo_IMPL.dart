@@ -58,13 +58,12 @@ class SignInRegisterRepoIMPL implements SignInRegisterRepo {
 
   @override
   Future<Either<Failure, LoginData>> registerRepo(
-    
       Map<String, dynamic> body) async {
-        String msg ='An unexpected error occurred';
+    String msg = 'An unexpected error occurred';
     try {
       var getRegisterData = await apiService.post(
           url: '${baseURL}register', token: kToken, body: body);
-          msg = getRegisterData['message'];
+      msg = getRegisterData['message'];
       print(' the status of register repo ${getRegisterData['status']}');
       print('the message of register repo ${getRegisterData['message']}');
       print('the token of register repo ${getRegisterData['token']}');

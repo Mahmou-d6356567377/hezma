@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
 import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
@@ -9,6 +8,7 @@ import 'package:hezma/UI/presentation/Views/cart_screans/payment_screan/payment_
 import 'package:hezma/UI/presentation/Views/home_screans/Item_screan/Item_screan.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/Kesm_Khdar_screan/Kesm_Khdar_screan.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/Kesm_fakh_screan/Kesm_fakh_screan.dart';
+import 'package:hezma/UI/presentation/Views/home_screans/Kesm_warak_screan/kesm_warak_screan.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/Kesm_water_screan/Kesm_water_screan.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/katlog_hezma_screan/katlog_hezma_screan.dart';
 import 'package:hezma/UI/presentation/Views/home_screans/main_screan1/main_screan1.dart';
@@ -40,6 +40,7 @@ abstract class AppRoutes {
   static const ks1 = '/KesmKhdarScrean';
   static const ks2 = '/KesmWaterScrean';
   static const ks3 = '/KesmFakhScrean';
+  static const ks4 = '/KesmWarakscrean';
   static const kIIs = '/ItemScrean';
   static const ns = '/NotificationScrean';
   static const cpns = '/Custom_buttom_navigation_bar';
@@ -129,6 +130,13 @@ abstract class AppRoutes {
           return const KesmfakhScrean();
         }),
     GoRoute(
+        path: ks4,
+        builder: (context, state) {
+          // ignore: avoid_print
+          print('Go to Main KesmWarakScrean Screan ');
+          return const KesmWarakScrean();
+        }),
+    GoRoute(
         path: kIIs,
         builder: (context, state) {
           // ignore: avoid_print
@@ -186,7 +194,7 @@ abstract class AppRoutes {
         builder: (context, state) {
           // ignore: avoid_print
           print('Go to  Follow Screan ');
-          return const FollowScrean(id2: 4);
+          return FollowScrean(id2: state.extra as int);
         }),
     GoRoute(
         path: ads,
