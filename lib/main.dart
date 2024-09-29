@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hezma/Data/Repo/Auth_repos/otp_repo/otp_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/Auth_repos/signIn_register_repo/signin_register_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/cart_repos/cart_product_repo/cart_product_repo_IMPL.dart';
@@ -13,6 +12,7 @@ import 'package:hezma/Data/Repo/my_account_screan_repos/addresses_repo/addresses
 import 'package:hezma/Data/Repo/my_account_screan_repos/districts_repo/districts_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/my_orders_repo/my_orders_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/profile_repo/profile_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/my_account_screan_repos/settings_repo/settings_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/terms_repo/terms_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/wallet_repo/wallet_repo_IMPL.dart';
 import 'package:hezma/blocs/auth_cubits/otp_cubit/otp_cubit.dart';
@@ -40,14 +40,13 @@ import 'package:hezma/blocs/my_account_cubits/my_orders_cubit/my_orders_cubit.da
 import 'package:hezma/blocs/my_account_cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/prev_orders_list_cubit/prev_orders_list_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/profile_cubit/profile_cubit.dart';
+import 'package:hezma/blocs/my_account_cubits/setting_cubit/setting_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/terms_cubit/terms_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/update_profile_cubit/updata_cubit_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:hezma/utils/routes.dart';
 import 'package:hezma/utils/service_locator/service_locator.dart';
 
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -169,6 +168,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => MakeOrderCubit(getIt.get<MakeOrderRepoImpl>()),
+        ),
+                BlocProvider(
+          create: (context) => SettingCubit(getIt.get<SettingsRepoImpl>())..fetchsettingsFun(),
         ),
       ],
       child: MaterialApp.router(

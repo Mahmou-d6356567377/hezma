@@ -19,6 +19,7 @@ import 'package:hezma/UI/presentation/Views/home_screans/onBoarding_screan/onBoa
 import 'package:hezma/UI/presentation/Views/intro_screans/splash_screan/splash_view.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/Map_screan/map_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/PaymentScrean2/Payment_screan2.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/about_us_screan/aboutusScrean.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/addresses_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/create_address_screan.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/edit_address_screan.dart';
@@ -58,6 +59,7 @@ abstract class AppRoutes {
   static const eas = '/EditAddressScrean';
   static const cas = '/CreateAddressScrean';
   static const ps = '/ProfileScrean';
+  static const aus = '/AboutUsScrean';
 
   static final GoRouter router = GoRouter(initialLocation: sps, routes: [
     GoRoute(
@@ -264,6 +266,13 @@ abstract class AppRoutes {
           // ignore: avoid_print
           print('Go to  Create profile Screan');
           return const ProfileScrean();
+        }),
+            GoRoute(
+        path: aus,
+        builder: (context, state) {
+          // ignore: avoid_print
+          print('Go to  about us Screan');
+          return const AboutUsScrean();
         }),
   ]);
 }

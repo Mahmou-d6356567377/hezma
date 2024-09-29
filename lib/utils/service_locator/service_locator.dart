@@ -13,6 +13,7 @@ import 'package:hezma/Data/Repo/my_account_screan_repos/addresses_repo/addresses
 import 'package:hezma/Data/Repo/my_account_screan_repos/districts_repo/districts_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/my_orders_repo/my_orders_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/profile_repo/profile_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/my_account_screan_repos/settings_repo/settings_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/terms_repo/terms_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/my_account_screan_repos/wallet_repo/wallet_repo_IMPL.dart';
 import 'package:hezma/utils/API/api_service.dart';
@@ -64,4 +65,6 @@ void serviceLocator() {
       VarifyCouponRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<MakeOrderRepoImpl>(
       MakeOrderRepoImpl(getIt.get<ApiService>()));
+        getIt.registerSingleton<SettingsRepoImpl>(
+      SettingsRepoImpl(getIt.get<ApiService>()));
 }

@@ -121,7 +121,6 @@ const String kmada = 'assets/images/mada.png';
 const String kvisa = 'assets/images/Visa.png';
 
 const String kframe = 'assets/images/Frame.png';
-const String kprivacytxt = 'assets/images/privacytxt.png';
 const String kAppIcon = 'assets/logos/appicon.png';
 
 const String kscopeIcon = 'assets/logos/scopeIcon.png';

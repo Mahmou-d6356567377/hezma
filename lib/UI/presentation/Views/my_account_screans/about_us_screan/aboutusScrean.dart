@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/blocs/my_account_cubits/setting_cubit/setting_cubit.dart';
-import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
-class PrivacyRulesScrean extends StatelessWidget {
-  const PrivacyRulesScrean({super.key});
+class AboutUsScrean extends StatelessWidget {
+  const AboutUsScrean({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class PrivacyRulesScrean extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
         title: const Text(
-          'سياسة الخصوصيه',
+         'معلومات عنا',
           style: arabicstyle2,
         ),
         centerTitle: true,
@@ -28,14 +27,16 @@ class PrivacyRulesScrean extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: BlocBuilder<SettingCubit, SettingState>(
+            
             builder: (context, state) {
           if (state is SettingSuccess) {
+              print(state.settings[7].value);
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text(state.settings[4].value!),
+                    Text(state.settings[5].value ?? 'There is no Data'),
                   ],
                 ),
               ),

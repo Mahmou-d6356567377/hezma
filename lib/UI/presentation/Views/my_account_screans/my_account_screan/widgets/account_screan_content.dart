@@ -57,6 +57,15 @@ class AccountScreanContent extends StatelessWidget {
                 ontap: () {
                   GoRouter.of(context).push(AppRoutes.pms2);
                 }),
+                MyAccountItem(
+                title: 'ماذا عنا',
+                icon: const Icon(
+                  Icons.info_outline,
+                  color: Color(backgroundcustomgreen),
+                ),
+                ontap: () {
+                  GoRouter.of(context).push(AppRoutes.aus);
+                }),
             MyAccountItem(
                 title: 'الدعم الفنى',
                 icon: const Icon(

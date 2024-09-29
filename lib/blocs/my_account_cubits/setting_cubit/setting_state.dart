@@ -15,7 +15,7 @@ final class SettingFailure extends SettingState {
   const SettingFailure(this.errMsg);
 }
 final class SettingSuccess extends SettingState {
-  final settingModel1 settings;
+  final List<settingModel1> settings;
 
  const SettingSuccess(this.settings);
 }
