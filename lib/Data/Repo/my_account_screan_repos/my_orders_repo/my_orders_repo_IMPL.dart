@@ -45,13 +45,14 @@ class MyOrdersRepoImpl implements MyOrderRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, String >> cancelOrder({required int id}) async {
+  Future<Either<Failure, String>> cancelOrder({required int id}) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       String mToken = pref.getString(sharedToken)!;
-      var result = await apiService.post(url: '${baseURL}order/cancel/$id', token: mToken , body: '');
+      var result = await apiService.post(
+          url: '${baseURL}order/cancel/$id', token: mToken, body: '');
       fetchMyOrders();
       return right(result['message']);
     } on DioException catch (e) {
@@ -60,10 +61,10 @@ class MyOrdersRepoImpl implements MyOrderRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<OrderData>>> fetchMyPreviousOrders() async{
-   try {
+  Future<Either<Failure, List<OrderData>>> fetchMyPreviousOrders() async {
+    try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       String mToken = pref.getString(sharedToken)!;
       var result = await apiService.get(url: '${baseURL}orders', token: mToken);
@@ -77,10 +78,10 @@ class MyOrdersRepoImpl implements MyOrderRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<OrderData>>> fetchcanceledOrders() async{
-   try {
+  Future<Either<Failure, List<OrderData>>> fetchcanceledOrders() async {
+    try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       String mToken = pref.getString(sharedToken)!;
       var result = await apiService.get(url: '${baseURL}orders', token: mToken);
@@ -94,32 +95,33 @@ class MyOrdersRepoImpl implements MyOrderRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failure, List<OrderData>>> makeOrdersData({
-    required int payid ,
-     required int addressid, 
-     required String date , 
-     required int timeid , 
-     required int shipping, 
-     required String username, 
-     required String bankname,
-       String? couponCode,
-     }) async {
-     try {
+    required int payid,
+    required int addressid,
+    required String date,
+    required int timeid,
+    required int shipping,
+    required String username,
+    required String bankname,
+    String? couponCode,
+  }) async {
+    try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       String mToken = pref.getString(sharedToken)!;
-      Map<String , dynamic> body = {
-        'coupon_code':couponCode,
-        'payment_method_id':payid,
-        'address_id':addressid,
-        'time_id':timeid,
+      Map<String, dynamic> body = {
+        'coupon_code': couponCode,
+        'payment_method_id': payid,
+        'address_id': addressid,
+        'time_id': timeid,
         'date': date,
-        'shipping':shipping,
-        'user_name':username,
-        'bank_name':bankname,
+        'shipping': shipping,
+        'user_name': username,
+        'bank_name': bankname,
       };
-      var result = await apiService.post(url: '${baseURL}cart/make-order', token: mToken , body : body);
+      var result = await apiService.post(
+          url: '${baseURL}cart/make-order', token: mToken, body: body);
       List<OrderData> resultPlus = (result['extra_data']['Canceled'] as List)
           .map((item) => OrderData.fromJson(item))
           .toList();
@@ -130,6 +132,4 @@ class MyOrdersRepoImpl implements MyOrderRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-
-
 }

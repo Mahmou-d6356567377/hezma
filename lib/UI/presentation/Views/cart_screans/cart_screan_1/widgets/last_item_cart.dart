@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hezma/Data/models/cart_models/pay_models/pay_model1.dart';
+import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
+import 'package:intl/intl.dart';
 
 class LastItemCart extends StatelessWidget {
   const LastItemCart({
     super.key,
-    required this.iscartscrean,
     required this.totalPrice,
+    required this.timeId,
+    required this.date,
+    this.addressdata,
   });
+
   final int totalPrice;
-  final bool iscartscrean;
+  final int timeId;
+  final DateTime date;
+  final AddressData? addressdata;
 
   @override
   Widget build(BuildContext context) {
-    double tatalPricewithtax = 1.15 * totalPrice;
+    double totalPriceWithTax = 1.15 * totalPrice;
+
     return Container(
       height: 70,
       decoration: BoxDecoration(
@@ -25,55 +34,43 @@ class LastItemCart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          GestureDetector(
-            onTap: () {
-              iscartscrean
-                  ? GoRouter.of(context).push(AppRoutes.pms)
-                  : showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        actions: <Widget>[
-                          Center(
-                              child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 20),
-                            child: Image.asset(kcheckpaylogo),
-                          )),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'تم الدفع بنجاح',
-                                  style: arabicstyle3,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                        surfaceTintColor: const Color(backgroundcolor1),
-                        shadowColor: Colors.black26,
-                      ),
-                    );
-            },
-            child: SizedBox(
-              width: 120,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(backgroundcustomgreen),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: const BorderSide(color: Colors.transparent),
-                  ),
+          SizedBox(
+            width: 120,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(backgroundcustomgreen),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  side: const BorderSide(color: Colors.transparent),
                 ),
-                onPressed: () {
-                  GoRouter.of(context).push(AppRoutes.pms);
-                },
-                child: const Text(
-                  'ادفع',
-                  style: arabicstyle5,
-                ),
+              ),
+              onPressed: () {
+                if (addressdata == null ||
+                    totalPrice == 0 ||
+                    date == DateTime.now() ||
+                    timeId == 0) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      content: Text('يجب ان تملا جميع الحقول')));
+                } else {
+                  // Create an instance of PaymentData
+                  final paymentData = PaymentData1(
+                    totalPrice: totalPrice,
+                    timeId: timeId,
+                    date: date,
+                    addressdata: addressdata,
+                  );
+
+                  // Pass paymentData through the extra parameter
+                  GoRouter.of(context).push(
+                    AppRoutes.pms,
+                    extra: paymentData,
+                  );
+                }
+              },
+              child: const Text(
+                'ادفع',
+                style: arabicstyle5,
               ),
             ),
           ),
@@ -95,7 +92,7 @@ class LastItemCart extends StatelessWidget {
                       style: arabicstyle3,
                     ),
                     Text(
-                      tatalPricewithtax.toString(),
+                      totalPriceWithTax.toString(),
                       style: arabicstyle3,
                     ),
                   ],

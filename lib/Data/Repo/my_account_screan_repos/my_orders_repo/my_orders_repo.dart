@@ -7,15 +7,16 @@ abstract class MyOrderRepo {
   Future<Either<Failure, List<OrderData>>> fetchMyOrders();
   Future<Either<Failure, List<OrderData>>> fetchcanceledOrders();
   Future<Either<Failure, List<OrderData>>> fetchMyPreviousOrders();
-Future<Either<Failure , String>> cancelOrder({required int id});
-  Future<Either<Failure, OrderProductModel>> fetchMyOrdersData({required int id});
-   Future<Either<Failure, List<OrderData>>> makeOrdersData({
-    required int payid ,
-     required int addressid, 
-     required String date , 
-     required int timeid , 
-     required int shipping, 
-     required String username, 
-     required String bankname,
-     }) ;
+  Future<Either<Failure, String>> cancelOrder({required int id});
+  Future<Either<Failure, OrderProductModel>> fetchMyOrdersData(
+      {required int id});
+  Future<Either<Failure, List<OrderData>>> makeOrdersData({
+    required int payid,
+    required int addressid,
+    required String date,
+    required int timeid,
+    required int shipping,
+    required String username,
+    required String bankname,
+  });
 }

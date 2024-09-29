@@ -7,12 +7,12 @@ part 'cancelorder_state.dart';
 class CancelorderCubit extends Cubit<CancelorderState> {
   CancelorderCubit(this.myOrderRepo) : super(CancelorderInitial());
   MyOrderRepo myOrderRepo;
-  Future<void> cancelOrderFun({required int id})async{
+  Future<void> cancelOrderFun({required int id}) async {
     emit(CancelorderLoading());
     var result = await myOrderRepo.cancelOrder(id: id);
-    result.fold((failure){
+    result.fold((failure) {
       emit(CancelorderFailure(failure.errorMSG));
-    }, (succMsg){
+    }, (succMsg) {
       emit(CancelorderSuccess(succMsg));
     });
   }

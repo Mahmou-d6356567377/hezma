@@ -8,12 +8,15 @@ sealed class CancelorderState extends Equatable {
 }
 
 final class CancelorderInitial extends CancelorderState {}
+
 final class CancelorderLoading extends CancelorderState {}
+
 final class CancelorderFailure extends CancelorderState {
   final String errMsg;
 
   const CancelorderFailure(this.errMsg);
 }
+
 final class CancelorderSuccess extends CancelorderState {
   final String succMsg;
 

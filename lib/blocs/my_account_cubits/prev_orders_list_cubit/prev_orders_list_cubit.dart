@@ -7,13 +7,13 @@ part 'prev_orders_list_state.dart';
 
 class PrevOrdersListCubit extends Cubit<PrevOrdersListState> {
   PrevOrdersListCubit(this.myOrderRepo) : super(PrevOrdersListInitial());
-   MyOrderRepo myOrderRepo ;
-  Future<void> fetchPrevOrders () async {
+  MyOrderRepo myOrderRepo;
+  Future<void> fetchPrevOrders() async {
     emit(PrevOrdersListLoading());
     var result = await myOrderRepo.fetchMyPreviousOrders();
-    result.fold((failure){
+    result.fold((failure) {
       emit(PrevOrdersListFailure(failure.errorMSG));
-    }, (canceledOrders){
+    }, (canceledOrders) {
       emit(PrevOrdersListSuccess(canceledOrders));
     });
   }

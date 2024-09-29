@@ -45,8 +45,7 @@ class _PageMapState extends State<MapScrean> {
 
   void _onMapTapped(LatLng position) {
     setState(() {
-      _markers
-          .clear(); // Clears previous markers if you want only one marker at a time
+      _markers.clear();
       _markers.add(
         CustomMarker = Marker(
           markerId: MarkerId(position.toString()),

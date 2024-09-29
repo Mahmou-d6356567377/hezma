@@ -22,21 +22,27 @@ class ApiService {
     return response.data;
   }
 
-  Future<Map<String, dynamic>> post(
-      {required String url,
-      @required String? token,
-      required dynamic body}) async {
+  Future<Map<String, dynamic>> post({
+    required String url,
+    @required String? token,
+    required dynamic body,
+  }) async {
     Map<String, String> headers = {
       'Accept': 'application/json',
-      'content-type': 'application/json'
     };
+
+    // Set 'Content-Type' only if body is not FormData
+    if (body is! FormData) {
+      headers['content-type'] = 'application/json';
+    }
 
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
+
     var response = await _dio.post(
       url,
-      data: jsonEncode(body),
+      data: body,
       options: Options(
         headers: headers,
         validateStatus: (status) {

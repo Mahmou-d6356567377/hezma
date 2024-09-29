@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:hezma/Data/models/cart_models/pay_models/pay_model1.dart';
 import 'package:hezma/Data/models/home_models/home_products_model/product.dart';
 import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
 import 'package:hezma/UI/presentation/Views/auth_screans/Active_code_screan/ActivationCodeScreen.dart';
@@ -169,12 +170,23 @@ abstract class AppRoutes {
           return const MapScrean();
         }),
     GoRoute(
-        path: pms,
-        builder: (context, state) {
-          // ignore: avoid_print
-          print('Go to  Payment Screan ');
-          return const PaymentScrean();
-        }),
+      path: pms,
+      builder: (context, state) {
+        // Retrieve the PaymentData from the extra parameter
+        final PaymentData1 paymentData = state.extra as PaymentData1;
+
+        // Log the transition to the Payment Screen
+        print(
+            'Go to Payment Screan with totalPrice: ${paymentData.totalPrice}, timeId: ${paymentData.timeId}, date: ${paymentData.date}, addressdata: ${paymentData.addressdata}');
+
+        return PaymentScrean(
+          totalPrice: paymentData.totalPrice,
+          timeId: paymentData.timeId,
+          date: paymentData.date,
+          addressdata: paymentData.addressdata!,
+        );
+      },
+    ),
     GoRoute(
         path: mas,
         builder: (context, state) {

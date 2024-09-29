@@ -81,10 +81,12 @@ class OrderItem extends StatelessWidget {
                   child: BlocListener<CancelorderCubit, CancelorderState>(
                     listener: (context, state) {
                       if (state is CancelorderSuccess) {
-                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.succMsg)));
-                      }else if (state is CancelorderFailure) {
-                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errMsg)));
-                      }else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(state.succMsg)));
+                      } else if (state is CancelorderFailure) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(state.errMsg)));
+                      } else {
                         const CircularProgressIndicator();
                       }
                     },
@@ -95,8 +97,10 @@ class OrderItem extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                       ),
-                      onPressed: () async{
-                        await context.read<CancelorderCubit>().cancelOrderFun(id: productDetails.orderId!);
+                      onPressed: () async {
+                        await context
+                            .read<CancelorderCubit>()
+                            .cancelOrderFun(id: productDetails.orderId!);
                         await context.read<MyOrdersCubit>().fetchMyOrders();
                       },
                       child: const Text(

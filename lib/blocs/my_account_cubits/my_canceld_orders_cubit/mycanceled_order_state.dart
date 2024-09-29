@@ -8,12 +8,15 @@ sealed class MycanceledOrderState extends Equatable {
 }
 
 final class MycanceledOrderInitial extends MycanceledOrderState {}
+
 final class MycanceledOrderLoading extends MycanceledOrderState {}
+
 final class MycanceledOrderFailure extends MycanceledOrderState {
   final String errMsg;
 
   const MycanceledOrderFailure(this.errMsg);
 }
+
 final class MycanceledOrderSuccess extends MycanceledOrderState {
   final List<OrderData> myCanceledOrders;
 

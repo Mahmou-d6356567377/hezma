@@ -4,6 +4,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hezma/Data/Repo/Auth_repos/otp_repo/otp_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/Auth_repos/signIn_register_repo/signin_register_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/cart_repos/cart_product_repo/cart_product_repo_IMPL.dart';
+import 'package:hezma/Data/Repo/cart_repos/cart_product_repo/make_order_repo/make_order_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/cart_repos/pay_methods_repos/pay_methods_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/cart_repos/varify_coupon_repo/varify_coupon_repo_IMPL.dart';
 import 'package:hezma/Data/Repo/fav_products_repo/fav_product_repo_IMPL.dart';
@@ -20,6 +21,7 @@ import 'package:hezma/blocs/auth_cubits/register_cubit/register_cubit.dart';
 import 'package:hezma/blocs/auth_cubits/signIn_register_cubit/cubit/sign_register_cubit.dart';
 import 'package:hezma/blocs/cart_cubits/cart_access_products_cubit/cart_access_cubit.dart';
 import 'package:hezma/blocs/cart_cubits/cart_cubit/cart_cubit.dart';
+import 'package:hezma/blocs/cart_cubits/make_order_cubit/make_order_cubit.dart';
 import 'package:hezma/blocs/cart_cubits/pay_method_cubit/pay_mothod_cubit.dart';
 import 'package:hezma/blocs/cart_cubits/varify_coupon_cubit/varify_coupon_cubit.dart';
 import 'package:hezma/blocs/fav_screan_cubits/fav_products_cubit/cubit/fav_product_cubit.dart';
@@ -50,20 +52,7 @@ FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   serviceLocator();
-  await notificationInitialization();
   runApp(const MainApp());
-}
-
-Future<void> notificationInitialization() async {
-  try {
-    const AndroidInitializationSettings androidSettings =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-    const InitializationSettings settings =
-        InitializationSettings(android: androidSettings);
-    await flutterLocalNotificationsPlugin.initialize(settings);
-  } catch (e) {
-    print('Notification Initialization Error: $e');
-  }
 }
 
 class MainApp extends StatelessWidget {
@@ -165,17 +154,21 @@ class MainApp extends StatelessWidget {
           create: (context) =>
               VarifyCouponCubit(getIt.get<VarifyCouponRepoImpl>()),
         ),
-                BlocProvider(
-          create: (context) =>
-              CancelorderCubit(getIt.get<MyOrdersRepoImpl>()),
+        BlocProvider(
+          create: (context) => CancelorderCubit(getIt.get<MyOrdersRepoImpl>()),
         ),
-                        BlocProvider(
+        BlocProvider(
           create: (context) =>
-              MycanceledOrderCubit(getIt.get<MyOrdersRepoImpl>())..fetchcanceledOrders(),
+              MycanceledOrderCubit(getIt.get<MyOrdersRepoImpl>())
+                ..fetchcanceledOrders(),
         ),
-                                BlocProvider(
+        BlocProvider(
           create: (context) =>
-              PrevOrdersListCubit(getIt.get<MyOrdersRepoImpl>())..fetchPrevOrders(),
+              PrevOrdersListCubit(getIt.get<MyOrdersRepoImpl>())
+                ..fetchPrevOrders(),
+        ),
+        BlocProvider(
+          create: (context) => MakeOrderCubit(getIt.get<MakeOrderRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(

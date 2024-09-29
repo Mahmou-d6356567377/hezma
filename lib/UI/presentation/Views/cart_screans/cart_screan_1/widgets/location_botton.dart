@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
 import 'package:hezma/blocs/my_account_cubits/addresses_cubit/del_address_cubit/del_address_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/addresses_cubit/get_addresses_cubit/get_addresses_cubit.dart';
 import 'package:hezma/utils/constants.dart';
@@ -8,7 +9,9 @@ import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
 
 class LocatoinBotton extends StatefulWidget {
-  const LocatoinBotton({super.key});
+  final Function(AddressData) addressSelected;
+
+  const LocatoinBotton({super.key, required this.addressSelected});
 
   @override
   _LocatoinBottonState createState() => _LocatoinBottonState();
@@ -20,12 +23,14 @@ class _LocatoinBottonState extends State<LocatoinBotton> {
 
   @override
   Widget build(BuildContext context) {
+    // Fetch addresses when the widget is built
     context.read<GetAddressesCubit>().fetchAddresses();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: GestureDetector(
         onTap: () {
+          // Show bottom sheet to display addresses
           showModalBottomSheet(
             context: context,
             builder: (BuildContext context) {
@@ -42,12 +47,13 @@ class _LocatoinBottonState extends State<LocatoinBotton> {
                               final item = state.dataAddress[index];
                               return GestureDetector(
                                 onTap: () {
-                                  // Update selected address name when an item is clicked
+                                  // Update selected address name and pass the address to parent
                                   setState(() {
                                     selectedAddressName = item.name!;
                                   });
+                                  widget.addressSelected(item);
                                   Navigator.pop(
-                                      context); // Close the bottom sheet after selection
+                                      context); // Close the bottom sheet
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.all(8),
@@ -99,8 +105,7 @@ class _LocatoinBottonState extends State<LocatoinBotton> {
                           padding: const EdgeInsets.all(16.0),
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pop(
-                                  context); // Close the modal without selection
+                              Navigator.pop(context); // Close the modal
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:

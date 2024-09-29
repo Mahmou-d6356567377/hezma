@@ -13,7 +13,7 @@ class CustomPinCodeTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return PinCodeTextField(
       controller: pinController,
-      length: 6,
+      length: 4,
       appContext: context,
       onChanged: (value) {
         print(value);

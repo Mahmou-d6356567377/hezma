@@ -20,7 +20,7 @@ class DetailsContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         height: 150,
         decoration: BoxDecoration(
           color: const Color(darkwhite),
@@ -49,6 +49,7 @@ class DetailsContainer extends StatelessWidget {
                             if (state is VarifyCouponSuccess) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text(state.succmsg)));
+                              print(state.succmsg);
                             } else if (state is VarifyCouponFailure) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text(state.errMsg)));

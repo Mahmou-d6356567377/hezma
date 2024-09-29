@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hezma/Data/Repo/Auth_repos/log_out_repo/log_out_repo_IMPL.dart';
 import 'package:hezma/blocs/auth_cubits/log_out_cubit/cubit/log_out_cubit.dart';
+import 'package:hezma/blocs/my_account_cubits/profile_cubit/profile_cubit.dart';
 import 'package:hezma/utils/fonts.dart';
 import 'package:hezma/utils/routes.dart';
 import 'package:hezma/utils/service_locator/service_locator.dart';
@@ -17,6 +18,7 @@ class MyAccountScrean extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
+            context.read<ProfileCubit>().fetchProfileData();
             GoRouter.of(context).push(AppRoutes.ps);
           },
           icon: const Icon(Icons.person),

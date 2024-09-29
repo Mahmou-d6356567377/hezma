@@ -16,6 +16,13 @@ class ProfileScrean extends StatelessWidget {
           style: arabicstyle2,
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                context.read<ProfileCubit>().fetchProfileData();
+              },
+              icon: const Icon(Icons.sync))
+        ],
       ),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
@@ -29,9 +36,6 @@ class ProfileScrean extends StatelessWidget {
                     backgroundImage: state is ProfileSuccess
                         ? NetworkImage(state.profileData.image!)
                         : null,
-                    child: state is ProfileSuccess
-                        ? Image.network(state.profileData.image!)
-                        : const Icon(Icons.person, size: 50),
                   ),
                 ],
               ),
@@ -43,10 +47,14 @@ class ProfileScrean extends StatelessWidget {
                   decoration: customBoxDecoration,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 12.0, left: 12),
-                    child: Text(
-                      'Your Id : ${state is ProfileSuccess ? state.profileData.id : state is ProfileFailure ? Text(state.errMsg) : const Text('')} ',
-                      style: arabicstyle2,
-                    ),
+                    child: state is ProfileSuccess
+                        ? Text(
+                            'Your Id : ${state.profileData.id}',
+                            style: arabicstyle2,
+                          )
+                        : state is ProfileFailure
+                            ? Text(state.errMsg)
+                            : null,
                   ),
                 ),
               ),
@@ -58,10 +66,14 @@ class ProfileScrean extends StatelessWidget {
                   decoration: customBoxDecoration,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 12.0, left: 12),
-                    child: Text(
-                      'Name  : ${state is ProfileSuccess ? state.profileData.name : state is ProfileFailure ? Text(state.errMsg) : const Text('')} ',
-                      style: arabicstyle2,
-                    ),
+                    child: state is ProfileSuccess
+                        ? Text(
+                            'Name  : ${state.profileData.name} ',
+                            style: arabicstyle2,
+                          )
+                        : state is ProfileFailure
+                            ? Text(state.errMsg)
+                            : null,
                   ),
                 ),
               ),
@@ -73,10 +85,14 @@ class ProfileScrean extends StatelessWidget {
                   decoration: customBoxDecoration,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 12.0, left: 12),
-                    child: Text(
-                      'Email : ${state is ProfileSuccess ? state.profileData.email : state is ProfileFailure ? Text(state.errMsg) : const Text('')}',
-                      style: arabicstyle2,
-                    ),
+                    child: state is ProfileSuccess
+                        ? Text(
+                            'Email : ${state.profileData.email}',
+                            style: arabicstyle2,
+                          )
+                        : state is ProfileFailure
+                            ? Text(state.errMsg)
+                            : null,
                   ),
                 ),
               ),
@@ -88,10 +104,14 @@ class ProfileScrean extends StatelessWidget {
                   decoration: customBoxDecoration,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 12.0, left: 12),
-                    child: Text(
-                      'Phone : ${state is ProfileSuccess ? state.profileData.phone : state is ProfileFailure ? Text(state.errMsg) : const Text('')}',
-                      style: arabicstyle2,
-                    ),
+                    child: state is ProfileSuccess
+                        ? Text(
+                            'Phone : ${state.profileData.phone}',
+                            style: arabicstyle2,
+                          )
+                        : state is ProfileFailure
+                            ? Text(state.errMsg)
+                            : null,
                   ),
                 ),
               ),

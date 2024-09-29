@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hezma/Data/Errors/failures.dart';
@@ -35,28 +37,37 @@ class ProfileRepoImpl implements ProfileRepo {
     required String phone,
     required String email,
     required String password,
+    File? image,
   }) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       String t = pref.getString(sharedToken)!;
 
-      Map<String, dynamic> body = {
+      // Create FormData to include file
+      FormData formData = FormData.fromMap({
         '_method': 'PUT',
         'name': name,
         'phone': phone,
         'email': email,
         'password': password,
-      };
+        if (image != null)
+          'image': await MultipartFile.fromFile(image.path,
+              filename: image.path.split('/').last),
+      });
+
       var result = await apiService.post(
-          url: '${baseURL}update_profile', token: t, body: body);
+        url: '${baseURL}update_profile',
+        token: t,
+        body: formData,
+      );
       String data = result['message'];
       print(data);
       return right(data);
     } on DioException catch (e) {
-      print(' ${ServerFailure.DioException(e)}');
+      print(' 1$e');
       return left(ServerFailure.DioException(e));
     } catch (e) {
-      print(' ${ServerFailure(e.toString())}');
+      print('2 ${e}');
       return left(ServerFailure(e.toString()));
     }
   }

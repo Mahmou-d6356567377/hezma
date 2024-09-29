@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/my_orders_screan/widgets/MyOrdersList.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/my_orders_screan/widgets/canceled_order_list.dart';
 import 'package:hezma/UI/presentation/Views/my_account_screans/my_orders_screan/widgets/prev_orders_list.dart';
+import 'package:hezma/blocs/my_account_cubits/my_orders_cubit/my_orders_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
@@ -42,8 +43,9 @@ class _MyOrderScreanState extends State<MyOrderScrean> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          b1 ? const Color(backgroundcustomgreen) : Colors.white,
+                      backgroundColor: b1
+                          ? const Color(backgroundcustomgreen)
+                          : Colors.white,
                     ),
                     onPressed: () {
                       setState(() {
@@ -53,17 +55,19 @@ class _MyOrderScreanState extends State<MyOrderScrean> {
                         b3 = false;
                       });
                     },
-                    child:  Text('الطلبات الملغيه',
-                   style:  b1 ? arabicstyle5: arabicstyle4,
-),
+                    child: Text(
+                      'الطلبات الملغيه',
+                      style: b1 ? arabicstyle5 : arabicstyle4,
+                    ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          b2 ? const Color(backgroundcustomgreen) : Colors.white,
+                      backgroundColor: b2
+                          ? const Color(backgroundcustomgreen)
+                          : Colors.white,
                     ),
                     onPressed: () {
                       setState(() {
@@ -73,17 +77,19 @@ class _MyOrderScreanState extends State<MyOrderScrean> {
                         b3 = false;
                       });
                     },
-                    child:  Text('الطلبات السابقة',
-                    style:  b2 ? arabicstyle5: arabicstyle4,
-),
+                    child: Text(
+                      'الطلبات السابقة',
+                      style: b2 ? arabicstyle5 : arabicstyle4,
+                    ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          b3 ? const Color(backgroundcustomgreen) : Colors.white,
+                      backgroundColor: b3
+                          ? const Color(backgroundcustomgreen)
+                          : Colors.white,
                     ),
                     onPressed: () {
                       setState(() {
@@ -93,15 +99,20 @@ class _MyOrderScreanState extends State<MyOrderScrean> {
                         b3 = true;
                       });
                     },
-                    child:  Text('الطلبات الحاليه',
-                     style:  b3 ? arabicstyle5: arabicstyle4,
-                     ),
+                    child: Text(
+                      'الطلبات الحاليه',
+                      style: b3 ? arabicstyle5 : arabicstyle4,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-         b3 ?  const MyordersList() : b1? const CanceledordersList() : const PrevordersList(),
+          b3
+              ? const MyordersList()
+              : b1
+                  ? const CanceledordersList()
+                  : const PrevordersList(),
         ],
       ),
     );

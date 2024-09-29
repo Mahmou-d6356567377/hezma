@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hezma/UI/presentation/Views/cart_screans/cart_screan_1/widgets/time_service.dart';
 import 'package:hezma/utils/constants.dart';
-import 'package:hezma/utils/fonts.dart';
-
 import 'package:intl/intl.dart';
 
 class DeliveryTimeWidget extends StatefulWidget {
@@ -51,9 +49,8 @@ class _DeliveryTimeWidgetState extends State<DeliveryTimeWidget> {
       selectedTimeId = null;
     });
 
-    if (selectedDate != null) {
-      widget.onDateSelected(selectedDate!, selectedTimeId);
-    }
+    // Pass selectedDate and null as selectedTimeId
+    widget.onDateSelected(selectedDate!, null);
   }
 
   Widget _buildDateButton(String dayLabel, int daysToAdd, int buttonIndex) {
@@ -125,9 +122,7 @@ class _DeliveryTimeWidgetState extends State<DeliveryTimeWidget> {
                 setState(() {
                   selectedTimeId = availableTimes[i]['id'];
                 });
-                if (selectedDate != null && selectedTimeId != null) {
-                  widget.onDateSelected(selectedDate!, selectedTimeId);
-                }
+                widget.onDateSelected(selectedDate!, selectedTimeId);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),

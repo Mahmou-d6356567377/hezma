@@ -7,13 +7,13 @@ part 'mycanceled_order_state.dart';
 
 class MycanceledOrderCubit extends Cubit<MycanceledOrderState> {
   MycanceledOrderCubit(this.myOrderRepo) : super(MycanceledOrderInitial());
-  MyOrderRepo myOrderRepo ;
-  Future<void> fetchcanceledOrders () async {
+  MyOrderRepo myOrderRepo;
+  Future<void> fetchcanceledOrders() async {
     emit(MycanceledOrderLoading());
     var result = await myOrderRepo.fetchcanceledOrders();
-    result.fold((failure){
+    result.fold((failure) {
       emit(MycanceledOrderFailure(failure.errorMSG));
-    }, (canceledOrders){
+    }, (canceledOrders) {
       emit(MycanceledOrderSuccess(canceledOrders));
     });
   }
