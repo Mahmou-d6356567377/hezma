@@ -1,33 +1,40 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geocoding/geocoding.dart'; // Add this import
+import 'package:geocoding/geocoding.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/districtModel.dart';
+import 'package:hezma/UI/presentation/Views/my_account_screans/addresses_screan/widgets/district_service.dart';
 import 'package:hezma/blocs/my_account_cubits/addresses_cubit/create_address_cubit/create_address_cubit.dart';
-import 'package:hezma/blocs/my_account_cubits/addresses_cubit/edit_address_cubit/edit_address_cubit.dart';
 import 'package:hezma/blocs/my_account_cubits/addresses_cubit/get_addresses_cubit/get_addresses_cubit.dart';
 import 'package:hezma/utils/constants.dart';
 import 'package:hezma/utils/fonts.dart';
 
-class CreateAddressScrean extends StatefulWidget {
-  const CreateAddressScrean({super.key});
+class CreateAddressScreen extends StatefulWidget {
+  const CreateAddressScreen({super.key});
 
   @override
-  State<CreateAddressScrean> createState() => _EditAddressScreanState();
+  State<CreateAddressScreen> createState() => _CreateAddressScreenState();
 }
 
-class _EditAddressScreanState extends State<CreateAddressScrean> {
-  GoogleMapController? _mapController1;
+class _CreateAddressScreenState extends State<CreateAddressScreen> {
+  GoogleMapController? _mapController;
   LatLng? _selectedLatLng;
+  static const LatLng centerOfmansoura = LatLng(24.7136, 46.6753);
   String? _address;
+  Set<Circle> _circles = {};
+  final DistrictService _districtService = DistrictService();
 
   @override
   void initState() {
-    _selectedLatLng = const LatLng(0, 0);
     super.initState();
+    _selectedLatLng = centerOfmansoura;
+    _setDistrictCircles();
   }
 
-  void _ontap(LatLng latlng) async {
+  void _onTap(LatLng latlng) async {
     setState(() {
       _selectedLatLng = latlng;
     });
@@ -43,26 +50,83 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
       });
     }
 
-    _mapController1?.animateCamera(
+    _mapController?.animateCamera(
       CameraUpdate.newCameraPosition(
-          CameraPosition(target: latlng, zoom: 10.0)),
+        CameraPosition(target: latlng, zoom: 12.0),
+      ),
     );
+  }
+
+  Future<void> _setDistrictCircles() async {
+    try {
+      List<ModelOfDistractis> districts =
+          await _districtService.fetchDistricts();
+      setState(() {
+        _circles = districts.map((district) {
+          return Circle(
+            circleId: CircleId('district_circle_${district.id}'),
+            center: LatLng(district.latitude, district.longitude),
+            radius: 5000, // 5 كيلومتر
+            fillColor: Colors.green.withOpacity(0.3),
+            strokeColor: Colors.green,
+            strokeWidth: 2,
+          );
+        }).toSet();
+      });
+    } catch (e) {
+      print('Failed to load districts: $e');
+    }
+  }
+
+  bool _isLatLngInsideAnyCircle(LatLng latLng) {
+    for (Circle circle in _circles) {
+      double distance = _calculateDistance(
+        latLng.latitude,
+        latLng.longitude,
+        circle.center.latitude,
+        circle.center.longitude,
+      );
+      if (distance <= circle.radius) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  double _calculateDistance(
+      double lat1, double lon1, double lat2, double lon2) {
+    const double R = 6371e3; // Earth's radius in meters
+    final double lat1Rad = lat1 * (pi / 180);
+    final double lat2Rad = lat2 * (pi / 180);
+    final double deltaLat = (lat2 - lat1) * (pi / 180);
+    final double deltaLon = (lon2 - lon1) * (pi / 180);
+
+    final double a = (sin(deltaLat / 2) * sin(deltaLat / 2)) +
+        (cos(lat1Rad) * cos(lat2Rad) * sin(deltaLon / 2) * sin(deltaLon / 2));
+    final double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    final double distance = R * c;
+
+    return distance;
   }
 
   @override
   Widget build(BuildContext context) {
     TextEditingController nameController = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              GoRouter.of(context).pop();
-            },
-            icon: const Icon(Icons.arrow_back)),
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text(
           'تعديل العنوان',
-          style: arabicstyle1,
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'STVBold',
+            fontSize: 20,
+          ),
         ),
         centerTitle: true,
         actions: [
@@ -76,8 +140,9 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
               padding: const EdgeInsets.all(12.0),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(17)),
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(17),
+                ),
                 child: TextField(
                   textAlign: TextAlign.end,
                   controller: nameController,
@@ -111,39 +176,40 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
                   borderRadius: BorderRadius.circular(17),
                 ),
                 child: GoogleMap(
-                    zoomControlsEnabled: false,
-                    compassEnabled: false,
-                    onMapCreated: (controller) {
-                      _mapController1 = controller;
-                    },
-                    onTap: _ontap,
-                    initialCameraPosition: CameraPosition(
-                      target: _selectedLatLng!,
-                      zoom: 4.0,
-                    ),
-                    markers: _selectedLatLng != null
-                        ? {
-                            Marker(
-                              position: _selectedLatLng!,
-                              infoWindow: InfoWindow(
-                                title: _address ?? 'unknown',
-                              ),
-                              markerId: const MarkerId('selected-address'),
+                  zoomControlsEnabled: false,
+                  onMapCreated: (controller) {
+                    _mapController = controller;
+                  },
+                  onTap: _onTap,
+                  initialCameraPosition: CameraPosition(
+                    target: centerOfmansoura,
+                    zoom: 10.0,
+                  ),
+                  markers: _selectedLatLng != null
+                      ? {
+                          Marker(
+                            position: _selectedLatLng!,
+                            infoWindow: InfoWindow(
+                              title: _address ?? 'unknown',
                             ),
-                          }
-                        : {}),
+                            markerId: const MarkerId('selected-address'),
+                          ),
+                        }
+                      : {},
+                  circles: _circles,
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: BlocListener<EditAddressCubit, EditAddressState>(
+              child: BlocListener<CreateAddressCubit, CreateAddressState>(
                 listener: (context, state) {
-                  if (state is EditAddressSuccess) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text(state.msg)));
+                  if (state is CreateAddressSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.msg)),
+                    );
                     GoRouter.of(context).pop();
-                  } else if (state is EditAddressFailure) {
-                    print(state.errMsg);
+                  } else if (state is CreateAddressFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(state.errMsg)),
                     );
@@ -151,46 +217,89 @@ class _EditAddressScreanState extends State<CreateAddressScrean> {
                 },
                 child: GestureDetector(
                   onTap: () {
-                    if (_address != null) {
-                      context.read<CreateAddressCubit>().createAddress(
-                            name: nameController.text,
-                            latitude: _selectedLatLng!.latitude.toString(),
-                            longitude: _selectedLatLng!.longitude.toString(),
-                            address:
-                                _address!, // Use the reverse-geocoded address
-                          );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text('تم الاضافه بنجاح'),
+                      if (nameController.text.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('يرجى تسمية العنوان')),
+    );
+    return; // Return early to prevent further processing
+  }
+                    if (_selectedLatLng != null) {
+                      if (_isLatLngInsideAnyCircle(_selectedLatLng!)) {
+                        context.read<CreateAddressCubit>().createAddress(
+                              name: nameController.text,
+                              latitude: _selectedLatLng!.latitude.toString(),
+                              longitude: _selectedLatLng!.longitude.toString(),
+                              address: _address!,
+                            );
+                        context.read<GetAddressesCubit>().fetchAddresses();
+                      } else {
+                        showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Center(
+                            child:  Text(
+                              'تنبيه',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontFamily: 'STVBold',
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          content:  Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '!!هذا المكان خارج نطاق خدمتنا',
+                                style: arabicstyle1.copyWith(fontSize: 15),
+                              ),
+                            ],
+                          ),
+                          actions: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('موافق',
+                                      style: TextStyle(
+                                        color: Colors.green,
+                                        fontFamily: 'STVBold',
+                                        fontSize: 20,
+                                      )),
+                                ),
+                              ],
+                            ),
                           ],
-                        )),
+                        ),
                       );
-                      context.read<GetAddressesCubit>().fetchAddresses();
-
-                      GoRouter.of(context).pop();
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content:
-                                Text("Please select a location on the map")),
+                            content: Text("يرجى تحديد موقع على الخريطة")),
                       );
                     }
                   },
                   child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: const Color(backgroundcustomgreen),
-                          borderRadius: BorderRadius.circular(17)),
-                      child: const Center(
-                        child: Text(
-                          'اضافه',
-                          style: arabicstyle2,
-                        ),
-                      )),
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Color(backgroundcustomgreen2),
+                      borderRadius: BorderRadius.circular(17),
+                    ),
+                    child: const Center(
+                      child: Text('اضافه',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'STVBold',
+                          )),
+                    ),
+                  ),
                 ),
               ),
             ),

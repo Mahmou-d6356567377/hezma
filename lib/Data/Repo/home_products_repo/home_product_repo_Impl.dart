@@ -11,7 +11,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeProductRepoIMPL implements HomeProductRepo {
   final ApiService apiservice;
+ Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
 
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
   HomeProductRepoIMPL(
     this.apiservice,
   );
@@ -19,10 +31,12 @@ class HomeProductRepoIMPL implements HomeProductRepo {
   @override
   Future<Either<Failure, List<Product>>> fetchHomeProduct() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String token1 = pref.getString(sharedToken)!;
+      String? token = await _getToken();
+      if (token==null) {
+      return left(ServerFailure('token is null'));
+      }
       var data = await apiservice.post(
-          url: '${baseURL}home?page=1', token: token1, body: null);
+          url: '${baseURL}home?page=1', token: token, body: null);
       List<Product> products = [];
       for (var item in data['data']['products']) {
         products.add(Product.fromJson(item));
@@ -80,10 +94,12 @@ class HomeProductRepoIMPL implements HomeProductRepo {
   @override
   Future<Either<Failure, List<Slider>>> fetchHomeslider() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String token1 = pref.getString(sharedToken)!;
+      String? token = await _getToken();
+      if (token == null) {
+      return left(ServerFailure('token is null'));
+      }
       var data = await apiservice.post(
-          url: '${baseURL}home?page=1', token: token1, body: null);
+          url: '${baseURL}home?page=1', token: token, body: null);
       List<Slider> products = [];
 
       for (var item in data['extra_data']['sliders']) {

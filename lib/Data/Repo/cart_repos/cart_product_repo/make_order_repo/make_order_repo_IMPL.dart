@@ -10,7 +10,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MakeOrderRepoImpl implements MakeOrderRepo {
   final ApiService apiService;
+ Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
 
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
   MakeOrderRepoImpl(this.apiService);
   @override
   Future<Either<Failure, String>> makeOrderFun(
@@ -24,8 +36,10 @@ class MakeOrderRepoImpl implements MakeOrderRepo {
       String? bankName,
       File? img}) async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      var t = pref.getString(sharedToken);
+      String? token= await _getToken();
+      if(token==null){
+        return left(ServerFailure('Token is null'));
+      }
       Map<String, dynamic> body = {
         'coupon_code': coupon,
         'payment_method_id': paymethodId,
@@ -37,7 +51,7 @@ class MakeOrderRepoImpl implements MakeOrderRepo {
         'bank_name': bankName,
       };
       var result = await apiService.post(
-          url: '${baseURL}cart/make-order', token: t, body: body);
+          url: '${baseURL}cart/make-order', token: token, body: body);
       return right(result['message']);
     } on DioException catch (e) {
       return left(ServerFailure.DioException(e));

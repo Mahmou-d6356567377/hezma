@@ -10,18 +10,32 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LogOutRepoImpl implements LogOutRepo {
   final ApiService apiService;
+ Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
 
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
   LogOutRepoImpl(this.apiService);
   @override
   Future<Either<Failure, dynamic>> logoutSummon() async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    String gtoken = pref.getString(sharedToken)!;
-
-    print(gtoken);
+ 
 
     try {
+      String? token1 = await _getToken();
+      if (token1 ==null) {
+        return left(ServerFailure('Token is NOt available'));
+      }
+      
       var response = await apiService.post(
-          url: '${baseURL}logout', token: gtoken, body: '');
+          url: '${baseURL}logout', token: token1, body: '');
       String message = response['message'];
       return right(message);
     } on DioException catch (e) {

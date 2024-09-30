@@ -12,19 +12,33 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AddressesRepoImpl implements AddressesRepo {
   final ApiService apiService;
 
+  Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
+
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
+
   AddressesRepoImpl(this.apiService);
+
   @override
   Future<Either<Failure, List<AddressData>>> getAddresses() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String? token1 = pref.getString(sharedToken);
-
-    if (token1 == null) {
-      return left(ServerFailure("Token is null"));
-    }
-
     try {
-      var result =
-          await apiService.get(url: '${baseURL}address', token: token1);
+      // Await the token retrieval
+      final token = await _getToken();
+
+      if (token == null) {
+        return left(ServerFailure("Token is not available"));
+      }
+
+      var result = await apiService.get(url: '${baseURL}address', token: token);
 
       if (result['data'] == null) {
         return left(ServerFailure("No data available"));
@@ -46,12 +60,17 @@ class AddressesRepoImpl implements AddressesRepo {
 
   @override
   Future<Either<Failure, String>> delAddresses({required int id}) async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String token1 = pref.getString(sharedToken)!;
     try {
+      // Await the token retrieval
+      final token = await _getToken();
+
+      if (token == null) {
+        return left(ServerFailure("Token is not available"));
+      }
+
       var result = await apiService.del(
         url: '${baseURL}address/delete/$id',
-        token: token1,
+        token: token,
       );
       String message = result['message'];
       print(message);
@@ -81,16 +100,19 @@ class AddressesRepoImpl implements AddressesRepo {
       'distance': '10',
     };
 
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String token1 = pref.getString(sharedToken)!;
     try {
+      // Await the token retrieval
+      final token = await _getToken();
+
+      if (token == null) {
+        return left(ServerFailure("Token is not available"));
+      }
+
       var result = await apiService.post(
         url: '${baseURL}address/update/$idd',
-        token: token1,
+        token: token,
         body: body,
       );
-      print(' edit meassaage ::::::${result['message']}');
-      print(' edit status ::::::${result['status']}');
       AddressData updatedAddress = AddressData.fromJson(result['data']);
       return right(updatedAddress);
     } on DioException catch (e) {
@@ -116,13 +138,20 @@ class AddressesRepoImpl implements AddressesRepo {
       'distance': '10',
     };
 
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String token1 = pref.getString(sharedToken)!;
-
     try {
+      // Await the token retrieval
+      final token = await _getToken();
+
+      if (token == null) {
+        return left(ServerFailure("Token is not available"));
+      }
+
       var result = await apiService.post(
-          url: '${baseURL}address/create', token: token1, body: body);
-      AddressData createdAddress = result['data'];
+        url: '${baseURL}address/create',
+        token: token,
+        body: body,
+      );
+      AddressData createdAddress = AddressData.fromJson(result['data']);
       return right(createdAddress);
     } on DioException catch (e) {
       return left(ServerFailure(e.toString()));

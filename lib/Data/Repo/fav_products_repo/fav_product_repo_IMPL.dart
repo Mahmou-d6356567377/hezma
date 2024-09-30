@@ -10,14 +10,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class FavProductRepoImpl implements FavoriteProductRepo {
   final ApiService apiService;
+   Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
+
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
   FavProductRepoImpl(this.apiService);
   @override
   Future<Either<Failure, List<Product>>> fetchFavProducts() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String token1 = pref.getString(sharedToken)!;
+      String? token = await _getToken();
+      if (token ==null) {
+        return left(ServerFailure('Token is null'));
+      }
       var result =
-          await apiService.get(url: '${baseURL}favorites', token: token1);
+          await apiService.get(url: '${baseURL}favorites', token: token);
       List<Product> favProduct = [];
       for (var item in result['data']) {
         favProduct.add(Product.fromJson(item));
@@ -34,11 +49,10 @@ class FavProductRepoImpl implements FavoriteProductRepo {
   @override
   Future<void> addFavProducts(Product productModel) async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String token1 = pref.getString(sharedToken)!;
+      String? token = await _getToken();
       await apiService.post(
           url: '${baseURL}favorites/${productModel.id}',
-          token: token1,
+          token: token,
           body: null);
     } catch (e) {
       Text('error in add favorite product $e');
@@ -48,10 +62,9 @@ class FavProductRepoImpl implements FavoriteProductRepo {
   @override
   Future<void> removeFavProducts(Product productModel) async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String token1 = pref.getString(sharedToken)!;
+      String? token = await  _getToken();
       await apiService.del(
-          url: '${baseURL}favorites/${productModel.id}', token: token1);
+          url: '${baseURL}favorites/${productModel.id}', token: token);
     } catch (e) {
       Text('error in remove favorite product $e');
     }

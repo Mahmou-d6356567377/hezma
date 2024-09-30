@@ -9,15 +9,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PayMethodsRepoImpl implements PayMethodsRepo {
   final ApiService apiService;
+ Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
 
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
   PayMethodsRepoImpl(this.apiService);
   @override
   Future<Either<Failure, List<PayDatum>>> fetchPayMethods() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String t = pref.getString(sharedToken)!;
+      String? token1 = await _getToken();
+      if (token1 ==null) {
+      return left(ServerFailure('Token is null'));
+      }
       var result =
-          await apiService.get(url: '${baseURL}payment_method', token: t);
+          await apiService.get(url: '${baseURL}payment_method', token: token1);
       var resultPlus = (result['data'] as List)
           .map((item) => PayDatum.fromJson(item))
           .toList();

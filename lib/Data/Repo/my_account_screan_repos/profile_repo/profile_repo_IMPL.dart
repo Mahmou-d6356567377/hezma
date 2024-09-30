@@ -11,14 +11,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileRepoImpl implements ProfileRepo {
   final ApiService apiService;
+ Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
 
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
   ProfileRepoImpl(this.apiService);
   @override
   Future<Either<Failure, ProfileData>> fetchProfileData() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String t = pref.getString(sharedToken)!;
-      var result = await apiService.get(url: '${baseURL}get_profile', token: t);
+        String? token = await _getToken();
+        if(token ==null){
+          return left(ServerFailure('token is null'));
+        }
+      var result = await apiService.get(url: '${baseURL}get_profile', token: token);
 
       ProfileData data = ProfileData.fromJson(result['data']);
       return right(data);
@@ -40,10 +54,10 @@ class ProfileRepoImpl implements ProfileRepo {
     File? image,
   }) async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String t = pref.getString(sharedToken)!;
-
-      // Create FormData to include file
+        String? token = await _getToken();
+        if(token ==null){
+          return left(ServerFailure('token is null'));
+        }
       FormData formData = FormData.fromMap({
         '_method': 'PUT',
         'name': name,
@@ -57,7 +71,7 @@ class ProfileRepoImpl implements ProfileRepo {
 
       var result = await apiService.post(
         url: '${baseURL}update_profile',
-        token: t,
+        token: token,
         body: formData,
       );
       String data = result['message'];

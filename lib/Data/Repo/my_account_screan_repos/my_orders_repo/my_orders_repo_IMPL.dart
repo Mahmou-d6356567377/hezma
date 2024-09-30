@@ -10,14 +10,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MyOrdersRepoImpl implements MyOrderRepo {
   final ApiService apiService;
+ Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
 
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
   MyOrdersRepoImpl(this.apiService);
   @override
   Future<Either<Failure, List<OrderData>>> fetchMyOrders() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String mToken = pref.getString(sharedToken)!;
-      var result = await apiService.get(url: '${baseURL}orders', token: mToken);
+      String? token = await _getToken();
+      if (token == null) {
+        return left(ServerFailure('Token is Null'));
+      }
+      var result = await apiService.get(url: '${baseURL}orders', token: token);
       List<OrderData> resultPlus = (result['data'] as List)
           .map((item) => OrderData.fromJson(item))
           .toList();
@@ -33,10 +47,12 @@ class MyOrdersRepoImpl implements MyOrderRepo {
   Future<Either<Failure, OrderProductModel>> fetchMyOrdersData(
       {required int id}) async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String t = pref.getString(sharedToken)!;
+      String? token = await _getToken();
+      if (token == null) {
+        return left(ServerFailure('Token is Null'));
+      }
       var result =
-          await apiService.get(url: '${baseURL}order/details/$id', token: t);
+          await apiService.get(url: '${baseURL}order/details/$id', token: token);
       OrderProductModel resultPlus = OrderProductModel.fromJson(result['data']);
       return right(resultPlus);
     } on DioException catch (e) {
@@ -49,10 +65,12 @@ class MyOrdersRepoImpl implements MyOrderRepo {
   @override
   Future<Either<Failure, String>> cancelOrder({required int id}) async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String mToken = pref.getString(sharedToken)!;
+      String? token = await _getToken();
+      if (token == null) {
+        return left(ServerFailure('Token is Null'));
+      }
       var result = await apiService.post(
-          url: '${baseURL}order/cancel/$id', token: mToken, body: '');
+          url: '${baseURL}order/cancel/$id', token: token, body: '');
       fetchMyOrders();
       return right(result['message']);
     } on DioException catch (e) {
@@ -65,9 +83,11 @@ class MyOrdersRepoImpl implements MyOrderRepo {
   @override
   Future<Either<Failure, List<OrderData>>> fetchMyPreviousOrders() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String mToken = pref.getString(sharedToken)!;
-      var result = await apiService.get(url: '${baseURL}orders', token: mToken);
+      String? token = await _getToken();
+      if (token == null) {
+        return left(ServerFailure('Token is Null'));
+      }
+      var result = await apiService.get(url: '${baseURL}orders', token: token);
       List<OrderData> resultPlus = (result['extra_data']['Previous'] as List)
           .map((item) => OrderData.fromJson(item))
           .toList();
@@ -82,9 +102,11 @@ class MyOrdersRepoImpl implements MyOrderRepo {
   @override
   Future<Either<Failure, List<OrderData>>> fetchcanceledOrders() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String mToken = pref.getString(sharedToken)!;
-      var result = await apiService.get(url: '${baseURL}orders', token: mToken);
+      String? token = await _getToken();
+      if (token == null) {
+        return left(ServerFailure('Token is Null'));
+      }
+      var result = await apiService.get(url: '${baseURL}orders', token: token);
       List<OrderData> resultPlus = (result['extra_data']['Canceled'] as List)
           .map((item) => OrderData.fromJson(item))
           .toList();
@@ -108,8 +130,10 @@ class MyOrdersRepoImpl implements MyOrderRepo {
     String? couponCode,
   }) async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String mToken = pref.getString(sharedToken)!;
+      String? token = await _getToken();
+      if (token == null) {
+        return left(ServerFailure('Token is Null'));
+      }
       Map<String, dynamic> body = {
         'coupon_code': couponCode,
         'payment_method_id': payid,
@@ -121,7 +145,7 @@ class MyOrdersRepoImpl implements MyOrderRepo {
         'bank_name': bankname,
       };
       var result = await apiService.post(
-          url: '${baseURL}cart/make-order', token: mToken, body: body);
+          url: '${baseURL}cart/make-order', token: token, body: body);
       List<OrderData> resultPlus = (result['extra_data']['Canceled'] as List)
           .map((item) => OrderData.fromJson(item))
           .toList();

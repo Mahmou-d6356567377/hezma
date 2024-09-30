@@ -8,13 +8,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class WalletRepoImpl implements WallectRepo {
   final ApiService apiService;
+ Future<String?> _getToken() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final String? token1 = pref.getString(sharedToken);
+    final String? token2 = pref.getString(sharedregisterToken);
 
+    if (token1 != null) {
+      return token1;
+    } else if (token2 != null) {
+      return token2;
+    } else {
+      return null;
+    }
+  }
   WalletRepoImpl(this.apiService);
   @override
   Future<Either<Failure, String>> fetchWalletData() async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String token = pref.getString(sharedToken)!;
+     String? token = await _getToken();
+     if (token == null) {
+     return left(ServerFailure('token is null'));
+     }
       var result = await apiService.get(url: '${baseURL}wallet', token: token);
       String resultplus = result['wallet'];
       print(resultplus);
@@ -29,8 +43,10 @@ class WalletRepoImpl implements WallectRepo {
   Future<Either<Failure, String>> chargeWalletData(
       {required int amount, required int paymentMethodId}) async {
     try {
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      String token = pref.getString(sharedToken)!;
+     String? token = await _getToken();
+     if (token == null) {
+     return left(ServerFailure('token is null'));
+     }
       Map<String, dynamic> body = {
         'amount': amount,
         'payment_method_id': paymentMethodId,

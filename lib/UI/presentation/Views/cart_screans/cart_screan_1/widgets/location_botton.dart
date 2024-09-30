@@ -105,7 +105,8 @@ class _LocatoinBottonState extends State<LocatoinBotton> {
                           padding: const EdgeInsets.all(16.0),
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pop(context); // Close the modal
+                              GoRouter.of(context).push(AppRoutes.cas);
+                              context.read<GetAddressesCubit>().fetchAddresses();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -118,7 +119,7 @@ class _LocatoinBottonState extends State<LocatoinBotton> {
                               minimumSize: const Size(double.infinity, 50),
                             ),
                             child: const Text(
-                              'إغلاق',
+                              'اضافة عنوان',
                               style: arabicstyle5,
                             ),
                           ),

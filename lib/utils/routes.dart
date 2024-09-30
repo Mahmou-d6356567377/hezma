@@ -251,14 +251,14 @@ abstract class AppRoutes {
           // ignore: avoid_print
           print('Go to  Edit Addresses Screan ');
           final AddressData addressData = state.extra as AddressData;
-          return EditAddressScrean(place: addressData);
+          return EditAddressScreen(place: addressData);
         }),
     GoRoute(
         path: cas,
         builder: (context, state) {
           // ignore: avoid_print
           print('Go to  Create Address Screan');
-          return const CreateAddressScrean();
+          return const CreateAddressScreen();
         }),
     GoRoute(
         path: ps,
