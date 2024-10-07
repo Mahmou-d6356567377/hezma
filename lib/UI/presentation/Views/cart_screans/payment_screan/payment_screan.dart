@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
@@ -8,17 +9,19 @@ import 'package:hezma/utils/fonts.dart';
 import 'widgets/pay_way_botton.dart';
 
 class PaymentScrean extends StatefulWidget {
-  const PaymentScrean(
-      {Key? key,
-      required this.timeId,
-      required this.date,
-      required this.addressdata,
-      required this.totalPrice})
-      : super(key: key);
+  const PaymentScrean({
+    Key? key,
+    required this.timeId,
+    required this.date,
+    required this.addressdata,
+    required this.totalPrice,
+  }) : super(key: key);
+
   final int timeId;
   final DateTime date;
   final AddressData? addressdata;
   final int totalPrice;
+
   @override
   State<PaymentScrean> createState() => _PaymentScreanState();
 }
@@ -30,6 +33,7 @@ class _PaymentScreanState extends State<PaymentScrean> {
   TextEditingController fourthController = TextEditingController();
 
   int? selectedPayMethodId;
+  File? _image;  // Image file to pass to LastPayItem
 
   @override
   void initState() {
@@ -93,16 +97,25 @@ class _PaymentScreanState extends State<PaymentScrean> {
               secondController: secondController,
               thirdController: thirdController,
               forthController: fourthController,
+              onImageSelected: (File? value) {
+                setState(() {
+                  _image = value;
+                });
+                print('Selected image: $_image');
+              },
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: LastPayItem(
               totalPrice: widget.totalPrice,
               timeId: widget.timeId,
               date: widget.date,
               addressdata: widget.addressdata,
               mothodId: selectedPayMethodId!,
+              img: _image, 
+              bankName: firstController.text,
+              userName: thirdController.text,
             ),
           ),
         ],

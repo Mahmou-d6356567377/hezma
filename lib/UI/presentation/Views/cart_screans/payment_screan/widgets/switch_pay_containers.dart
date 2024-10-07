@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hezma/UI/presentation/Views/cart_screans/payment_screan/widgets/pay2_page_widget.dart';
 import 'package:hezma/UI/presentation/Views/cart_screans/payment_screan/widgets/pay3_page_widget.dart';
@@ -14,7 +16,8 @@ class SwitchPayContainers extends StatelessWidget {
       required this.firstController,
       required this.secondController,
       required this.thirdController,
-      required this.forthController});
+      required this.forthController,
+      required this.onImageSelected});
 
   final TextEditingController firstController;
   final TextEditingController secondController;
@@ -24,6 +27,8 @@ class SwitchPayContainers extends StatelessWidget {
   final bool iscontainer2;
   final bool iscontainer3;
   final bool iscontainer4;
+    final Function(File?) onImageSelected; // Callback function
+
   @override
   Widget build(BuildContext context) {
     Widget containerContent;
@@ -48,7 +53,8 @@ class SwitchPayContainers extends StatelessWidget {
         firstController: firstController,
         secondController: secondController,
         thirdController: thirdController,
-        fourthController: forthController,
+        fourthController: forthController, 
+        onImageSelected: onImageSelected
       ));
     } else {
       containerContent = const SizedBox(child: Pay4PageWidget());

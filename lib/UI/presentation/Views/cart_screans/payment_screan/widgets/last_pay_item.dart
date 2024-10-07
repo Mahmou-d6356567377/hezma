@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hezma/Data/models/my_account_screan_models/addresses/data.dart';
@@ -15,6 +17,9 @@ class LastPayItem extends StatelessWidget {
     required this.date,
     this.addressdata,
     required this.mothodId,
+    this.img,
+     this.bankName, 
+     this.userName, 
   });
 
   final int totalPrice;
@@ -22,26 +27,30 @@ class LastPayItem extends StatelessWidget {
   final DateTime date;
   final AddressData? addressdata;
   final int mothodId;
+  final File? img;
+  final String? bankName;
+  final String? userName;
 
   @override
   Widget build(BuildContext context) {
-    double tatalPricewithtax = 1.15 * totalPrice;
-
+    double totalPriceWithTax = 1.15 * totalPrice;
     String formattedDate = DateFormat('yyyy_M-dd').format(date);
 
     return BlocConsumer<MakeOrderCubit, MakeOrderState>(
       listener: (context, state) {
         if (state is MakeOrderFailure) {
-          print(state.errMsg);
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.errMsg)));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.errMsg)),
+          );
+            print(state.errMsg);
         } else if (state is MakeOrderSuccess) {
-          print(state.sucMsg);
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.sucMsg)));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.sucMsg)),
+          );
         } else {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: LinearProgressIndicator()));
+          ScaffoldMessenger.of(context).showSnackBar(
+           const  SnackBar(content: LinearProgressIndicator()),
+          );
         }
       },
       builder: (context, state) {
@@ -61,60 +70,20 @@ class LastPayItem extends StatelessWidget {
                     backgroundColor: const Color(backgroundcustomgreen),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
-                      side: const BorderSide(color: Colors.transparent),
                     ),
                   ),
                   onPressed: () {
+
                     context.read<MakeOrderCubit>().makeOrderFunC(
                           paymethodId: mothodId,
                           addressId: addressdata!.id!,
                           timeId: timeId,
                           date: formattedDate,
                           shipping: '100',
+                          img: img,
+                          bankName:bankName ,
+                          userName: userName, 
                         );
-                    context.read<MyOrdersCubit>().fetchMyOrders();
-
-                    print('addressdata 1 ${addressdata!.name}');
-                    print('total price 1 $totalPrice');
-                    print('date 1 $formattedDate'); // Print formatted date
-                    print('timeId 1 $timeId');
-
-                    if (addressdata == null ||
-                        totalPrice == 0 ||
-                        date == DateTime.now() ||
-                        timeId == 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          content: Text('يجب ان تملا جميع الحقول')));
-                    } else {
-                      showDialog(
-                        context: context,
-                        builder: (_) => AlertDialog(
-                          actions: <Widget>[
-                            Center(
-                                child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0, vertical: 20),
-                              child: Image.asset(kcheckpaylogo),
-                            )),
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'تم الدفع بنجاح',
-                                    style: arabicstyle3,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                          surfaceTintColor: const Color(backgroundcolor1),
-                          shadowColor: Colors.black26,
-                        ),
-                      );
-                    }
                   },
                   child: const Text(
                     'ادفع',
@@ -140,7 +109,7 @@ class LastPayItem extends StatelessWidget {
                           style: arabicstyle3,
                         ),
                         Text(
-                          tatalPricewithtax.toString(),
+                          totalPriceWithTax.toString(),
                           style: arabicstyle3,
                         ),
                       ],

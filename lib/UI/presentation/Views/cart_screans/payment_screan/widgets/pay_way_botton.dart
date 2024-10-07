@@ -9,7 +9,7 @@ class PayWayBotton extends StatelessWidget {
     required this.img,
     required this.id,
     required this.desc,
-    required this.isSelected, // Pass whether this button is selected
+    required this.isSelected, 
   });
 
   final String title;

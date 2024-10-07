@@ -27,7 +27,11 @@ class MakeOrderCubit extends Cubit<MakeOrderState> {
         addressId: addressId,
         timeId: timeId,
         date: date,
-        shipping: shipping);
+        shipping: shipping,
+        bankName: bankName,
+        userName: userName,
+        img: img,
+        );
     result.fold((failure) {
       emit(MakeOrderFailure(failure.errorMSG));
     }, (sucMsg) {
